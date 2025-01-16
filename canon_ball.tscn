@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtq64rllxnk37"]
+
+[ext_resource type="Script" path="res://scripts/canon_ball.gd" id="1_6t3d8"]
+[ext_resource type="Texture2D" uid="uid://duegfltkddkfa" path="res://assets/canon_ball.png" id="2_phm3p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cqmah"]
+radius = 2.0
+
+[node name="CanonBall" type="CharacterBody2D"]
+script = ExtResource("1_6t3d8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_phm3p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cqmah")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

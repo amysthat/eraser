@@ -1,0 +1,116 @@
+[gd_scene load_steps=17 format=3 uid="uid://cky1jr0gkvhxb"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_obows"]
+[ext_resource type="Texture2D" uid="uid://dpohn443kh0uf" path="res://assets/player.png" id="2_quylh"]
+[ext_resource type="Texture2D" uid="uid://cb6m3ohc3j38b" path="res://assets/dash_arrow.png" id="3_eexxn"]
+[ext_resource type="Script" path="res://scripts/state_machine.gd" id="3_mwlv2"]
+[ext_resource type="Script" path="res://scripts/player_movement.gd" id="4_nhatt"]
+[ext_resource type="Texture2D" uid="uid://halhkxblj44i" path="res://assets/blank_cursor.png" id="5_51lyn"]
+[ext_resource type="Script" path="res://scripts/player_parry.gd" id="6_dk25c"]
+[ext_resource type="Texture2D" uid="uid://uatb8o36a355" path="res://assets/player_parry.png" id="7_2ju5g"]
+[ext_resource type="Texture2D" uid="uid://dre2a4p07tfhr" path="res://assets/dash_unavailable.png" id="7_oll6h"]
+[ext_resource type="Script" path="res://scripts/player_dash_charge.gd" id="9_qq7uh"]
+[ext_resource type="Texture2D" uid="uid://nrurpmvs3oen" path="res://assets/charge_cursor.png" id="10_8xgo3"]
+[ext_resource type="Texture2D" uid="uid://dyxyymavauoyb" path="res://assets/player_charge.png" id="11_yg7kx"]
+[ext_resource type="Script" path="res://scripts/player_hit_shock.gd" id="13_8vdr4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_36loq"]
+friction = 0.6
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dvlub"]
+radius = 2.0
+height = 6.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vij4r"]
+friction = 0.0
+bounce = 0.5
+
+[node name="Player" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_36loq")
+lock_rotation = true
+script = ExtResource("1_obows")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_quylh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_dvlub")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.2, 1.2)
+position_smoothing_enabled = true
+position_smoothing_speed = 15.0
+
+[node name="GroundRay" type="RayCast2D" parent="."]
+target_position = Vector2(0, 4.2)
+
+[node name="GroundRay" type="RayCast2D" parent="GroundRay"]
+position = Vector2(-1, 0)
+target_position = Vector2(0, 4.2)
+
+[node name="GroundRay2" type="RayCast2D" parent="GroundRay"]
+position = Vector2(1, 0)
+target_position = Vector2(0, 4.2)
+
+[node name="Dash Arrow Origin" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Dash Arrow Origin"]
+position = Vector2(9, 0)
+texture = ExtResource("3_eexxn")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_mwlv2")
+initial_state = NodePath("movement")
+
+[node name="movement" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "ground_ray")]
+script = ExtResource("4_nhatt")
+player = NodePath("../..")
+dash_available_cursor = ExtResource("5_51lyn")
+dash_unavailable_cursor = ExtResource("7_oll6h")
+normal_texture = ExtResource("2_quylh")
+move_force = 800.0
+jump_impulse = 200.0
+max_speed = 100.0
+ground_ray = NodePath("../../GroundRay")
+dash_min_time = 0.2
+
+[node name="parry" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("6_dk25c")
+player = NodePath("../..")
+cursor = ExtResource("7_oll6h")
+parry_texture = ExtResource("7_2ju5g")
+
+[node name="Timer" type="Timer" parent="StateMachine/parry"]
+wait_time = 0.6
+one_shot = true
+
+[node name="dash_charge" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "dash_arrow_origin")]
+script = ExtResource("9_qq7uh")
+player = NodePath("../..")
+cursor = ExtResource("10_8xgo3")
+charge_texture = ExtResource("11_yg7kx")
+dash_arrow_origin = NodePath("../../Dash Arrow Origin")
+full_charge_time = 1.5
+max_charge_speed = 400.0
+
+[node name="hit_shock" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("13_8vdr4")
+player = NodePath("../..")
+cursor = ExtResource("7_oll6h")
+hit_texture = ExtResource("7_2ju5g")
+hit_force_multiplier = 600.0
+physics_material = SubResource("PhysicsMaterial_vij4r")
+
+[node name="ShockTimer" type="Timer" parent="StateMachine/hit_shock"]
+wait_time = 0.45
+one_shot = true
+
+[node name="FlyTimer" type="Timer" parent="StateMachine/hit_shock"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="StateMachine/parry/Timer" to="StateMachine/parry" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/hit_shock/ShockTimer" to="StateMachine/hit_shock" method="_on_shock_timer_timeout"]
+[connection signal="timeout" from="StateMachine/hit_shock/FlyTimer" to="StateMachine/hit_shock" method="_on_fly_timer_timeout"]
