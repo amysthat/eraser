@@ -4,16 +4,19 @@ BEGINNING
 # parry
 # dash charge indicator
 # tiles that only block a solitary side
-bigger map
 # main menu
+# bigger map
+# spawnpoint
 
 bugs:
 # fps report is just wrong
 
-V0.1
+# V0.1
 
 plane
 pause menu
+sections
+debug section teleporter
 bigger map
 player animations
 
