@@ -1,6 +1,7 @@
 extends State
 
 @export var player: Player
+@export var player_parry: Node
 @export var cursor: Texture2D
 @export var hit_texture: Texture2D
 
@@ -19,6 +20,12 @@ func enter():
 	Cursor.set_cursor_image(cursor)
 
 	shock_timer.start()
+
+func update(_delta: float):
+	if Input.is_action_just_pressed("parry") and not shock_timer.is_stopped():
+		shock_timer.stop()
+		transition.emit("parry")
+		player_parry.on_parry()
 
 func _on_shock_timer_timeout():
 	var impulse = -normal * hit_force_multiplier

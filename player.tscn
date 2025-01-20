@@ -131,9 +131,10 @@ dash_arrow_origin = NodePath("../../Dash Arrow Origin")
 full_charge_time = 1.35
 max_charge_speed = 400.0
 
-[node name="hit_shock" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+[node name="hit_shock" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "player_parry")]
 script = ExtResource("13_8vdr4")
 player = NodePath("../..")
+player_parry = NodePath("../parry")
 cursor = ExtResource("7_oll6h")
 hit_texture = ExtResource("7_2ju5g")
 hit_force_multiplier = 600.0

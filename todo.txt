@@ -20,6 +20,9 @@ debug section teleporter
 bigger map
 player animations
 
+improvements:
+# be able to parry when being in hit shock
+
 V0.2
 
 proper tutorial text
