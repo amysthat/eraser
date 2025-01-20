@@ -1,24 +1,25 @@
 extends Node2D
-class_name Cursor
 
-static var instance
+var sprite: Sprite2D
 
-@onready var sprite := $Sprite
-
-@export var initial_cursor : Texture
-
-var current_cursor : Resource
+var current_cursor: Resource
 
 func _ready():
-	instance = self
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-	
-	if initial_cursor:
-		set_cursor_image(initial_cursor)
+	sprite = Sprite2D.new()
+	add_child(sprite)
+	sprite.z_index = 999
 
 func _process(_delta):
 	position = get_global_mouse_position()
 
-static func set_cursor_image(image: Resource):
-	instance.current_cursor = image
-	instance.sprite.texture = image
+func set_cursor_image(image: Resource):
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	
+	current_cursor = image
+	sprite.texture = image
+
+func remove_cursor():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	current_cursor = null
+	sprite.texture = null

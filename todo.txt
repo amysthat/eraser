@@ -1,0 +1,27 @@
+
+BEGINNING
+
+# parry
+# dash charge indicator
+# tiles that only block a solitary side
+bigger map
+# main menu
+
+bugs:
+# fps report is just wrong
+
+V0.1
+
+plane
+pause menu
+bigger map
+player animations
+
+V0.2
+
+proper tutorial text
+color palette
+sound
+music
+
+V0.3: DEMO RELEASE (21st of January FINAL DAY)

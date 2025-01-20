@@ -11,7 +11,7 @@ extends State
 @export var air_multiplier: float = 0.4
 @export var jump_impulse: float = 500.0
 @export var max_speed: float = 200.0
-@export var ground_ray: RayCast2D
+@export var ground_rays: Array[RayCast2D]
 
 @export_category("Dash")
 @export var dash_min_time: float
@@ -40,6 +40,8 @@ func update(delta: float):
 	dash_time -= delta
 
 func physics_update(_delta: float):
+	player.gravity_scale = player.player_float.get_gravity_scale()
+
 	var direction = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 
 	var movement_force = move_force
@@ -68,4 +70,8 @@ func physics_update(_delta: float):
 			player.apply_force(Vector2(0, 200))
 
 func is_on_floor() -> bool:
-	return ground_ray.is_colliding()
+	for ray in ground_rays:
+		if ray.is_colliding():
+			return true
+	
+	return false

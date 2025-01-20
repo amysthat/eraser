@@ -1,18 +1,35 @@
-[gd_scene load_steps=17 format=3 uid="uid://cky1jr0gkvhxb"]
+[gd_scene load_steps=34 format=3 uid="uid://cky1jr0gkvhxb"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_obows"]
 [ext_resource type="Texture2D" uid="uid://dpohn443kh0uf" path="res://assets/player.png" id="2_quylh"]
 [ext_resource type="Texture2D" uid="uid://cb6m3ohc3j38b" path="res://assets/dash_arrow.png" id="3_eexxn"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="3_mwlv2"]
+[ext_resource type="Script" path="res://scripts/player_float.gd" id="4_3dubg"]
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="4_nhatt"]
 [ext_resource type="Texture2D" uid="uid://halhkxblj44i" path="res://assets/blank_cursor.png" id="5_51lyn"]
+[ext_resource type="Texture2D" uid="uid://bwgmjgn5ih5jn" path="res://assets/float_bar.png" id="5_y1hdp"]
 [ext_resource type="Script" path="res://scripts/player_parry.gd" id="6_dk25c"]
 [ext_resource type="Texture2D" uid="uid://uatb8o36a355" path="res://assets/player_parry.png" id="7_2ju5g"]
 [ext_resource type="Texture2D" uid="uid://dre2a4p07tfhr" path="res://assets/dash_unavailable.png" id="7_oll6h"]
 [ext_resource type="Script" path="res://scripts/player_dash_charge.gd" id="9_qq7uh"]
-[ext_resource type="Texture2D" uid="uid://nrurpmvs3oen" path="res://assets/charge_cursor.png" id="10_8xgo3"]
 [ext_resource type="Texture2D" uid="uid://dyxyymavauoyb" path="res://assets/player_charge.png" id="11_yg7kx"]
 [ext_resource type="Script" path="res://scripts/player_hit_shock.gd" id="13_8vdr4"]
+[ext_resource type="Texture2D" uid="uid://pd7obwu8jtuy" path="res://assets/dash_charge/charge_cursor1.png" id="15_dppcb"]
+[ext_resource type="Texture2D" uid="uid://3po0e0whtp0v" path="res://assets/dash_charge/charge_cursor2.png" id="16_a8c3n"]
+[ext_resource type="Texture2D" uid="uid://bqe5s3a622xx1" path="res://assets/dash_charge/charge_cursor3.png" id="17_2ncrs"]
+[ext_resource type="Texture2D" uid="uid://bfogtmiioe7lm" path="res://assets/dash_charge/charge_cursor4.png" id="18_vbx5i"]
+[ext_resource type="Texture2D" uid="uid://b2xpl5m4x2sdu" path="res://assets/dash_charge/charge_cursor5.png" id="19_hp8xs"]
+[ext_resource type="Texture2D" uid="uid://diwnratqw0n6g" path="res://assets/dash_charge/charge_cursor6.png" id="20_ehumc"]
+[ext_resource type="Texture2D" uid="uid://8ui8q8dvfrxa" path="res://assets/dash_charge/charge_cursor7.png" id="21_7ch4o"]
+[ext_resource type="Texture2D" uid="uid://cjnemidtdv3sm" path="res://assets/dash_charge/charge_cursor8.png" id="22_ni8u8"]
+[ext_resource type="Texture2D" uid="uid://j7k5cinqeulb" path="res://assets/dash_charge/charge_cursor9.png" id="23_6vatd"]
+[ext_resource type="Texture2D" uid="uid://dr0b6ogn6hqth" path="res://assets/dash_charge/charge_cursor10.png" id="24_csrwi"]
+[ext_resource type="Texture2D" uid="uid://bofhfbod6y0yh" path="res://assets/dash_charge/charge_cursor11.png" id="25_gr1bh"]
+[ext_resource type="Texture2D" uid="uid://bowcw7s5iuero" path="res://assets/dash_charge/charge_cursor12.png" id="26_csd2q"]
+[ext_resource type="Texture2D" uid="uid://fxkgg6lfd4u2" path="res://assets/dash_charge/charge_cursor13.png" id="27_0n135"]
+[ext_resource type="Texture2D" uid="uid://di6c2crotpn6i" path="res://assets/dash_charge/charge_cursor14.png" id="28_jpstf"]
+[ext_resource type="Texture2D" uid="uid://qvvpgjjx4hju" path="res://assets/dash_charge/charge_cursor15.png" id="29_h75wg"]
+[ext_resource type="Texture2D" uid="uid://d2o8qcw6e6xp7" path="res://assets/dash_charge/charge_cursor16.png" id="30_qe4ul"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_36loq"]
 friction = 0.6
@@ -38,7 +55,7 @@ position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_dvlub")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.2, 1.2)
+zoom = Vector2(6, 6)
 position_smoothing_enabled = true
 position_smoothing_speed = 15.0
 
@@ -60,11 +77,25 @@ visible = false
 position = Vector2(9, 0)
 texture = ExtResource("3_eexxn")
 
+[node name="Float" type="Node2D" parent="." node_paths=PackedStringArray("player_movement")]
+script = ExtResource("4_3dubg")
+player_movement = NodePath("../StateMachine/movement")
+down_force = 7.0
+
+[node name="Timer" type="Timer" parent="Float"]
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Float"]
+position = Vector2(0, 5.5)
+texture = ExtResource("5_y1hdp")
+region_enabled = true
+region_rect = Rect2(0, 0, 4, 1)
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_mwlv2")
 initial_state = NodePath("movement")
 
-[node name="movement" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "ground_ray")]
+[node name="movement" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "ground_rays")]
 script = ExtResource("4_nhatt")
 player = NodePath("../..")
 dash_available_cursor = ExtResource("5_51lyn")
@@ -73,7 +104,7 @@ normal_texture = ExtResource("2_quylh")
 move_force = 800.0
 jump_impulse = 200.0
 max_speed = 100.0
-ground_ray = NodePath("../../GroundRay")
+ground_rays = [NodePath("../../GroundRay"), NodePath("../../GroundRay/GroundRay"), NodePath("../../GroundRay/GroundRay2")]
 dash_min_time = 0.2
 
 [node name="parry" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
@@ -81,18 +112,23 @@ script = ExtResource("6_dk25c")
 player = NodePath("../..")
 cursor = ExtResource("7_oll6h")
 parry_texture = ExtResource("7_2ju5g")
+float_time = 3.0
 
 [node name="Timer" type="Timer" parent="StateMachine/parry"]
 wait_time = 0.6
 one_shot = true
 
+[node name="ShockTimer" type="Timer" parent="StateMachine/parry"]
+wait_time = 0.45
+one_shot = true
+
 [node name="dash_charge" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "dash_arrow_origin")]
 script = ExtResource("9_qq7uh")
 player = NodePath("../..")
-cursor = ExtResource("10_8xgo3")
 charge_texture = ExtResource("11_yg7kx")
+cursor_textures = Array[Texture2D]([ExtResource("15_dppcb"), ExtResource("16_a8c3n"), ExtResource("17_2ncrs"), ExtResource("18_vbx5i"), ExtResource("19_hp8xs"), ExtResource("20_ehumc"), ExtResource("21_7ch4o"), ExtResource("22_ni8u8"), ExtResource("23_6vatd"), ExtResource("24_csrwi"), ExtResource("25_gr1bh"), ExtResource("26_csd2q"), ExtResource("27_0n135"), ExtResource("28_jpstf"), ExtResource("29_h75wg"), ExtResource("30_qe4ul")])
 dash_arrow_origin = NodePath("../../Dash Arrow Origin")
-full_charge_time = 1.5
+full_charge_time = 1.35
 max_charge_speed = 400.0
 
 [node name="hit_shock" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
@@ -111,6 +147,8 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[connection signal="timeout" from="Float/Timer" to="Float" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/parry/Timer" to="StateMachine/parry" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/parry/ShockTimer" to="StateMachine/parry" method="_on_shock_timer_timeout"]
 [connection signal="timeout" from="StateMachine/hit_shock/ShockTimer" to="StateMachine/hit_shock" method="_on_shock_timer_timeout"]
 [connection signal="timeout" from="StateMachine/hit_shock/FlyTimer" to="StateMachine/hit_shock" method="_on_fly_timer_timeout"]

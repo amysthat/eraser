@@ -12,11 +12,7 @@ extends StaticBody2D
 ##    they are the same size.
 
 ## Your TileMap Node
-@export var tilemap_nodepath: NodePath
-
-## The tilemap layer to bake collisions on.
-## You can bake for multiple layers by disabling delete_children_on_run and running multiple times.
-@export var target_tiles_layer: int = 0
+@export var tilemaplayer_nodepath: NodePath
 
 ## Whether or not you want the children of this node to be deleted on run or not.
 ## Be careful with this!
@@ -31,16 +27,16 @@ func _ready():
 
 @warning_ignore("unassigned_variable")
 func run_code(_fake_bool = null):
-	var tile_map: TileMap = get_node(tilemap_nodepath)
+	var tile_map: TileMapLayer = get_node(tilemaplayer_nodepath)
 	if tile_map == null:
-		print("Hey, you forgot to set your Tilemap Nodepath.")
+		print("Hey, you forgot to set your TileMapLayer Nodepath.")
 		return
 	
 	if delete_children_on_run:
 		delete_children()
 	
 	var tile_size = tile_map.tile_set.tile_size
-	var tilemap_locations = tile_map.get_used_cells(target_tiles_layer)
+	var tilemap_locations = tile_map.get_used_cells()
 	
 	if tilemap_locations.size() == 0:
 		print("Hey, this tilemap is empty (did you choose the correct layer?)")
