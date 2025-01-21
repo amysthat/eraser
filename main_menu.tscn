@@ -1,80 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://drk2vwef05yav"]
+[gd_scene load_steps=3 format=3 uid="uid://drk2vwef05yav"]
 
+[ext_resource type="Theme" uid="uid://cygy0ufansx3h" path="res://theme.tres" id="1_clxdk"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_fg8hk"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jyndg"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1u3dc"]
-bg_color = Color(0.903598, 0.903598, 0.903598, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xf1h8"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkjqd"]
-bg_color = Color(0.95158, 0.95158, 0.95158, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k17ud"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hbtqb"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yqo88"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ytrl"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e410i"]
-bg_color = Color(0.95158, 0.95158, 0.95158, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8q1kn"]
-bg_color = Color(0.920995, 0.920995, 0.920995, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="Theme" id="Theme_3vjh0"]
-Button/colors/font_color = Color(0, 0, 0, 1)
-Button/colors/font_focus_color = Color(0, 0, 0, 1)
-Button/colors/font_hover_color = Color(0, 0, 0, 1)
-Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-Button/colors/font_pressed_color = Color(1, 1, 1, 1)
-Button/styles/focus = SubResource("StyleBoxEmpty_jyndg")
-Button/styles/hover = SubResource("StyleBoxFlat_1u3dc")
-Button/styles/hover_pressed = SubResource("StyleBoxEmpty_xf1h8")
-Button/styles/normal = SubResource("StyleBoxFlat_vkjqd")
-Button/styles/pressed = SubResource("StyleBoxFlat_k17ud")
-CheckButton/colors/font_color = Color(0, 0, 0, 1)
-CheckButton/colors/font_hover_color = Color(0, 0, 0, 1)
-CheckButton/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-CheckButton/colors/font_pressed_color = Color(0, 0, 0, 1)
-CheckButton/styles/normal = SubResource("StyleBoxEmpty_hbtqb")
-CheckButton/styles/pressed = SubResource("StyleBoxEmpty_yqo88")
-Label/colors/font_color = Color(0, 0, 0, 1)
-LineEdit/colors/caret_color = Color(0, 0, 0, 1)
-LineEdit/colors/font_color = Color(0, 0, 0, 1)
-LineEdit/styles/focus = SubResource("StyleBoxEmpty_2ytrl")
-LineEdit/styles/normal = SubResource("StyleBoxFlat_e410i")
-Panel/styles/panel = SubResource("StyleBoxFlat_8q1kn")
 
 [node name="Main Menu" type="Node2D"]
 
@@ -91,7 +18,7 @@ offset_right = 960.0
 offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_3vjh0")
+theme = ExtResource("1_clxdk")
 script = ExtResource("1_fg8hk")
 
 [node name="Main" type="CenterContainer" parent="UI"]
@@ -208,7 +135,7 @@ text = "a whole lotta options ik :)
 
 no i can not let you change the resolution do you know the pain i went through"
 
-[node name="Label" type="Label" parent="UI"]
+[node name="VersionLabel" type="Label" parent="UI"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -217,7 +144,7 @@ offset_top = -23.0
 offset_right = 63.0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "v0.1"
+text = "dev: v0.2"
 
 [connection signal="pressed" from="UI/Main/VBoxContainer/Play" to="UI" method="_on_play_pressed"]
 [connection signal="pressed" from="UI/Main/VBoxContainer/Settings" to="UI" method="_on_settings_pressed"]

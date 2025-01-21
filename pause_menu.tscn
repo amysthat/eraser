@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8pwn68xclcrf"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_gmrmn"]
+[ext_resource type="Theme" uid="uid://cygy0ufansx3h" path="res://theme.tres" id="2_wiab2"]
+
+[node name="Pause Menu" type="SubViewportContainer"]
+process_mode = 3
+z_index = 100
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_gmrmn")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+unique_name_in_owner = true
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewport"]
+unique_name_in_owner = true
+
+[node name="Content" type="Control" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 2
+theme = ExtResource("2_wiab2")
+
+[node name="CenterContainer" type="CenterContainer" parent="Content"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Content/CenterContainer"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_top = 25.0
+offset_right = 37.0
+offset_bottom = 48.0
+grow_horizontal = 2
+text = "PAUSED"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content/CenterContainer/Panel"]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -135.0
+offset_right = 200.0
+offset_bottom = 165.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Resume" type="Button" parent="Content/CenterContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Resume"
+
+[node name="MainMenu" type="Button" parent="Content/CenterContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Back to Main Menu"
+
+[connection signal="pressed" from="Content/CenterContainer/Panel/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Content/CenterContainer/Panel/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

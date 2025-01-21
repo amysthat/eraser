@@ -13,21 +13,20 @@ bugs:
 
 # V0.1
 
-plane
-pause menu
-sections
-debug section teleporter
-bigger map
+# pause menu
 player animations
+plane
+bigger map
 
 improvements:
-# be able to parry when being in hit shock
+# be able to parry while being in hit shock
 
 V0.2
 
+debug section teleporter
 proper tutorial text
 color palette
 sound
 music
 
-V0.3: DEMO RELEASE (21st of January FINAL DAY)
+V0.3: DEMO RELEASE (22nd of January FINAL DAY)

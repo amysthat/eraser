@@ -5,14 +5,13 @@ extends Control
 @onready var vsync: CheckButton = %VSync
 
 func _ready():
-    Cursor.remove_cursor()
     settings_menu.visible = false
 
     max_fps_box.value = Engine.max_fps
     vsync.button_pressed = DisplayServer.window_get_vsync_mode()
 
 func _on_play_pressed():
-    get_tree().change_scene_to_file("res://world.tscn")
+    Game.begin_game()
 
 func _on_quit_pressed():
     get_tree().quit()
