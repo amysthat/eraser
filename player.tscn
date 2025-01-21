@@ -1,7 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://cky1jr0gkvhxb"]
+[gd_scene load_steps=32 format=3 uid="uid://cky1jr0gkvhxb"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_obows"]
-[ext_resource type="Texture2D" uid="uid://dpohn443kh0uf" path="res://assets/player.png" id="2_quylh"]
+[ext_resource type="SpriteFrames" uid="uid://bbtq8nekgvw24" path="res://player.aseprite" id="3_64ewp"]
 [ext_resource type="Texture2D" uid="uid://cb6m3ohc3j38b" path="res://assets/dash_arrow.png" id="3_eexxn"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="3_mwlv2"]
 [ext_resource type="Script" path="res://scripts/player_float.gd" id="4_3dubg"]
@@ -9,10 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://halhkxblj44i" path="res://assets/blank_cursor.png" id="5_51lyn"]
 [ext_resource type="Texture2D" uid="uid://bwgmjgn5ih5jn" path="res://assets/float_bar.png" id="5_y1hdp"]
 [ext_resource type="Script" path="res://scripts/player_parry.gd" id="6_dk25c"]
-[ext_resource type="Texture2D" uid="uid://uatb8o36a355" path="res://assets/player_parry.png" id="7_2ju5g"]
 [ext_resource type="Texture2D" uid="uid://dre2a4p07tfhr" path="res://assets/dash_unavailable.png" id="7_oll6h"]
 [ext_resource type="Script" path="res://scripts/player_dash_charge.gd" id="9_qq7uh"]
-[ext_resource type="Texture2D" uid="uid://dyxyymavauoyb" path="res://assets/player_charge.png" id="11_yg7kx"]
 [ext_resource type="Script" path="res://scripts/player_hit_shock.gd" id="13_8vdr4"]
 [ext_resource type="Texture2D" uid="uid://pd7obwu8jtuy" path="res://assets/dash_charge/charge_cursor1.png" id="15_dppcb"]
 [ext_resource type="Texture2D" uid="uid://3po0e0whtp0v" path="res://assets/dash_charge/charge_cursor2.png" id="16_a8c3n"]
@@ -47,8 +45,10 @@ physics_material_override = SubResource("PhysicsMaterial_36loq")
 lock_rotation = true
 script = ExtResource("1_obows")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_quylh")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -2)
+sprite_frames = ExtResource("3_64ewp")
+animation = &"Parry"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -100,18 +100,21 @@ script = ExtResource("4_nhatt")
 player = NodePath("../..")
 dash_available_cursor = ExtResource("5_51lyn")
 dash_unavailable_cursor = ExtResource("7_oll6h")
-normal_texture = ExtResource("2_quylh")
 move_force = 800.0
 jump_impulse = 200.0
 max_speed = 100.0
 ground_rays = [NodePath("../../GroundRay"), NodePath("../../GroundRay/GroundRay"), NodePath("../../GroundRay/GroundRay2")]
 dash_min_time = 0.2
+idle_animation_name = "Idle"
+run_animation_name = "Run"
+jump_animation_name = "Jump"
+fall_animation_name = "Fall"
 
 [node name="parry" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("6_dk25c")
 player = NodePath("../..")
 cursor = ExtResource("7_oll6h")
-parry_texture = ExtResource("7_2ju5g")
+parry_animation_name = "Parry"
 float_time = 3.0
 
 [node name="Timer" type="Timer" parent="StateMachine/parry"]
@@ -125,7 +128,7 @@ one_shot = true
 [node name="dash_charge" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "dash_arrow_origin")]
 script = ExtResource("9_qq7uh")
 player = NodePath("../..")
-charge_texture = ExtResource("11_yg7kx")
+charge_animation_name = "Charge"
 cursor_textures = Array[Texture2D]([ExtResource("15_dppcb"), ExtResource("16_a8c3n"), ExtResource("17_2ncrs"), ExtResource("18_vbx5i"), ExtResource("19_hp8xs"), ExtResource("20_ehumc"), ExtResource("21_7ch4o"), ExtResource("22_ni8u8"), ExtResource("23_6vatd"), ExtResource("24_csrwi"), ExtResource("25_gr1bh"), ExtResource("26_csd2q"), ExtResource("27_0n135"), ExtResource("28_jpstf"), ExtResource("29_h75wg"), ExtResource("30_qe4ul")])
 dash_arrow_origin = NodePath("../../Dash Arrow Origin")
 full_charge_time = 1.35
@@ -136,7 +139,7 @@ script = ExtResource("13_8vdr4")
 player = NodePath("../..")
 player_parry = NodePath("../parry")
 cursor = ExtResource("7_oll6h")
-hit_texture = ExtResource("7_2ju5g")
+hit_animation_name = "Hit"
 hit_force_multiplier = 600.0
 physics_material = SubResource("PhysicsMaterial_vij4r")
 

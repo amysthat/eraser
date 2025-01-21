@@ -2,7 +2,7 @@ extends State
 
 @export var player: Player
 @export var cursor: Resource
-@export var parry_texture: Texture
+@export var parry_animation_name: String
 @export var float_time: float
 
 @onready var timer := $Timer
@@ -11,7 +11,7 @@ extends State
 func enter():
 	player.linear_velocity = Vector2.ZERO
 	player.gravity_scale = 0
-	player.sprite.texture = parry_texture
+	player.play_animation(parry_animation_name)
 	Cursor.set_cursor_image(cursor)
 	
 	timer.start()

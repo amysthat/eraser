@@ -2,9 +2,8 @@ extends State
 
 @export_category("State")
 @export var player: Player
-@export var dash_available_cursor: Texture
-@export var dash_unavailable_cursor: Texture
-@export var normal_texture: Texture
+@export var dash_available_cursor: Texture2D
+@export var dash_unavailable_cursor: Texture2D
 
 @export_category("Movement")
 @export var move_force: float = 200.0
@@ -16,14 +15,19 @@ extends State
 @export_category("Dash")
 @export var dash_min_time: float
 
+@export_category("Animation")
+@export var idle_animation_name: String
+@export var run_animation_name: String
+@export var jump_animation_name: String
+@export var fall_animation_name: String
+
 var dash_time: float
 
 var dash_allowed := true
 
-func enter():
-	player.sprite.texture = normal_texture
-
 func update(delta: float):
+	handle_animations()
+	
 	if dash_allowed:
 		Cursor.set_cursor_image(dash_available_cursor)
 	else:
@@ -68,6 +72,24 @@ func physics_update(_delta: float):
 
 		if player.linear_velocity.y > 0:
 			player.apply_force(Vector2(0, 200))
+
+func handle_animations():
+	var is_y_still = abs(player.linear_velocity.y) < 1
+
+	if is_y_still:
+		var is_moving = abs(player.linear_velocity.x) > 10
+
+		if is_moving:
+			player.play_animation(run_animation_name)
+		else:
+			player.play_animation(idle_animation_name)
+	else:
+		var is_going_up = player.linear_velocity.y < 0
+
+		if is_going_up:
+			player.play_animation(jump_animation_name)
+		else:
+			player.play_animation(fall_animation_name)
 
 func is_on_floor() -> bool:
 	for ray in ground_rays:

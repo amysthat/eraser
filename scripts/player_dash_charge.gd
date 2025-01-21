@@ -3,7 +3,7 @@ extends State
 signal dash_cast(dash_vector: Vector2)
 
 @export var player: Player
-@export var charge_texture: Texture
+@export var charge_animation_name: String
 @export var cursor_textures: Array[Texture2D]
 @export var dash_arrow_origin: Node2D
 @export var full_charge_time: float
@@ -17,7 +17,7 @@ func enter():
 	player.linear_velocity = Vector2.ZERO
 	player.gravity_scale = 0
 	_update_cursor()
-	player.sprite.texture = charge_texture
+	player.play_animation(charge_animation_name)
 
 	player.player_float.disable_float()
 	

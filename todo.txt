@@ -14,7 +14,7 @@ bugs:
 # V0.1
 
 # pause menu
-player animations
+# player animations
 plane
 bigger map
 

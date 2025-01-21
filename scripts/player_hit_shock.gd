@@ -3,7 +3,7 @@ extends State
 @export var player: Player
 @export var player_parry: Node
 @export var cursor: Texture2D
-@export var hit_texture: Texture2D
+@export var hit_animation_name: String
 
 @export var hit_force_multiplier: float
 @export var physics_material: PhysicsMaterial
@@ -16,7 +16,7 @@ var normal: Vector2
 func enter():
 	player.linear_velocity = Vector2.ZERO
 	player.gravity_scale = 0
-	player.sprite.texture = hit_texture
+	player.play_animation(hit_animation_name)
 	Cursor.set_cursor_image(cursor)
 
 	shock_timer.start()
