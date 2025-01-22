@@ -1,0 +1,90 @@
+[gd_scene load_steps=16 format=3 uid="uid://5pjqc7erivb3"]
+
+[ext_resource type="Script" path="res://scripts/plane.gd" id="1_gbgy5"]
+[ext_resource type="Texture2D" uid="uid://b05bok2j0rygs" path="res://assets/plane.png" id="2_5ghgm"]
+[ext_resource type="Script" path="res://scripts/state_machine.gd" id="3_0tcvi"]
+[ext_resource type="Script" path="res://scripts/plane_patrol.gd" id="4_orfw6"]
+[ext_resource type="Texture2D" uid="uid://cnxee3rrw5d8k" path="res://assets/plane_wander.png" id="5_lpmvc"]
+[ext_resource type="Script" path="res://scripts/plane_detect_shock.gd" id="6_8yd3w"]
+[ext_resource type="Texture2D" uid="uid://bvdg21bounoju" path="res://assets/plane_alert.png" id="7_b1rre"]
+[ext_resource type="Script" path="res://scripts/plane_approach.gd" id="8_5t04r"]
+[ext_resource type="Script" path="res://scripts/plane_charge.gd" id="9_jl1wm"]
+[ext_resource type="Texture2D" uid="uid://daqd2fqc7q8om" path="res://assets/plane_attack.png" id="10_h05fq"]
+[ext_resource type="Script" path="res://scripts/plane_hit.gd" id="11_iamot"]
+[ext_resource type="Script" path="res://scripts/plane_destroyed.gd" id="11_olubv"]
+[ext_resource type="Texture2D" uid="uid://cmeibp3rrruix" path="res://assets/plane_daze.png" id="12_ajksy"]
+[ext_resource type="Texture2D" uid="uid://jv15g42dkktf" path="res://assets/plane_destroyed.png" id="14_aoils"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b1u7b"]
+radius = 2.0
+height = 6.0
+
+[node name="Plane" type="CharacterBody2D"]
+script = ExtResource("1_gbgy5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5ghgm")
+
+[node name="StateIndicator" type="Sprite2D" parent="."]
+position = Vector2(7, -3.99999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_b1u7b")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(80, 0)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_0tcvi")
+initial_state = NodePath("patrol")
+
+[node name="patrol" type="Node" parent="StateMachine" node_paths=PackedStringArray("plane")]
+script = ExtResource("4_orfw6")
+plane = NodePath("../..")
+status_texture = ExtResource("5_lpmvc")
+reach_radius = 5.0
+speed = 40.0
+detect_time = 0.2
+
+[node name="detect_shock" type="Node" parent="StateMachine" node_paths=PackedStringArray("plane")]
+script = ExtResource("6_8yd3w")
+plane = NodePath("../..")
+status_texture = ExtResource("7_b1rre")
+
+[node name="Timer" type="Timer" parent="StateMachine/detect_shock"]
+wait_time = 0.6
+one_shot = true
+
+[node name="approach" type="Node" parent="StateMachine" node_paths=PackedStringArray("plane")]
+script = ExtResource("8_5t04r")
+plane = NodePath("../..")
+status_texture = ExtResource("7_b1rre")
+reach_radius = 20.0
+speed = 50.0
+up_from_player = 30.0
+
+[node name="charge" type="Node" parent="StateMachine" node_paths=PackedStringArray("plane")]
+script = ExtResource("9_jl1wm")
+plane = NodePath("../..")
+status_texture = ExtResource("10_h05fq")
+speed = 100.0
+
+[node name="weak" type="Node" parent="StateMachine" node_paths=PackedStringArray("plane")]
+script = ExtResource("11_iamot")
+plane = NodePath("../..")
+status_texture = ExtResource("12_ajksy")
+player_parry_time = 1.5
+miss_time = 0.5
+
+[node name="Timer" type="Timer" parent="StateMachine/weak"]
+one_shot = true
+
+[node name="destroyed" type="Node" parent="StateMachine" node_paths=PackedStringArray("plane")]
+script = ExtResource("11_olubv")
+plane = NodePath("../..")
+texture = ExtResource("14_aoils")
+speed = 20.0
+
+[connection signal="timeout" from="StateMachine/detect_shock/Timer" to="StateMachine/detect_shock" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/weak/Timer" to="StateMachine/weak" method="_on_timer_timeout"]

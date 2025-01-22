@@ -15,7 +15,9 @@ bugs:
 
 # pause menu
 # player animations
-plane
+# plane
+debug section teleporter
+proper tutorial text
 bigger map
 
 improvements:
@@ -23,8 +25,6 @@ improvements:
 
 V0.2
 
-debug section teleporter
-proper tutorial text
 color palette
 sound
 music

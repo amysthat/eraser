@@ -14,4 +14,4 @@ func _physics_process(delta):
 			var body = collision.get_collider() as Node
 
 			if body is Player:
-				body.on_hit_by_canon_ball(collision.get_normal())
+				body.on_hit(collision.get_normal())
