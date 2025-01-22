@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://bo0plga5ky1no"]
+[gd_scene load_steps=27 format=4 uid="uid://bo0plga5ky1no"]
 
 [ext_resource type="PackedScene" uid="uid://cky1jr0gkvhxb" path="res://player.tscn" id="1_l2ixe"]
 [ext_resource type="Texture2D" uid="uid://c21wgkbixlaak" path="res://assets/lower_left_tile.png" id="2_htx4o"]
@@ -12,7 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://b32w45nr73y8r" path="res://assets/upper_right_tile.png" id="7_aw5dp"]
 [ext_resource type="Script" path="res://scripts/TilemapCollisionBaker.gd" id="7_fl8ug"]
 [ext_resource type="Script" path="res://scripts/spawnpoint.gd" id="12_bgirf"]
+[ext_resource type="Texture2D" uid="uid://cii1lxyr07y4k" path="res://assets/tutorial/movement.png" id="12_nons3"]
+[ext_resource type="Texture2D" uid="uid://cr176vcp1blo2" path="res://assets/tutorial/dash.png" id="13_h8nco"]
 [ext_resource type="PackedScene" uid="uid://5pjqc7erivb3" path="res://plane.tscn" id="13_jmbif"]
+[ext_resource type="Texture2D" uid="uid://cbtx1jeo6j3qj" path="res://assets/tutorial/parry.png" id="14_j458t"]
+[ext_resource type="Texture2D" uid="uid://box5bgwpny05n" path="res://assets/tutorial/pause.png" id="15_42nuh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rkb0q"]
 resource_name = "Tile"
@@ -127,18 +131,23 @@ script = ExtResource("12_bgirf")
 player = NodePath("../Player")
 max_y = 120.0
 
-[node name="Tutorial Text" type="Label" parent="."]
-offset_left = 71.0
-offset_top = 51.0
-offset_right = 1023.0
-offset_bottom = 392.0
-scale = Vector2(0.08, 0.08)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "WASD to move
-Hold left click to charge dash
-Right click to parry
-ESC to pause"
+[node name="Tutorial" type="Node2D" parent="."]
+
+[node name="Movement" type="Sprite2D" parent="Tutorial"]
+position = Vector2(135, 65)
+texture = ExtResource("12_nons3")
+
+[node name="Dash" type="Sprite2D" parent="Tutorial"]
+position = Vector2(179, 63)
+texture = ExtResource("13_h8nco")
+
+[node name="Parry" type="Sprite2D" parent="Tutorial"]
+position = Vector2(171, -143)
+texture = ExtResource("14_j458t")
+
+[node name="Pause" type="Sprite2D" parent="Tutorial"]
+position = Vector2(74, -236)
+texture = ExtResource("15_42nuh")
 
 [node name="End" type="Label" parent="."]
 visible = false
@@ -150,9 +159,6 @@ scale = Vector2(0.08, 0.08)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
 text = "End of v0.1"
-
-[node name="Player" parent="." instance=ExtResource("1_l2ixe")]
-position = Vector2(60, -389)
 
 [node name="Plane" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("13_jmbif")]
 position = Vector2(145, -435)
@@ -171,3 +177,6 @@ gizmo_extents = 3.0
 [node name="Marker2D3" type="Marker2D" parent="Plane Patrol"]
 position = Vector2(155, -471)
 gizmo_extents = 3.0
+
+[node name="Player" parent="." instance=ExtResource("1_l2ixe")]
+position = Vector2(60, -389)

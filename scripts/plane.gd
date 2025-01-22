@@ -39,7 +39,7 @@ func _physics_process(_delta):
                     if body.is_parrying:
                         $StateMachine/weak.enable_with_reason(PlaneWeakState.WeakenReason.PLAYER_PARRY)
             
-            position += target_collision.get_normal()
+            position += target_collision.get_normal() * 1.2
         
         if not hit_player:
             $StateMachine/weak.enable_with_reason(PlaneWeakState.WeakenReason.MISS)

@@ -16,12 +16,12 @@ bugs:
 # pause menu
 # player animations
 # plane
-debug section teleporter
-proper tutorial text
+# proper tutorial text
 bigger map
 
 improvements:
 # be able to parry while being in hit shock
+# sided tiles
 
 V0.2
 
