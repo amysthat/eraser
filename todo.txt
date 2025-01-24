@@ -17,7 +17,7 @@ bugs:
 # player animations
 # plane
 # proper tutorial text
-bigger map
+# bigger map
 
 improvements:
 # be able to parry while being in hit shock
@@ -28,5 +28,10 @@ V0.2
 color palette
 sound
 music
+bigger map
+
+improvements:
+make the plane go back to its original position after failing to hunt the player down
+make the player stop floating when reaching the ground
 
 V0.3: DEMO RELEASE (22nd of January FINAL DAY)
