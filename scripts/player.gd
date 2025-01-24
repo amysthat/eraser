@@ -21,9 +21,10 @@ func _process(_delta):
 func play_animation(animation_name: String):
     animated_sprite.play(animation_name)
 
-func on_hit(normal: Vector2):
-    if not is_parrying:
+func on_hit(normal: Vector2, force_parry: bool = false):
+    if is_parrying or force_parry:
+        state_machine.transition_state("parry")
+        $StateMachine/parry.on_parry()
+    else:
         $StateMachine/hit_shock.normal = normal
         state_machine.transition_state("hit_shock")
-    else:
-        $StateMachine/parry.on_parry()

@@ -29,11 +29,11 @@ func _physics_process(_delta):
 
             if body is Player:
                 hit_player = true
+                body.on_hit(target_collision.get_normal(), true)
 
                 if is_weak:
                     state_machine.transition_state("destroyed")
                 else:
-                    body.on_hit(target_collision.get_normal())
                     $StateMachine/patrol.hold_attack_until_reach = true
 
                     if body.is_parrying:

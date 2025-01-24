@@ -21,7 +21,7 @@ bigger map
 
 improvements:
 # be able to parry while being in hit shock
-# sided tiles
+# sided tiles retexturing
 
 V0.2
 
