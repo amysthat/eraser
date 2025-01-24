@@ -21,6 +21,9 @@ func _physics_process(_delta):
 	if not is_floating:
 		return
 	
+	if player_movement.is_on_floor():
+		disable_float()
+	
 	player.linear_velocity.y = down_force
 
 func enable_float(time: float):
