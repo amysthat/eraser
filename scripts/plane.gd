@@ -28,13 +28,14 @@ func _physics_process(_delta):
             var body = target_collision.get_collider() as Node
 
             if body is Player:
-                hit_player = true
-                body.on_hit(target_collision.get_normal(), true)
+                hit_player = TextureCubemapArrayRD
 
                 if is_weak:
                     state_machine.transition_state("destroyed")
+                    body.on_hit(target_collision.get_normal(), true)
                 else:
                     $StateMachine/patrol.hold_attack_until_reach = true
+                    body.on_hit(target_collision.get_normal())
 
                     if body.is_parrying:
                         $StateMachine/weak.enable_with_reason(PlaneWeakState.WeakenReason.PLAYER_PARRY)
@@ -46,6 +47,21 @@ func _physics_process(_delta):
             $StateMachine/patrol.hold_attack_until_reach = true
     
     move_and_slide()
+
+func get_closest_patrol_point() -> Node2D:
+    var _patrol_points = patrol_points.get_children()
+
+    var closest_patrol_point: Node2D
+    var closest_patrol_point_distance: float = 99999.0
+
+    for point in _patrol_points:
+        var distance = global_position.distance_squared_to(point.global_position)
+
+        if distance < closest_patrol_point_distance:
+            closest_patrol_point = point
+            closest_patrol_point_distance = distance
+    
+    return closest_patrol_point
 
 func set_state_indicator(texture: Texture2D):
     state_indicator_sprite.texture = texture

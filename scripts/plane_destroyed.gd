@@ -14,7 +14,7 @@ func enter():
     plane.sprite.texture = texture
     plane.collision.set_deferred("disabled", true)
 
-    start_point = plane.patrol_points.get_child(0)
+    start_point = plane.get_closest_patrol_point()
 
 func physics_update(_delta: float):
     var difference = start_point.global_position - plane.global_position

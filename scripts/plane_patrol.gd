@@ -15,11 +15,11 @@ var hold_attack_until_reach: bool
 
 func enter():
     patrol_points.clear()
-    current_point = 0
 
     for child in plane.patrol_points.get_children():
         patrol_points.append(child)
 
+    current_point = patrol_points.find(plane.get_closest_patrol_point())
     plane.set_state_indicator(status_texture)
 
 func update(delta: float):
