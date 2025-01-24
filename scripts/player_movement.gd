@@ -12,6 +12,10 @@ extends State
 @export var max_speed: float = 200.0
 @export var ground_rays: Array[RayCast2D]
 
+@export_category("Time")
+@export var jump_input_time: float
+@export var cayote_time: float
+
 @export_category("Dash")
 @export var dash_min_time: float
 
@@ -22,6 +26,8 @@ extends State
 @export var fall_animation_name: String
 
 var dash_time: float
+var jump_requested: float
+var last_grounded: float
 
 var dash_allowed := true
 
@@ -41,7 +47,12 @@ func update(delta: float):
 		dash_time = dash_min_time
 		transition.emit("dash_charge")
 	
+	if Input.is_action_just_pressed("jump"):
+		jump_requested = 5
+
 	dash_time -= delta
+	jump_requested -= delta
+	last_grounded += delta
 
 func physics_update(_delta: float):
 	player.gravity_scale = player.player_float.get_gravity_scale()
@@ -53,11 +64,11 @@ func physics_update(_delta: float):
 	if not is_on_floor():
 		movement_force *= air_multiplier
 
+	if is_on_floor():
+		last_grounded = 0
+
 	if abs(player.linear_velocity.x) < max_speed:
 		player.apply_force(Vector2(direction * movement_force, 0))
-
-	if is_on_floor() and Input.is_action_just_pressed("jump"):
-		player.apply_impulse(Vector2(0, -jump_impulse))
 
 	if player.linear_velocity.y > max_speed:
 		player.linear_velocity.y = max_speed
@@ -72,6 +83,13 @@ func physics_update(_delta: float):
 
 		if player.linear_velocity.y > 0:
 			player.apply_force(Vector2(0, 200))
+
+	if last_grounded <= cayote_time and jump_requested > 0:
+		player.linear_velocity.y = 0
+
+		player.apply_impulse(Vector2(0, -jump_impulse))
+		jump_requested = 0
+		last_grounded = 5
 
 func handle_animations():
 	var is_y_still = abs(player.linear_velocity.y) < 1

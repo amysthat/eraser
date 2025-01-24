@@ -25,7 +25,8 @@ improvements:
 
 # V0.2
 
-color palette
+# enhanced movement
+color schemes
 sound
 music
 bigger map
