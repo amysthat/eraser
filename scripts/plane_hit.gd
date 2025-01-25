@@ -40,4 +40,4 @@ func enable_with_reason(reason: WeakenReason):
     transition.emit("weak")
 
 func _on_timer_timeout():
-    transition.emit("patrol")
+    transition.emit("return_to_patrol")

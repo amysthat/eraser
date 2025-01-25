@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://5pjqc7erivb3"]
+[gd_scene load_steps=17 format=3 uid="uid://5pjqc7erivb3"]
 
 [ext_resource type="Script" path="res://scripts/plane.gd" id="1_gbgy5"]
 [ext_resource type="Texture2D" uid="uid://b05bok2j0rygs" path="res://assets/plane.png" id="2_5ghgm"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/plane_destroyed.gd" id="11_olubv"]
 [ext_resource type="Texture2D" uid="uid://cmeibp3rrruix" path="res://assets/plane_daze.png" id="12_ajksy"]
 [ext_resource type="Texture2D" uid="uid://jv15g42dkktf" path="res://assets/plane_destroyed.png" id="14_aoils"]
+[ext_resource type="Script" path="res://scripts/plane_return_to_patrol.gd" id="15_vt2gn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b1u7b"]
 radius = 2.0
@@ -86,5 +87,12 @@ plane = NodePath("../..")
 texture = ExtResource("14_aoils")
 speed = 20.0
 
+[node name="return_to_patrol" type="Node" parent="StateMachine" node_paths=PackedStringArray("plane")]
+script = ExtResource("15_vt2gn")
+plane = NodePath("../..")
+status_texture = ExtResource("5_lpmvc")
+speed = 40.0
+
+[connection signal="set_return_patrol_point" from="StateMachine/patrol" to="StateMachine/return_to_patrol" method="set_return_point_to_current_position"]
 [connection signal="timeout" from="StateMachine/detect_shock/Timer" to="StateMachine/detect_shock" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/weak/Timer" to="StateMachine/weak" method="_on_timer_timeout"]

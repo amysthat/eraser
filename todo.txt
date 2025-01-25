@@ -34,7 +34,7 @@ music
 bigger map
 
 improvements:
-make the plane go back to its original position after failing to hunt the player down
+# make the plane go back to its original position after hunting the player down
 # make the player stop floating when reaching the ground
 # camera limit
 # combined sided tileset

@@ -1,5 +1,7 @@
 extends State
 
+signal set_return_patrol_point
+
 @export var plane: PlaneBody
 @export var status_texture: Texture2D
 @export var reach_radius: float
@@ -19,7 +21,9 @@ func enter():
     for child in plane.patrol_points.get_children():
         patrol_points.append(child)
 
-    current_point = patrol_points.find(plane.get_closest_patrol_point())
+    if current_point == null:
+        current_point = patrol_points.find(plane.get_closest_patrol_point())
+    
     plane.set_state_indicator(status_texture)
 
 func update(delta: float):
@@ -30,6 +34,8 @@ func update(delta: float):
 
     if detect_charge_time >= detect_time and not hold_attack_until_reach:
         detect_charge_time = 0
+
+        set_return_patrol_point.emit()
         transition.emit("detect_shock")
 
 func physics_update(_delta: float):
