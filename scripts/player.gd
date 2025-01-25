@@ -9,7 +9,7 @@ static var instance
 
 var is_parrying: bool
 
-func _ready():
+func _enter_tree():
     instance = self
 
 func _process(_delta):

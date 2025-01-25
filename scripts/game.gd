@@ -1,6 +1,8 @@
 extends Node
 
 signal on_pause_toggled
+signal on_game_begin
+signal on_game_end
 
 @onready var pause_menu_scene := preload("res://pause_menu.tscn")
 
@@ -9,8 +11,13 @@ var is_paused: bool
 
 var pause_menu_instance: SubViewportContainer
 
-func _ready():
+func _enter_tree():
     process_mode = Node.PROCESS_MODE_ALWAYS
+
+    if get_tree().current_scene.name == "World":
+        await get_tree().process_frame
+
+        begin_game()
 
 func begin_game():
     if is_playing:
@@ -22,6 +29,10 @@ func begin_game():
     get_tree().change_scene_to_file("res://world.tscn")
     pause_menu_instance = pause_menu_scene.instantiate()
     get_tree().root.add_child(pause_menu_instance)
+
+    await get_tree().process_frame
+
+    on_game_begin.emit()
 
 func end_game():
     if not is_playing:
@@ -35,6 +46,10 @@ func end_game():
     get_tree().change_scene_to_file("res://main_menu.tscn")
     pause_menu_instance.queue_free()
     pause_menu_instance = null
+
+    await get_tree().process_frame
+    
+    on_game_end.emit()
 
 func toggle_pause():
     is_paused = not is_paused

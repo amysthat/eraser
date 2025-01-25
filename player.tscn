@@ -56,6 +56,10 @@ shape = SubResource("CapsuleShape2D_dvlub")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(6, 6)
+limit_left = -80
+limit_right = 310
+limit_bottom = 200
+limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 15.0
 

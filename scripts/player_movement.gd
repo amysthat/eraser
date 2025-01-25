@@ -48,7 +48,7 @@ func update(delta: float):
 		transition.emit("dash_charge")
 	
 	if Input.is_action_just_pressed("jump"):
-		jump_requested = 5
+		jump_requested = jump_input_time
 
 	dash_time -= delta
 	jump_requested -= delta
@@ -84,7 +84,7 @@ func physics_update(_delta: float):
 		if player.linear_velocity.y > 0:
 			player.apply_force(Vector2(0, 200))
 
-	if last_grounded <= cayote_time and jump_requested > 0:
+	if last_grounded <= cayote_time and jump_requested > 0.0:
 		player.linear_velocity.y = 0
 
 		player.apply_impulse(Vector2(0, -jump_impulse))
