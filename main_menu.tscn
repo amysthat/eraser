@@ -33,10 +33,16 @@ grow_vertical = 2
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
-[node name="Play" type="Button" parent="UI/Main/VBoxContainer"]
+[node name="New" type="Button" parent="UI/Main/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-text = "Play"
+text = "New Game"
+
+[node name="Continue" type="Button" parent="UI/Main/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Continue"
 
 [node name="Settings" type="Button" parent="UI/Main/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -144,9 +150,10 @@ offset_top = -23.0
 offset_right = 63.0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "v0.2"
+text = "dev: v0.3"
 
-[connection signal="pressed" from="UI/Main/VBoxContainer/Play" to="UI" method="_on_play_pressed"]
+[connection signal="pressed" from="UI/Main/VBoxContainer/New" to="UI" method="_on_new_game_pressed"]
+[connection signal="pressed" from="UI/Main/VBoxContainer/Continue" to="UI" method="_on_continue_pressed"]
 [connection signal="pressed" from="UI/Main/VBoxContainer/Settings" to="UI" method="_on_settings_pressed"]
 [connection signal="pressed" from="UI/Main/VBoxContainer/Quit" to="UI" method="_on_quit_pressed"]
 [connection signal="pressed" from="UI/Settings/Panel/Back" to="UI" method="_on_settings_back_pressed"]

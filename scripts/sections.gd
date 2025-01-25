@@ -4,6 +4,7 @@ class_name Sections
 static var instance: Sections
 
 signal entered_section(new_section: Section)
+signal set_spawn_of_player(section: Section)
 
 @export var sections: Array[Section]
 
@@ -15,6 +16,10 @@ var current_section_index: int
 
 func _enter_tree():
     instance = self
+
+func _ready():
+    if Saving.save_loaded:
+        set_spawn_of_player.emit(sections[Saving.saved_section_index])
 
 func subscribe_area(area: SectionArea):
     var section_index = area.section_index
@@ -31,5 +36,8 @@ func _on_player_entered_area(area: SectionArea):
     current_section_index = sections.find(current_section)
 
     print("Entered section: %s (index: %s)" % [current_section.display_name, current_section_index])
+
+    Saving.saved_section_index = current_section_index
+    Saving.save_to_disk()
 
     entered_section.emit(current_section)

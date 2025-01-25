@@ -28,11 +28,11 @@ improvements:
 # enhanced movement
 # sections
 # section reporter ui
-save system
+# save system
 color schemes
 sound
 music
-bigger map
+bigger map (section 3)
 
 improvements:
 # make the plane go back to its original position after hunting the player down

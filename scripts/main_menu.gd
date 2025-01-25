@@ -1,5 +1,7 @@
 extends Control
 
+@onready var continue_button := %Continue
+
 @onready var settings_menu := $Settings
 @onready var max_fps_box: SpinBox = %MaxFPS
 @onready var vsync: CheckButton = %VSync
@@ -10,7 +12,15 @@ func _ready():
     max_fps_box.value = Engine.max_fps
     vsync.button_pressed = DisplayServer.window_get_vsync_mode()
 
-func _on_play_pressed():
+    continue_button.disabled = not Saving.has_save_data()
+
+func _on_new_game_pressed():
+    if Saving.has_save_data():
+        Saving.remove_save_data()
+
+    Game.begin_game()
+
+func _on_continue_pressed():
     Game.begin_game()
 
 func _on_quit_pressed():

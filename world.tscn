@@ -228,6 +228,16 @@ position = Vector2(224, -720)
 [node name="Marker2D10" type="Marker2D" parent="Planes/Patrol Points2"]
 position = Vector2(226, -661)
 
+[node name="Spawnpoints" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("12_bgirf")
+player = NodePath("../Player")
+
+[node name="Section 1" type="Marker2D" parent="Spawnpoints"]
+position = Vector2(164, 84)
+
+[node name="Section 2" type="Marker2D" parent="Spawnpoints"]
+position = Vector2(44, -380)
+
 [node name="Sections" type="Node2D" parent="."]
 script = ExtResource("13_arvc4")
 sections = Array[ExtResource("14_37pnr")]([SubResource("Resource_yc3g8"), SubResource("Resource_hsinf")])
@@ -254,16 +264,6 @@ section_index = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sections/Section 2 (Second)"]
 position = Vector2(224, -438.5)
 shape = SubResource("RectangleShape2D_xqnlk")
-
-[node name="Spawnpoints" type="Node" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("12_bgirf")
-player = NodePath("../Player")
-
-[node name="Section 1" type="Marker2D" parent="Spawnpoints"]
-position = Vector2(164, 84)
-
-[node name="Section 2" type="Marker2D" parent="Spawnpoints"]
-position = Vector2(44, -380)
 
 [node name="Tutorial" type="Node2D" parent="."]
 

@@ -15,6 +15,7 @@ func _enter_tree():
     process_mode = Node.PROCESS_MODE_ALWAYS
 
     if get_tree().current_scene.name == "World":
+        print("Starting in World scene.")
         await get_tree().process_frame
 
         begin_game()
@@ -25,6 +26,9 @@ func begin_game():
     
     is_playing = true
     is_paused = false
+
+    if Saving.has_save_data():
+        Saving.load_save()
 
     get_tree().change_scene_to_file("res://world.tscn")
 
@@ -38,6 +42,9 @@ func begin_game():
 func end_game():
     if not is_playing:
         return
+    
+    Saving.save_to_disk()
+    Saving.unload_save_data()
     
     is_playing = false
     is_paused = false

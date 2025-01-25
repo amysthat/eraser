@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 Game="*res://scripts/game.gd"
 Debug="*res://scripts/debug.gd"
 Cursor="*res://scripts/cursor.gd"
+Saving="*res://scripts/saving.gd"
 
 [display]
 
