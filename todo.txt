@@ -37,8 +37,9 @@ improvements:
 make the plane go back to its original position after failing to hunt the player down
 # make the player stop floating when reaching the ground
 # camera limit
+# combined sided tileset
 
 bugs:
-player jumps infinitely upon pressing jump
+# player jumps infinitely upon pressing jump
 
 V0.3: DEMO RELEASE (22nd of January FINAL DAY)

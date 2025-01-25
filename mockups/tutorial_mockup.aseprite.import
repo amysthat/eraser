@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://f3bm61idn2w8"
+path="res://.godot/imported/tutorial_mockup.aseprite-ccf5a0db0be445627944fabb512a24cf.res"
+
+[deps]
+
+source_file="res://mockups/tutorial_mockup.aseprite"
+dest_files=["res://.godot/imported/tutorial_mockup.aseprite-ccf5a0db0be445627944fabb512a24cf.res"]
+
+[params]
+

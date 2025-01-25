@@ -1,16 +1,11 @@
-[gd_scene load_steps=37 format=4 uid="uid://bo0plga5ky1no"]
+[gd_scene load_steps=27 format=4 uid="uid://bo0plga5ky1no"]
 
 [ext_resource type="PackedScene" uid="uid://cky1jr0gkvhxb" path="res://player.tscn" id="1_l2ixe"]
-[ext_resource type="Texture2D" uid="uid://c21wgkbixlaak" path="res://assets/lower_left_tile.png" id="2_htx4o"]
-[ext_resource type="Texture2D" uid="uid://2d2fodfg08k0" path="res://assets/lower_tile.png" id="2_wfha0"]
 [ext_resource type="Script" path="res://scripts/sided_tilemap_collision_baker.gd" id="4_2yksu"]
-[ext_resource type="Texture2D" uid="uid://3lahilycpg4u" path="res://assets/lower_right_tile.png" id="4_6aobb"]
 [ext_resource type="Texture2D" uid="uid://dylu8blasdlju" path="res://assets/tile.png" id="5_16b3y"]
-[ext_resource type="Texture2D" uid="uid://cxrtuoi81uinu" path="res://assets/upper_left_tile.png" id="5_dxcta"]
 [ext_resource type="PackedScene" uid="uid://5wqkhu5ja7em" path="res://canon.tscn" id="6_m0aah"]
-[ext_resource type="Texture2D" uid="uid://cr21v6mmcifaj" path="res://assets/upper_tile.png" id="6_nvayr"]
-[ext_resource type="Texture2D" uid="uid://b32w45nr73y8r" path="res://assets/upper_right_tile.png" id="7_aw5dp"]
 [ext_resource type="Script" path="res://scripts/TilemapCollisionBaker.gd" id="7_fl8ug"]
+[ext_resource type="Texture2D" uid="uid://bti7wjxgb2pde" path="res://assets/tileset.png" id="8_krwu1"]
 [ext_resource type="Script" path="res://scripts/spawnpoint.gd" id="12_bgirf"]
 [ext_resource type="Texture2D" uid="uid://cii1lxyr07y4k" path="res://assets/tutorial/movement.png" id="12_nons3"]
 [ext_resource type="Script" path="res://scripts/sections.gd" id="13_arvc4"]
@@ -31,44 +26,30 @@ texture_region_size = Vector2i(8, 8)
 tile_size = Vector2i(8, 8)
 sources/0 = SubResource("TileSetAtlasSource_rkb0q")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_87c2r"]
-texture = ExtResource("2_htx4o")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2gu8b"]
+texture = ExtResource("8_krwu1")
 texture_region_size = Vector2i(8, 8)
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_18du3"]
-texture = ExtResource("2_wfha0")
-texture_region_size = Vector2i(8, 8)
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5dswg"]
-texture = ExtResource("4_6aobb")
-texture_region_size = Vector2i(8, 8)
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cqtx3"]
-texture = ExtResource("5_dxcta")
-texture_region_size = Vector2i(8, 8)
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jwsw1"]
-texture = ExtResource("6_nvayr")
-texture_region_size = Vector2i(8, 8)
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7b225"]
-texture = ExtResource("7_aw5dp")
-texture_region_size = Vector2i(8, 8)
-0:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+3:0/0/custom_data_0 = 1
+4:0/0 = 0
+4:0/0/custom_data_0 = 2
+2:1/0 = 0
+2:1/0/custom_data_0 = 3
+4:1/0 = 0
+4:1/0/custom_data_0 = 4
+2:2/0 = 0
+2:2/0/custom_data_0 = 5
+3:2/0 = 0
+3:2/0/custom_data_0 = 6
+4:2/0 = 0
+4:2/0/custom_data_0 = 7
 
 [sub_resource type="TileSet" id="TileSet_yar6v"]
 tile_size = Vector2i(8, 8)
-sources/1 = SubResource("TileSetAtlasSource_18du3")
-sources/0 = SubResource("TileSetAtlasSource_87c2r")
-sources/2 = SubResource("TileSetAtlasSource_5dswg")
-sources/3 = SubResource("TileSetAtlasSource_cqtx3")
-sources/4 = SubResource("TileSetAtlasSource_jwsw1")
-sources/5 = SubResource("TileSetAtlasSource_7b225")
+custom_data_layer_0/name = "Collision Side"
+custom_data_layer_0/type = 2
+sources/6 = SubResource("TileSetAtlasSource_2gu8b")
 
 [sub_resource type="Gradient" id="Gradient_wc7kn"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
@@ -104,7 +85,7 @@ tile_set = SubResource("TileSet_85c4y")
 collision_visibility_mode = 1
 
 [node name="Sided" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAMAPr/AgAAAAAAAAANAPn/AgAAAAAAAAAOAPj/AgAAAAAAAAAPAPf/AgAAAAAAAAAQAPb/AgAAAAAAAAARAPX/AgAAAAAAAAASAPT/AgAAAAAAAAATAPP/AgAAAAAAAAAUAPL/AgAAAAAAAAAVAPH/AgAAAAAAAAADAOT/BAAAAAAAAAAEAOT/BAAAAAAAAAAFAOT/BAAAAAAAAAAGAOT/BAAAAAAAAAACAN3/BQAAAAAAAAACANz/BQAAAAAAAAACANv/BQAAAAAAAAACANr/BQAAAAAAAAACANn/BQAAAAAAAAACANj/BQAAAAAAAAACANf/BQAAAAAAAAANAOT/AQAAAAAAAAAOAOT/AQAAAAAAAAAPAOT/AQAAAAAAAAAQAOT/AQAAAAAAAAARAOT/AQAAAAAAAAASAOT/AQAAAAAAAAATAOT/AQAAAAAAAAAUAOT/AQAAAAAAAAAVAOT/AQAAAAAAAAAWAOT/AQAAAAAAAAAXAOT/AQAAAAAAAAAYAOT/AQAAAAAAAAAZAOT/AQAAAAAAAAAaAOT/AQAAAAAAAAAbAOT/AQAAAAAAAAAcAOT/AQAAAAAAAAAdAOT/AQAAAAAAAAACAN7/BQAAAAAAAAACAN//BQAAAAAAAAACAOD/BQAAAAAAAAAcAMv/BAAAAAAAAAAcAL3/BAAAAAAAAAAHALn/AgAAAAAAAAAGALn/AQAAAAAAAAAFALn/AQAAAAAAAAAaALr/AwAAAAAAAAAaALn/AwAAAAAAAAAaALj/AwAAAAAAAAAaALf/AwAAAAAAAAAaALb/AwAAAAAAAAAaALX/AwAAAAAAAAAaALT/AwAAAAAAAAAaALP/AwAAAAAAAAANALL/AQAAAAAAAAAOALL/AQAAAAAAAAAPALL/AQAAAAAAAAAQALL/AQAAAAAAAAAQAKv/AQAAAAAAAAAPAKv/AQAAAAAAAAAOAKv/AQAAAAAAAAANAKv/AQAAAAAAAAANAKT/AQAAAAAAAAAOAKT/AQAAAAAAAAAPAKT/AQAAAAAAAAAQAKT/AQAAAAAAAAAbAJ3/BAAAAAAAAAAaAJ3/BAAAAAAAAAAZAJ3/BAAAAAAAAAAJAND/AwAAAAAAAAAJAM//AwAAAAAAAAAJAM7/AwAAAAAAAAAJAM3/AwAAAAAAAAAJAMz/AwAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAMAPr/BgAEAAIAAAANAPn/BgAEAAIAAAAPAPf/BgAEAAIAAAAQAPb/BgAEAAIAAAARAPX/BgAEAAIAAAASAPT/BgAEAAIAAAATAPP/BgAEAAIAAAAUAPL/BgAEAAIAAAAVAPH/BgAEAAIAAAADAOT/BgADAAAAAAAEAOT/BgADAAAAAAAFAOT/BgADAAAAAAAGAOT/BgADAAAAAAACAN3/BgAEAAEAAAACANz/BgAEAAEAAAACANv/BgAEAAEAAAACANr/BgAEAAEAAAACANn/BgAEAAEAAAACANj/BgAEAAEAAAACANf/BgAEAAEAAAANAOT/BgADAAIAAAAOAOT/BgADAAIAAAAPAOT/BgADAAIAAAAQAOT/BgADAAIAAAARAOT/BgADAAIAAAASAOT/BgADAAIAAAATAOT/BgADAAIAAAAUAOT/BgADAAIAAAAVAOT/BgADAAIAAAAWAOT/BgADAAIAAAAXAOT/BgADAAIAAAAYAOT/BgADAAIAAAAZAOT/BgADAAIAAAAaAOT/BgADAAIAAAAbAOT/BgADAAIAAAAcAOT/BgADAAIAAAAdAOT/BgADAAIAAAACAN7/BgAEAAEAAAACAN//BgAEAAEAAAACAOD/BgAEAAEAAAAcAMv/BgADAAAAAAAcAL3/BgADAAAAAAAHALn/BgAEAAIAAAAGALn/BgADAAIAAAAFALn/BgADAAIAAAAaALr/BgACAAEAAAAaALn/BgACAAEAAAAaALj/BgACAAEAAAAaALf/BgACAAEAAAAaALb/BgACAAEAAAAaALX/BgACAAEAAAAaALT/BgACAAEAAAAaALP/BgACAAEAAAANALL/BgADAAIAAAAOALL/BgADAAIAAAAPALL/BgADAAIAAAAQALL/BgADAAIAAAAQAKv/BgADAAIAAAAPAKv/BgADAAIAAAAOAKv/BgADAAIAAAANAKv/BgADAAIAAAANAKT/BgADAAIAAAAOAKT/BgADAAIAAAAPAKT/BgADAAIAAAAQAKT/BgADAAIAAAAbAJ3/BgADAAAAAAAaAJ3/BgADAAAAAAAZAJ3/BgADAAAAAAAJAND/BgACAAEAAAAJAM//BgACAAEAAAAJAM7/BgACAAEAAAAJAM3/BgACAAEAAAAJAMz/BgACAAEAAAAOAPj/BgAEAAIAAAA=")
 tile_set = SubResource("TileSet_yar6v")
 
 [node name="Fade" type="Sprite2D" parent="."]

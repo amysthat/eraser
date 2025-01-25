@@ -2,12 +2,14 @@ extends StaticBody2D
 
 enum TileSide
 {
-    LOWER_LEFT,
-    LOWER,
-    LOWER_RIGHT,
     UPPER_LEFT,
     UPPER,
     UPPER_RIGHT,
+    LEFT,
+    RIGHT,
+    LOWER_LEFT,
+    LOWER,
+    LOWER_RIGHT,
 }
 
 @export var tilemap: TileMapLayer
@@ -26,8 +28,8 @@ func run_code(_fake_bool = null):
     
     while tilemap_locations.size() > 0:
         var location = tilemap_locations.pop_back()
-        var cell_source_id = tilemap.get_cell_source_id(location)
-        var tile_side = cell_source_id as TileSide
+        var tile_data = tilemap.get_cell_tile_data(location)
+        var tile_side = tile_data.get_custom_data("Collision Side") as int
         var world_location = tilemap.map_to_local(location)
 
         var collision_shape = create_collision_shape(world_location, tile_size)
@@ -59,6 +61,34 @@ func modify_sided_collision_shape(collision_shape: CollisionShape2D, tile_side: 
     # 4^2 + 4^2 = 32^-2 (hypotenuse)
 
     match tile_side:
+        TileSide.UPPER_LEFT:
+            var convex_shape = ConvexPolygonShape2D.new()
+            convex_shape.points = [Vector2(0, -5.65), Vector2(5.65, 0), Vector2(0, 5.65), Vector2(-5.65, 0)]
+            collision_shape.set_shape(convex_shape)
+
+            collision_shape.rotation_degrees = -45
+        TileSide.UPPER:
+            var rectangleShape = RectangleShape2D.new()
+            rectangleShape.size = tile_size
+            collision_shape.set_shape(rectangleShape)
+        TileSide.UPPER_RIGHT:
+            var convex_shape = ConvexPolygonShape2D.new()
+            convex_shape.points = [Vector2(0, -5.65), Vector2(5.65, 0), Vector2(0, 5.65), Vector2(-5.65, 0)]
+            collision_shape.set_shape(convex_shape)
+
+            collision_shape.rotation_degrees = 45
+        TileSide.LEFT:
+            var rectangleShape = RectangleShape2D.new()
+            rectangleShape.size = tile_size
+            collision_shape.set_shape(rectangleShape)
+
+            collision_shape.rotation_degrees = -90
+        TileSide.RIGHT:
+            var rectangleShape = RectangleShape2D.new()
+            rectangleShape.size = tile_size
+            collision_shape.set_shape(rectangleShape)
+
+            collision_shape.rotation_degrees = 90
         TileSide.LOWER_LEFT:
             var convex_shape = ConvexPolygonShape2D.new()
             convex_shape.points = [Vector2(0, -5.65), Vector2(5.65, 0), Vector2(0, 5.65), Vector2(-5.65, 0)]
@@ -77,22 +107,6 @@ func modify_sided_collision_shape(collision_shape: CollisionShape2D, tile_side: 
             collision_shape.set_shape(convex_shape)
 
             collision_shape.rotation_degrees = 135
-        TileSide.UPPER_LEFT:
-            var convex_shape = ConvexPolygonShape2D.new()
-            convex_shape.points = [Vector2(0, -5.65), Vector2(5.65, 0), Vector2(0, 5.65), Vector2(-5.65, 0)]
-            collision_shape.set_shape(convex_shape)
-
-            collision_shape.rotation_degrees = -45
-        TileSide.UPPER:
-            var rectangleShape = RectangleShape2D.new()
-            rectangleShape.size = tile_size
-            collision_shape.set_shape(rectangleShape)
-        TileSide.UPPER_RIGHT:
-            var convex_shape = ConvexPolygonShape2D.new()
-            convex_shape.points = [Vector2(0, -5.65), Vector2(5.65, 0), Vector2(0, 5.65), Vector2(-5.65, 0)]
-            collision_shape.set_shape(convex_shape)
-
-            collision_shape.rotation_degrees = 45
 
 func _sort_vectors_by_y(a, b):
     if a.y > b.y:
