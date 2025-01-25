@@ -27,6 +27,7 @@ improvements:
 
 # enhanced movement
 # sections
+# section reporter ui
 save system
 color schemes
 sound

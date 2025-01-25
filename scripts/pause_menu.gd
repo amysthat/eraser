@@ -1,23 +1,15 @@
-extends SubViewportContainer
+extends Control
 
-@onready var sub_viewport := %SubViewport
-@onready var canvas_layer := %CanvasLayer
-@onready var content := %Content
+@export var visiblity_node: Control
 
 func _ready():
-    scale = Vector2.ONE / 6.0
-    content.reparent(canvas_layer)
-
-    visible = false
+    visiblity_node.visible = false
 
 func _process(_delta):
     if Input.is_action_just_pressed("toggle_pause"):
         Game.toggle_pause()
 
-    visible = Game.is_paused
-
-    if Game.is_paused:
-        global_position = get_viewport().get_camera_2d().get_screen_center_position() - Vector2(160, 90)
+    visiblity_node.visible = Game.is_paused
 
 func _on_resume_pressed():
     Game.toggle_pause()

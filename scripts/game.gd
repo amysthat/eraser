@@ -27,6 +27,7 @@ func begin_game():
     is_paused = false
 
     get_tree().change_scene_to_file("res://world.tscn")
+
     pause_menu_instance = pause_menu_scene.instantiate()
     get_tree().root.add_child(pause_menu_instance)
 
@@ -44,6 +45,7 @@ func end_game():
     Cursor.remove_cursor()
 
     get_tree().change_scene_to_file("res://main_menu.tscn")
+
     pause_menu_instance.queue_free()
     pause_menu_instance = null
 
