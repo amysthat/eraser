@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtq64rllxnk37"]
+[gd_scene load_steps=5 format=3 uid="uid://dtq64rllxnk37"]
 
 [ext_resource type="Script" path="res://scripts/canon_ball.gd" id="1_6t3d8"]
 [ext_resource type="Texture2D" uid="uid://duegfltkddkfa" path="res://assets/canon_ball.png" id="2_phm3p"]
+[ext_resource type="Script" path="res://scripts/update_texture_by_theme.gd" id="3_fkcc4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmah"]
 radius = 2.0
@@ -19,5 +20,10 @@ shape = SubResource("CircleShape2D_cqmah")
 wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="TextureUpdater" type="Node" parent="." node_paths=PackedStringArray("sprite2d")]
+script = ExtResource("3_fkcc4")
+sprite2d = NodePath("../Sprite2D")
+texture_name = "canon_ball"
 
 [connection signal="timeout" from="Timer" to="." method="queue_free"]

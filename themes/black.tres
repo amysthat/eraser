@@ -1,9 +1,15 @@
-[gd_resource type="Resource" script_class="GameTheme" load_steps=2 format=3 uid="uid://d0kbpaw651kxv"]
+[gd_resource type="Resource" script_class="GameTheme" load_steps=5 format=3 uid="uid://d0kbpaw651kxv"]
 
 [ext_resource type="Script" path="res://scripts/theme.gd" id="1_jy7oa"]
+[ext_resource type="Texture2D" uid="uid://1wmq5cxpbxyh" path="res://assets/black/canon_ball.png" id="1_to2kc"]
+[ext_resource type="Texture2D" uid="uid://cyese5t3pwavo" path="res://assets/black/canon_barrel.png" id="2_rdmau"]
+[ext_resource type="Texture2D" uid="uid://deungcka2otm8" path="res://assets/black/canon_base.png" id="3_ft46l"]
 
 [resource]
 script = ExtResource("1_jy7oa")
 internal_name = "Black"
 tileset_source_id = 2
 background_color = Color(0, 0, 0, 1)
+canon_ball = ExtResource("1_to2kc")
+canon_barrel = ExtResource("2_rdmau")
+canon_base = ExtResource("3_ft46l")

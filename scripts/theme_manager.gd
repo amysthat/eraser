@@ -8,23 +8,26 @@ static var active_theme: GameTheme:
     set(value): update_theme(value)
 
 static var _applied_theme: GameTheme
-static var _active_manager: ThemeManager
+static var active_manager: ThemeManager
 
 static func update_theme(new_theme: GameTheme):
     _applied_theme = new_theme
 
-    if _active_manager != null and _applied_theme != null:
-        _active_manager.apply_theme()
+    if active_manager != null and _applied_theme != null:
+        active_manager.apply_theme()
 
 # Instance
+
+signal theme_applied
 
 @export var tilemaps: Array[TileMapLayer]
 
 @export var debug_theme: GameTheme
 
-func _ready():
-    _active_manager = self
+func _enter_tree():
+    active_manager = self
 
+func _ready():
     if active_theme != null:
         apply_theme()
     
@@ -47,3 +50,11 @@ func apply_theme():
             tilemap.set_cell(location, active_theme.tileset_source_id, tilemap.get_cell_atlas_coords(location), tilemap.get_cell_alternative_tile(location))
     
     RenderingServer.set_default_clear_color(active_theme.background_color)
+
+    theme_applied.emit()
+
+func subscribe(theme_updated: Callable):
+    theme_applied.connect(theme_updated)
+
+    if active_theme != null:
+        theme_updated.call()

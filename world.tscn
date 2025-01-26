@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/theme_manager.gd" id="1_jo76y"]
 [ext_resource type="PackedScene" uid="uid://cky1jr0gkvhxb" path="res://player.tscn" id="1_l2ixe"]
 [ext_resource type="Resource" uid="uid://d0kbpaw651kxv" path="res://themes/black.tres" id="2_xkuyb"]
-[ext_resource type="Texture2D" uid="uid://c800hs7udm26o" path="res://assets/black_tileset.png" id="3_bqf1s"]
+[ext_resource type="Texture2D" uid="uid://c800hs7udm26o" path="res://assets/black/black_tileset.png" id="3_bqf1s"]
 [ext_resource type="Script" path="res://scripts/sided_tilemap_collision_baker.gd" id="4_2yksu"]
 [ext_resource type="PackedScene" uid="uid://5wqkhu5ja7em" path="res://canon.tscn" id="6_m0aah"]
 [ext_resource type="Script" path="res://scripts/TilemapCollisionBaker.gd" id="7_fl8ug"]
