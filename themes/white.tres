@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GameTheme" load_steps=2 format=3 uid="uid://d0kbpaw651kxv"]
+
+[ext_resource type="Script" path="res://scripts/theme.gd" id="1_q3f6m"]
+
+[resource]
+script = ExtResource("1_q3f6m")
+internal_name = "White"
+tileset_source_id = 1
+background_color = Color(1, 1, 1, 1)
