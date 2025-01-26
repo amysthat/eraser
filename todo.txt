@@ -43,4 +43,7 @@ improvements:
 bugs:
 # player jumps infinitely upon pressing jump
 
+suggestions:
+maybe remove the canon shortcut at the start?
+
 V0.3: DEMO RELEASE (22nd of January FINAL DAY)
