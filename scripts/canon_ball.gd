@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name CanonBall
 
 const SPEED = 3500.0
 

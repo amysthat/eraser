@@ -21,14 +21,14 @@ func _process(_delta):
 
 func _physics_process(_delta):
     if get_slide_collision_count() > 0:
-        var hit_player = false
+        var weaken = true
 
         for i in range(0, get_slide_collision_count()):
             var target_collision = get_slide_collision(i)
             var body = target_collision.get_collider() as Node
 
             if body is Player:
-                hit_player = TextureCubemapArrayRD
+                weaken = false
 
                 if is_weak:
                     state_machine.transition_state("destroyed")
@@ -38,10 +38,14 @@ func _physics_process(_delta):
 
                     if body.is_parrying:
                         $StateMachine/weak.enable_with_reason(PlaneWeakState.WeakenReason.PLAYER_PARRY)
-            
-            position += target_collision.get_normal() * 1.2
+                        
+                position += target_collision.get_normal() * 1.2
+            elif body is CanonBall:
+                weaken = false
+            else:
+                position += target_collision.get_normal() * 1.2
         
-        if not hit_player:
+        if weaken:
             $StateMachine/weak.enable_with_reason(PlaneWeakState.WeakenReason.MISS)
     
     move_and_slide()

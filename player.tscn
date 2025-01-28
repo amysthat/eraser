@@ -41,6 +41,7 @@ friction = 0.0
 bounce = 0.5
 
 [node name="Player" type="RigidBody2D"]
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_36loq")
 lock_rotation = true
 script = ExtResource("1_obows")
