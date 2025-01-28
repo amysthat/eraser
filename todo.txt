@@ -41,8 +41,10 @@ improvements:
 
 bugs:
 # player jumps infinitely upon pressing jump
+players and canons can hit each other
 
 suggestions:
 maybe remove the canon shortcut at the start?
+maybe autotile the solid tiles?
 
-V0.3: DEMO RELEASE (22nd of January FINAL DAY)
+V0.3: DEMO RELEASE
