@@ -69,7 +69,7 @@ spawnpoint_marker_name = "Section 2"
 
 [sub_resource type="Resource" id="Resource_ap8eq"]
 script = ExtResource("14_37pnr")
-display_name = "End of v0.2"
+display_name = "End of v0.3"
 spawnpoint_marker_name = "Section 3"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbfyy"]
@@ -306,7 +306,7 @@ offset_bottom = -726.0
 scale = Vector2(0.08, 0.08)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
-text = "End of v0.2"
+text = "End of v0.3"
 
 [node name="Player" parent="." instance=ExtResource("1_l2ixe")]
 position = Vector2(164, 84)

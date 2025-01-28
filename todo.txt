@@ -41,15 +41,21 @@ bugs:
 # player jumps infinitely upon pressing jump
 # planes and canons can hit each other
 
+suggestions:
 # maybe remove the canon shortcut at the start?
 
 V0.3
 
-parry fix
+web compliance
 sound
 dash revamp
-revamped map
 juice
+revamped map
+
+improvements:
+parry fix
+ui theme
+saving of settings
 
 suggestions:
 maybe autotile the solid tiles?
