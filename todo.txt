@@ -29,9 +29,8 @@ improvements:
 # sections
 # section reporter ui
 # save system
-color schemes
+# music
 sound
-music
 bigger map (section 3)
 
 improvements:

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8pwn68xclcrf"]
+[gd_scene load_steps=6 format=3 uid="uid://b8pwn68xclcrf"]
 
 [ext_resource type="Script" path="res://scripts/in_game_hud.gd" id="1_ef4hu"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_gmrmn"]
 [ext_resource type="Theme" uid="uid://cygy0ufansx3h" path="res://theme.tres" id="2_wiab2"]
 [ext_resource type="Script" path="res://scripts/section_reporter.gd" id="4_vkxto"]
+[ext_resource type="PackedScene" uid="uid://ckwdk8telu0h8" path="res://settings_panel.tscn" id="5_vta8c"]
 
 [node name="In Game HUD" type="SubViewportContainer"]
 process_mode = 3
@@ -68,7 +69,7 @@ offset_right = 265.0
 offset_bottom = 98.0
 text = "Progress"
 
-[node name="Pause Menu" type="Control" parent="Content" node_paths=PackedStringArray("visiblity_node")]
+[node name="Pause Menu" type="Control" parent="Content" node_paths=PackedStringArray("visiblity_node", "settings_menu")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,6 +78,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gmrmn")
 visiblity_node = NodePath("../..")
+settings_menu = NodePath("../Settings")
 
 [node name="CenterContainer" type="CenterContainer" parent="Content/Pause Menu"]
 layout_mode = 2
@@ -122,10 +124,29 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Resume"
 
+[node name="Settings" type="Button" parent="Content/Pause Menu/CenterContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Settings"
+
 [node name="MainMenu" type="Button" parent="Content/Pause Menu/CenterContainer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Back to Main Menu"
 
+[node name="Settings" parent="Content" instance=ExtResource("5_vta8c")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -400.0
+offset_right = 600.0
+offset_bottom = 400.0
+
 [connection signal="pressed" from="Content/Pause Menu/CenterContainer/Panel/VBoxContainer/Resume" to="Content/Pause Menu" method="_on_resume_pressed"]
+[connection signal="pressed" from="Content/Pause Menu/CenterContainer/Panel/VBoxContainer/Settings" to="Content/Pause Menu" method="_on_settings_pressed"]
 [connection signal="pressed" from="Content/Pause Menu/CenterContainer/Panel/VBoxContainer/MainMenu" to="Content/Pause Menu" method="_on_main_menu_pressed"]

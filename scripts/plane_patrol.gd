@@ -13,8 +13,6 @@ var current_point: int
 
 var detect_charge_time: float
 
-var hold_attack_until_reach: bool
-
 func enter():
     patrol_points.clear()
 
@@ -32,7 +30,7 @@ func update(delta: float):
     else:
         detect_charge_time = max(0, detect_charge_time - delta)
 
-    if detect_charge_time >= detect_time and not hold_attack_until_reach:
+    if detect_charge_time >= detect_time:
         detect_charge_time = 0
 
         set_return_patrol_point.emit()
@@ -48,8 +46,6 @@ func physics_update(_delta: float):
         
         if current_point >= patrol_points.size():
             current_point = 0
-        
-        hold_attack_until_reach = false
     
     plane.velocity = difference.normalized() * speed
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://drk2vwef05yav"]
+[gd_scene load_steps=4 format=3 uid="uid://drk2vwef05yav"]
 
 [ext_resource type="Theme" uid="uid://cygy0ufansx3h" path="res://theme.tres" id="1_clxdk"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_fg8hk"]
+[ext_resource type="PackedScene" uid="uid://ckwdk8telu0h8" path="res://settings_panel.tscn" id="3_prkqn"]
 
 [node name="Main Menu" type="Node2D"]
 
@@ -54,92 +55,17 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Quit"
 
-[node name="Settings" type="CenterContainer" parent="UI"]
-visible = false
+[node name="Settings" parent="UI" instance=ExtResource("3_prkqn")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="UI/Settings"]
-custom_minimum_size = Vector2(1200, 800)
-layout_mode = 2
-
-[node name="Back" type="Button" parent="UI/Settings/Panel"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 0
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 95.0
-offset_bottom = 55.0
-text = "< Back"
-
-[node name="Label" type="Label" parent="UI/Settings/Panel"]
-layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -37.0
-offset_top = 25.0
-offset_right = 37.0
-offset_bottom = 48.0
-grow_horizontal = 2
-text = "SETTINGS"
-
-[node name="Properties" type="VBoxContainer" parent="UI/Settings/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 25.0
-offset_top = 70.0
-offset_right = -25.0
-offset_bottom = -30.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Max FPS" type="HBoxContainer" parent="UI/Settings/Panel/Properties"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/Settings/Panel/Properties/Max FPS"]
-layout_mode = 2
-text = "Max FPS:"
-
-[node name="MaxFPS" type="SpinBox" parent="UI/Settings/Panel/Properties/Max FPS"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-min_value = 30.0
-max_value = 300.0
-value = 60.0
-rounded = true
-
-[node name="Apply" type="Button" parent="UI/Settings/Panel/Properties/Max FPS"]
-custom_minimum_size = Vector2(60, 0)
-layout_mode = 2
-text = "Apply"
-
-[node name="V Sync" type="HBoxContainer" parent="UI/Settings/Panel/Properties"]
-layout_mode = 2
-
-[node name="VSync" type="CheckButton" parent="UI/Settings/Panel/Properties/V Sync"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "VSync"
-
-[node name="Label" type="Label" parent="UI/Settings/Panel/Properties"]
-layout_mode = 2
-text = "a whole lotta options ik :)
-
-
-
-
-
-
-no i can not let you change the resolution do you know the pain i went through"
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -400.0
+offset_right = 600.0
+offset_bottom = 400.0
 
 [node name="VersionLabel" type="Label" parent="UI"]
 layout_mode = 1
@@ -156,6 +82,3 @@ text = "dev: v0.3"
 [connection signal="pressed" from="UI/Main/VBoxContainer/Continue" to="UI" method="_on_continue_pressed"]
 [connection signal="pressed" from="UI/Main/VBoxContainer/Settings" to="UI" method="_on_settings_pressed"]
 [connection signal="pressed" from="UI/Main/VBoxContainer/Quit" to="UI" method="_on_quit_pressed"]
-[connection signal="pressed" from="UI/Settings/Panel/Back" to="UI" method="_on_settings_back_pressed"]
-[connection signal="pressed" from="UI/Settings/Panel/Properties/Max FPS/Apply" to="UI" method="_on_fps_apply_pressed"]
-[connection signal="toggled" from="UI/Settings/Panel/Properties/V Sync/VSync" to="UI" method="_on_v_sync_toggled"]

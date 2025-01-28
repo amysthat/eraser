@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cygy0ufansx3h"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://cygy0ufansx3h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jyndg"]
 
@@ -29,6 +29,24 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yqo88"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7ejm"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sc5pk"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkqgg"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ytrl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e410i"]
@@ -39,6 +57,18 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8q1kn"]
+bg_color = Color(0.920995, 0.920995, 0.920995, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgex3"]
 bg_color = Color(0.920995, 0.920995, 0.920995, 1)
 border_width_left = 2
 border_width_top = 2
@@ -67,9 +97,13 @@ CheckButton/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 CheckButton/colors/font_pressed_color = Color(0, 0, 0, 1)
 CheckButton/styles/normal = SubResource("StyleBoxEmpty_hbtqb")
 CheckButton/styles/pressed = SubResource("StyleBoxEmpty_yqo88")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_u7ejm")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_sc5pk")
+HSlider/styles/slider = SubResource("StyleBoxFlat_nkqgg")
 Label/colors/font_color = Color(0, 0, 0, 1)
 LineEdit/colors/caret_color = Color(0, 0, 0, 1)
 LineEdit/colors/font_color = Color(0, 0, 0, 1)
 LineEdit/styles/focus = SubResource("StyleBoxEmpty_2ytrl")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_e410i")
 Panel/styles/panel = SubResource("StyleBoxFlat_8q1kn")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_wgex3")

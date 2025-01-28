@@ -1,6 +1,7 @@
 extends Control
 
 @export var visiblity_node: Control
+@export var settings_menu: Control
 
 func _ready():
     visiblity_node.visible = false
@@ -16,3 +17,6 @@ func _on_resume_pressed():
 
 func _on_main_menu_pressed():
     Game.end_game()
+
+func _on_settings_pressed():
+    settings_menu.visible = true

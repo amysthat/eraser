@@ -34,7 +34,6 @@ func _physics_process(_delta):
                     state_machine.transition_state("destroyed")
                     body.on_hit(target_collision.get_normal(), true)
                 else:
-                    $StateMachine/patrol.hold_attack_until_reach = true
                     body.on_hit(target_collision.get_normal())
 
                     if body.is_parrying:
@@ -44,7 +43,6 @@ func _physics_process(_delta):
         
         if not hit_player:
             $StateMachine/weak.enable_with_reason(PlaneWeakState.WeakenReason.MISS)
-            $StateMachine/patrol.hold_attack_until_reach = true
     
     move_and_slide()
 
