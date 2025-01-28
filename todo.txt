@@ -30,8 +30,6 @@ improvements:
 # section reporter ui
 # save system
 # music
-sound
-bigger map (section 3)
 
 improvements:
 # make the plane go back to its original position after hunting the player down
@@ -41,10 +39,23 @@ improvements:
 
 bugs:
 # player jumps infinitely upon pressing jump
-players and canons can hit each other
+# planes and canons can hit each other
+
+# maybe remove the canon shortcut at the start?
+
+V0.3
+
+parry fix
+sound
+dash revamp
+revamped map
+juice
 
 suggestions:
-maybe remove the canon shortcut at the start?
 maybe autotile the solid tiles?
 
-V0.3: DEMO RELEASE
+V0.4: DEMO RELEASE (WEB / DESKTOP)
+
+bigger maps
+story (just a little)
+themes
