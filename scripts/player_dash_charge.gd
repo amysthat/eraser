@@ -4,14 +4,20 @@ signal dash_cast(dash_vector: Vector2)
 
 @export var player: Player
 @export var charge_animation_name: String
-@export var cursor_textures: Array[Texture2D]
 @export var dash_arrow_origin: Node2D
 @export var full_charge_time: float
 @export var max_charge_speed: float
 
+@export var cursor_textures: SpriteFrames
+var cursor_animation_name: String
+var cursor_textures_count: int
 
 var charge_time: float
 var dash_rotation_rad: float
+
+func _ready():
+	cursor_animation_name = cursor_textures.get_animation_names()[0]
+	cursor_textures_count = cursor_textures.get_frame_count(cursor_animation_name)
 
 func enter():
 	player.linear_velocity = Vector2.ZERO
@@ -58,6 +64,6 @@ func dash():
 
 func _update_cursor():
 	var ratio = charge_time / full_charge_time
-	var frame_index = clampi(roundi(cursor_textures.size() * ratio), 0, cursor_textures.size() - 1)
+	var frame_index = clampi(roundi(cursor_textures_count * ratio), 0, cursor_textures_count - 1)
 
-	Cursor.set_cursor_image(cursor_textures[frame_index])
+	Cursor.set_cursor_image(cursor_textures.get_frame_texture(cursor_animation_name, frame_index))
