@@ -44,23 +44,37 @@ bugs:
 suggestions:
 # maybe remove the canon shortcut at the start?
 
-V0.3
+# V0.3
 
-web compliance
-sound
+v0.3 playtest (brother):
+OVERSIGHT: player fails to understand that parrying a canon ball/plane aids them
+BUG: you can "downgrade" your section
+OVERSIGHT: it's not clear how one sided tiles work
+OVERSIGHT: there's not enough contrast to differ one sided tiles
+BAD GAME DESIGN: it's not clear where to go
+BUG: plane code is unstable
+BAD IMPLEMENTATION: parry logic doesn't always yield the same result
+BAD GAME DESIGN: the player knows too little, game becomes frustrating
+BAD GAME DESIGN: the difficulty curve is way too intense, the game becomes hard and *bad*.
+
+saving of settings
 dash revamp
-juice
+parry revamp
 revamped map
 
-improvements:
-parry fix
-ui theme
-saving of settings
+V0.4
+
+web compliance
+ui theme finishing
+sfx
+music 2
+music 3
+juice
 
 suggestions:
 maybe autotile the solid tiles?
 
-V0.4: DEMO RELEASE (WEB / DESKTOP)
+V0.5: DEMO RELEASE (WEB / DESKTOP)
 
 bigger maps
 story (just a little)
