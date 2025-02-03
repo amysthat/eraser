@@ -3,6 +3,8 @@ extends Node
 const SAVE_PATH := "user://save.json"
 
 var save_loaded: bool
+
+# Save data
 var saved_section_index: int
 
 func load_save():
