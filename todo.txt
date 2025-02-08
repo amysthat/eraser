@@ -47,17 +47,17 @@ suggestions:
 # V0.3
 
 v0.3 playtest (brother):
-OVERSIGHT: player fails to understand that parrying a canon ball/plane aids them
 # BUG: you can "downgrade" your section
+BUG: plane code is unstable
+OVERSIGHT: player fails to understand that parrying a canon ball/plane aids them
 OVERSIGHT: it's not clear how one sided tiles work
 OVERSIGHT: there's not enough contrast to differ one sided tiles
-BAD GAME DESIGN: it's not clear where to go
-BUG: plane code is unstable
 BAD IMPLEMENTATION: parry logic doesn't always yield the same result
+BAD GAME DESIGN: it's not clear where to go
 BAD GAME DESIGN: the player knows too little, game becomes frustrating
 BAD GAME DESIGN: the difficulty curve is way too intense, the game becomes hard and *bad*.
 
-saving of settings
+# saving of settings
 dash revamp
 parry revamp
 revamped map

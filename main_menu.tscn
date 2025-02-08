@@ -77,7 +77,7 @@ offset_top = -23.0
 offset_right = 63.0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "v0.3"
+text = "pre-v0.4"
 
 [connection signal="pressed" from="UI/Main/VBoxContainer/New" to="UI" method="_on_new_game_pressed"]
 [connection signal="pressed" from="UI/Main/VBoxContainer/Continue" to="UI" method="_on_continue_pressed"]

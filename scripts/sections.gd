@@ -44,6 +44,6 @@ func _on_player_entered_area(area: SectionArea):
     print("Entered section: %s (index: %s)" % [current_section.display_name, current_section_index])
 
     Saving.saved_section_index = current_section_index
-    Saving.save_to_disk()
+    Saving.save_game_to_disk()
 
     entered_section.emit(current_section)

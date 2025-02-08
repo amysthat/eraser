@@ -5,6 +5,8 @@ signal on_game_begin
 signal on_game_end
 
 @onready var pause_menu_scene := preload("res://pause_menu.tscn")
+@onready var MASTER_BUS_ID = AudioServer.get_bus_index("Master")
+@onready var MUSIC_BUS_ID = AudioServer.get_bus_index("Music")
 
 var is_playing: bool
 var is_paused: bool
@@ -20,6 +22,12 @@ func _enter_tree():
 
         begin_game()
 
+func _ready():
+    if Saving.has_global_save_data():
+        Saving.load_global_save()
+    else:
+        Saving.initialize_global_save_data()
+
 func begin_game():
     if is_playing:
         return
@@ -27,8 +35,8 @@ func begin_game():
     is_playing = true
     is_paused = false
 
-    if Saving.has_save_data():
-        Saving.load_save()
+    if Saving.has_game_save_data():
+        Saving.load_game_save()
 
     get_tree().change_scene_to_file("res://world.tscn")
 
@@ -43,8 +51,7 @@ func end_game():
     if not is_playing:
         return
     
-    Saving.save_to_disk()
-    Saving.unload_save_data()
+    Saving.save_game_to_disk()
     
     is_playing = false
     is_paused = false

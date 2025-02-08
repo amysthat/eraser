@@ -5,11 +5,11 @@ extends Control
 @onready var settings_menu := $Settings
 
 func _ready():
-    continue_button.disabled = not Saving.has_save_data()
+    continue_button.disabled = not Saving.has_game_save_data()
 
 func _on_new_game_pressed():
-    if Saving.has_save_data():
-        Saving.remove_save_data()
+    if Saving.has_game_save_data():
+        Saving.remove_game_save_data()
 
     Game.begin_game()
 
