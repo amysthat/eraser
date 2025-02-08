@@ -48,7 +48,7 @@ suggestions:
 
 v0.3 playtest (brother):
 OVERSIGHT: player fails to understand that parrying a canon ball/plane aids them
-BUG: you can "downgrade" your section
+# BUG: you can "downgrade" your section
 OVERSIGHT: it's not clear how one sided tiles work
 OVERSIGHT: there's not enough contrast to differ one sided tiles
 BAD GAME DESIGN: it's not clear where to go

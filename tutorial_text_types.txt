@@ -1,8 +1,0 @@
-
-# WASD movement
-
-# LMOUSE Dash charge
-
-# RMOUSE Parry
-
-# ESC to pause

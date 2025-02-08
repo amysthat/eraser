@@ -30,6 +30,12 @@ func subscribe_area(area: SectionArea):
 func _on_player_entered_area(area: SectionArea):
     if current_section_area == area:
         return
+    
+    var target_index = sections.find(areas_to_sections[area])
+
+    if current_section_index > target_index:
+        print("Canceling section downgrade from ", current_section_index, " to ", target_index)
+        return
 
     current_section_area = area
     current_section = areas_to_sections[area]
