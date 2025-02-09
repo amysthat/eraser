@@ -12,6 +12,5 @@ func _process(_delta):
         _on_entered_section(Sections.instance.current_section)
 
 func _on_entered_section(new_section: Section):
-    print(new_section)
     name_label.text = new_section.display_name
     completion_label.text = "%s of %s" % [Sections.instance.current_section_index + 1, Sections.instance.sections.size()]

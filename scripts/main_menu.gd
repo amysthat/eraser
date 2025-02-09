@@ -2,11 +2,12 @@ extends Control
 
 @onready var continue_button := %Continue
 @onready var remove_save_button := % "Remove Save"
+@onready var save_info := % "Save Info"
 
 @onready var settings_menu := $Settings
 
 func _ready():
-    update_continue_and_delete_buttons()
+    update_save_section()
 
 func _on_new_game_pressed():
     if Saving.has_game_save_data():
@@ -25,8 +26,12 @@ func _on_settings_pressed():
 
 func _on_remove_save_pressed():
     Saving.remove_game_save_data()
-    update_continue_and_delete_buttons()
+    update_save_section()
 
-func update_continue_and_delete_buttons():
+func update_save_section():
     continue_button.disabled = not Saving.has_game_save_data()
     remove_save_button.visible = Saving.has_game_save_data()
+    save_info.visible = Saving.has_game_save_data()
+
+    if (Saving.has_game_save_data()):
+        save_info.text = "Section %s/%s: %s" % [Saving.saved_section_index + 1, Game.SECTION_COUNT, Game.section_data.sections[Saving.saved_section_index].display_name]

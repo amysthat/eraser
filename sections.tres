@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="SectionData" load_steps=6 format=3 uid="uid://k7sselaoq888"]
+
+[ext_resource type="Script" path="res://scripts/section_data.gd" id="1_xd68c"]
+[ext_resource type="Script" path="res://scripts/section.gd" id="2_croeo"]
+
+[sub_resource type="Resource" id="Resource_2jq35"]
+script = ExtResource("2_croeo")
+display_name = "Welcome to Hell :)"
+spawnpoint_marker_name = "Section 1"
+
+[sub_resource type="Resource" id="Resource_onoxv"]
+script = ExtResource("2_croeo")
+display_name = "Flying Around"
+spawnpoint_marker_name = "Section 2"
+
+[sub_resource type="Resource" id="Resource_a16mq"]
+script = ExtResource("2_croeo")
+display_name = "End of v0.3"
+spawnpoint_marker_name = "Section 3"
+
+[resource]
+script = ExtResource("1_xd68c")
+sections = Array[ExtResource("2_croeo")]([SubResource("Resource_2jq35"), SubResource("Resource_onoxv"), SubResource("Resource_a16mq")])

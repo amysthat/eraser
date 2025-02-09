@@ -6,7 +6,7 @@ static var instance: Sections
 signal entered_section(new_section: Section)
 signal set_spawn_of_player(section: Section)
 
-@export var sections: Array[Section]
+var sections: Array[Section]
 
 var areas_to_sections: Dictionary
 
@@ -16,6 +16,8 @@ var current_section_index: int
 
 func _enter_tree():
     instance = self
+    
+    sections = Game.section_data.sections
 
 func _ready():
     if Saving.save_loaded:

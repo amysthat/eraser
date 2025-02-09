@@ -4,9 +4,13 @@ signal on_pause_toggled
 signal on_game_begin
 signal on_game_end
 
+@onready var section_data := preload("res://sections.tres")
+
 @onready var pause_menu_scene := preload("res://pause_menu.tscn")
 @onready var MASTER_BUS_ID = AudioServer.get_bus_index("Master")
 @onready var MUSIC_BUS_ID = AudioServer.get_bus_index("Music")
+
+const SECTION_COUNT := 3
 
 var is_playing: bool
 var is_paused: bool
@@ -27,6 +31,9 @@ func _ready():
         Saving.load_global_save()
     else:
         Saving.initialize_global_save_data()
+    
+    if Saving.has_game_save_data():
+        Saving.load_game_save()
 
 func begin_game():
     if is_playing:
