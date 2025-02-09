@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://drk2vwef05yav"]
+[gd_scene load_steps=5 format=3 uid="uid://drk2vwef05yav"]
 
 [ext_resource type="Theme" uid="uid://cygy0ufansx3h" path="res://theme.tres" id="1_clxdk"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_fg8hk"]
+[ext_resource type="Texture2D" uid="uid://djkcyxaidwupt" path="res://assets/trash.svg" id="3_irngq"]
 [ext_resource type="PackedScene" uid="uid://ckwdk8telu0h8" path="res://settings_panel.tscn" id="3_prkqn"]
 
 [node name="Main Menu" type="Node2D"]
@@ -39,11 +40,24 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "New Game"
 
-[node name="Continue" type="Button" parent="UI/Main/VBoxContainer"]
+[node name="Continue Section" type="HBoxContainer" parent="UI/Main/VBoxContainer"]
+layout_mode = 2
+
+[node name="Continue" type="Button" parent="UI/Main/VBoxContainer/Continue Section"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Continue"
+
+[node name="Remove Save" type="Button" parent="UI/Main/VBoxContainer/Continue Section"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/icon_max_width = 30
+theme_override_icons/icon = ExtResource("3_irngq")
+icon_alignment = 1
+expand_icon = true
 
 [node name="Settings" type="Button" parent="UI/Main/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -80,6 +94,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "pre-v0.4"
 
 [connection signal="pressed" from="UI/Main/VBoxContainer/New" to="UI" method="_on_new_game_pressed"]
-[connection signal="pressed" from="UI/Main/VBoxContainer/Continue" to="UI" method="_on_continue_pressed"]
+[connection signal="pressed" from="UI/Main/VBoxContainer/Continue Section/Continue" to="UI" method="_on_continue_pressed"]
+[connection signal="pressed" from="UI/Main/VBoxContainer/Continue Section/Remove Save" to="UI" method="_on_remove_save_pressed"]
 [connection signal="pressed" from="UI/Main/VBoxContainer/Settings" to="UI" method="_on_settings_pressed"]
 [connection signal="pressed" from="UI/Main/VBoxContainer/Quit" to="UI" method="_on_quit_pressed"]
