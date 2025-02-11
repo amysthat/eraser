@@ -58,7 +58,7 @@ BAD GAME DESIGN: the player knows too little, game becomes frustrating
 BAD GAME DESIGN: the difficulty curve is way too intense, the game becomes hard and *bad*.
 
 # saving of settings
-dash revamp
+# dash revamp
 parry revamp
 revamped map
 

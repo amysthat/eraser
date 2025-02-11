@@ -9,8 +9,6 @@ extends State
 @onready var shock_timer := $ShockTimer
 
 func enter():
-	player.linear_velocity = Vector2.ZERO
-	player.gravity_scale = 0
 	player.play_animation(parry_animation_name)
 	Cursor.set_cursor_image(cursor)
 	
