@@ -54,6 +54,12 @@ func update(delta: float):
 	jump_requested -= delta
 	last_grounded += delta
 
+func _physics_process(_delta):
+	if is_on_floor():
+		player.linear_damp = 0
+	else:
+		player.linear_damp = 3
+
 func physics_update(_delta: float):
 	player.gravity_scale = player.player_float.get_gravity_scale()
 
@@ -74,13 +80,9 @@ func physics_update(_delta: float):
 		player.linear_velocity.y = max_speed
 	
 	if is_on_floor():
-		player.linear_damp = 0
-
 		if dash_time <= 0:
 			dash_allowed = true
 	else:
-		player.linear_damp = 3
-
 		if player.linear_velocity.y > 0:
 			player.apply_force(Vector2(0, 200))
 
