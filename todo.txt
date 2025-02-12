@@ -59,7 +59,7 @@ BAD GAME DESIGN: the difficulty curve is way too intense, the game becomes hard 
 
 # saving of settings
 # dash revamp
-parry revamp
+# parry revamp
 revamped map
 
 V0.4

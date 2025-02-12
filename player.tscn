@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cky1jr0gkvhxb"]
+[gd_scene load_steps=18 format=3 uid="uid://cky1jr0gkvhxb"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_obows"]
 [ext_resource type="SpriteFrames" uid="uid://dtpb6s7ex4fqm" path="res://assets/player.aseprite" id="2_6l4d2"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dre2a4p07tfhr" path="res://assets/dash_unavailable.png" id="7_oll6h"]
 [ext_resource type="Script" path="res://scripts/player_dash_charge.gd" id="9_qq7uh"]
 [ext_resource type="Script" path="res://scripts/player_hit_shock.gd" id="13_8vdr4"]
+[ext_resource type="Script" path="res://scripts/player_dash.gd" id="13_ngg2o"]
 [ext_resource type="SpriteFrames" uid="uid://c3tsdkgm7bubn" path="res://assets/charge_cursor.aseprite" id="28_0c8cv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_36loq"]
@@ -34,7 +35,7 @@ script = ExtResource("1_obows")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2)
 sprite_frames = ExtResource("2_6l4d2")
-animation = &"Parry"
+animation = &"Dash"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -127,6 +128,17 @@ full_charge_time = 1.35
 max_charge_speed = 400.0
 cursor_textures = ExtResource("28_0c8cv")
 
+[node name="dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("13_ngg2o")
+player = NodePath("../..")
+animation_name = "Dash"
+cursor = ExtResource("7_oll6h")
+full_dash_time = 0.4
+up_force = 175.0
+
+[node name="Timer" type="Timer" parent="StateMachine/dash"]
+one_shot = true
+
 [node name="hit_shock" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "player_parry")]
 script = ExtResource("13_8vdr4")
 player = NodePath("../..")
@@ -147,5 +159,7 @@ one_shot = true
 [connection signal="timeout" from="Float/Timer" to="Float" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/parry/Timer" to="StateMachine/parry" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/parry/ShockTimer" to="StateMachine/parry" method="_on_shock_timer_timeout"]
+[connection signal="dash_cast" from="StateMachine/dash_charge" to="StateMachine/dash" method="_on_dash_cast"]
+[connection signal="timeout" from="StateMachine/dash/Timer" to="StateMachine/dash" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/hit_shock/ShockTimer" to="StateMachine/hit_shock" method="_on_shock_timer_timeout"]
 [connection signal="timeout" from="StateMachine/hit_shock/FlyTimer" to="StateMachine/hit_shock" method="_on_fly_timer_timeout"]
