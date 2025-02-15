@@ -4,8 +4,6 @@ signal on_pause_toggled
 signal on_game_begin
 signal on_game_end
 
-@onready var section_data := preload("res://sections.tres")
-
 @onready var pause_menu_scene := preload("res://pause_menu.tscn")
 @onready var MASTER_BUS_ID = AudioServer.get_bus_index("Master")
 @onready var MUSIC_BUS_ID = AudioServer.get_bus_index("Music")

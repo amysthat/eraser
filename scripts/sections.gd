@@ -16,8 +16,9 @@ var current_section_index: int
 
 func _enter_tree():
     instance = self
-    
-    sections = Game.section_data.sections
+
+    var sections_resource = load("res://sections.tres")
+    sections = sections_resource.sections
 
 func _ready():
     if Saving.save_loaded:

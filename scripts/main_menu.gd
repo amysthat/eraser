@@ -6,6 +6,8 @@ extends Control
 
 @onready var settings_menu := $Settings
 
+@onready var section_data := preload("res://sections.tres")
+
 func _ready():
     update_save_section()
 
@@ -34,4 +36,4 @@ func update_save_section():
     save_info.visible = Saving.has_game_save_data()
 
     if (Saving.has_game_save_data()):
-        save_info.text = "Section %s/%s: %s" % [Saving.saved_section_index + 1, Game.SECTION_COUNT, Game.section_data.sections[Saving.saved_section_index].display_name]
+        save_info.text = "Section %s/%s: %s" % [Saving.saved_section_index + 1, Game.SECTION_COUNT, section_data.sections[Saving.saved_section_index].display_name]
