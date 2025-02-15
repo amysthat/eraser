@@ -31,6 +31,11 @@ var last_grounded: float
 
 var dash_allowed := true
 
+func exit():
+	dash_time = 0
+	jump_requested = 0
+	last_grounded = 0
+
 func update(delta: float):
 	handle_animations()
 	

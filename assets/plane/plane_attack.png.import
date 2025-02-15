@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnxee3rrw5d8k"
-path="res://.godot/imported/plane_wander.png-67092cd91400d5b0907a21f22873c6d3.ctex"
+uid="uid://daqd2fqc7q8om"
+path="res://.godot/imported/plane_attack.png-9e1a49570bf0386899ab86ed61e8cf3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/plane_wander.png"
-dest_files=["res://.godot/imported/plane_wander.png-67092cd91400d5b0907a21f22873c6d3.ctex"]
+source_file="res://assets/plane/plane_attack.png"
+dest_files=["res://.godot/imported/plane_attack.png-9e1a49570bf0386899ab86ed61e8cf3d.ctex"]
 
 [params]
 

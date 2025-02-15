@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmeibp3rrruix"
-path="res://.godot/imported/plane_daze.png-d99f79c96e980aa13746f92db5f7c909.ctex"
+uid="uid://b05bok2j0rygs"
+path="res://.godot/imported/plane.png-c9642b1ff42d3545fbb34bc430f8b479.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/plane_daze.png"
-dest_files=["res://.godot/imported/plane_daze.png-d99f79c96e980aa13746f92db5f7c909.ctex"]
+source_file="res://assets/plane/plane.png"
+dest_files=["res://.godot/imported/plane.png-c9642b1ff42d3545fbb34bc430f8b479.ctex"]
 
 [params]
 

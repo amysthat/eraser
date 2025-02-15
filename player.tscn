@@ -140,9 +140,10 @@ up_force = 175.0
 [node name="Timer" type="Timer" parent="StateMachine/dash"]
 one_shot = true
 
-[node name="hit_shock" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "player_parry")]
+[node name="hit_shock" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "player_collision", "player_parry")]
 script = ExtResource("13_8vdr4")
 player = NodePath("../..")
+player_collision = NodePath("../../CollisionShape2D")
 player_parry = NodePath("../parry")
 cursor = ExtResource("7_oll6h")
 hit_animation_name = "Hit"
