@@ -44,8 +44,6 @@ initial_state = NodePath("patrol")
 [node name="patrol" type="Node" parent="StateMachine" node_paths=PackedStringArray("plane")]
 script = ExtResource("4_orfw6")
 plane = NodePath("../..")
-status_texture = ExtResource("5_lpmvc")
-reach_radius = 5.0
 speed = 40.0
 detect_time = 0.2
 
@@ -65,6 +63,7 @@ status_texture = ExtResource("7_b1rre")
 reach_radius = 20.0
 speed = 50.0
 up_from_player = 30.0
+sight_break_time = 0.6
 
 [node name="charge" type="Node" parent="StateMachine" node_paths=PackedStringArray("plane")]
 script = ExtResource("9_jl1wm")
@@ -88,12 +87,19 @@ plane = NodePath("../..")
 texture = ExtResource("14_aoils")
 speed = 20.0
 
+[node name="Timer" type="Timer" parent="StateMachine/destroyed"]
+wait_time = 2.0
+one_shot = true
+
 [node name="return_to_patrol" type="Node" parent="StateMachine" node_paths=PackedStringArray("plane")]
 script = ExtResource("15_vt2gn")
 plane = NodePath("../..")
 status_texture = ExtResource("5_lpmvc")
 speed = 40.0
 
+[connection signal="return_to_patrol_after_hitting_player" from="." to="StateMachine/return_to_patrol" method="transition_to_self"]
+[connection signal="weaken" from="." to="StateMachine/weak" method="enable_with_reason"]
 [connection signal="set_return_patrol_point" from="StateMachine/patrol" to="StateMachine/return_to_patrol" method="set_return_point_to_current_position"]
 [connection signal="timeout" from="StateMachine/detect_shock/Timer" to="StateMachine/detect_shock" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/weak/Timer" to="StateMachine/weak" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/destroyed/Timer" to="StateMachine/destroyed" method="_on_timer_timeout"]

@@ -20,7 +20,6 @@ var weaken_reason: WeakenReason
 
 func enter():
     plane.velocity = Vector2.ZERO
-    plane.is_weak = true
     plane.set_state_indicator(status_texture)
 
     match weaken_reason:
@@ -29,15 +28,17 @@ func enter():
         WeakenReason.MISS:
             timer.start(miss_time)
 
+func _process(delta):
+    plane.velocity = lerp(plane.velocity, Vector2.ZERO, 5 * delta)
+
 func exit():
-    plane.is_weak = false
     plane.set_state_indicator(null)
 
     timer.stop()
 
-func enable_with_reason(reason: WeakenReason):
-    weaken_reason = reason
+func enable_with_reason(reason_int: int):
+    weaken_reason = reason_int as WeakenReason
     transition.emit("weak")
 
 func _on_timer_timeout():
-    transition.emit("return_to_patrol")
+    transition.emit("approach")

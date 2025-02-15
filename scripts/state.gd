@@ -5,13 +5,16 @@ class_name State
 signal transition(new_state_name: String)
 
 func enter():
-	pass
+    pass
 
 func exit():
-	pass
+    pass
 
 func update(_delta: float):
-	pass
+    pass
 
 func physics_update(_delta: float):
-	pass
+    pass
+
+func transition_to_self():
+    transition.emit(name)
