@@ -1,19 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://5pjqc7erivb3"]
+[gd_scene load_steps=18 format=3 uid="uid://5pjqc7erivb3"]
 
 [ext_resource type="Script" path="res://scripts/plane.gd" id="1_gbgy5"]
-[ext_resource type="Texture2D" uid="uid://b05bok2j0rygs" path="res://assets/plane.png" id="2_5ghgm"]
+[ext_resource type="Texture2D" uid="uid://b05bok2j0rygs" path="res://assets/plane/plane.png" id="2_5ghgm"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="3_0tcvi"]
 [ext_resource type="Script" path="res://scripts/plane_patrol.gd" id="4_orfw6"]
-[ext_resource type="Texture2D" uid="uid://cnxee3rrw5d8k" path="res://assets/plane_wander.png" id="5_lpmvc"]
+[ext_resource type="Texture2D" uid="uid://cnxee3rrw5d8k" path="res://assets/plane/plane_wander.png" id="5_lpmvc"]
 [ext_resource type="Script" path="res://scripts/plane_detect_shock.gd" id="6_8yd3w"]
-[ext_resource type="Texture2D" uid="uid://bvdg21bounoju" path="res://assets/plane_alert.png" id="7_b1rre"]
+[ext_resource type="Texture2D" uid="uid://bvdg21bounoju" path="res://assets/plane/plane_alert.png" id="7_b1rre"]
 [ext_resource type="Script" path="res://scripts/plane_approach.gd" id="8_5t04r"]
 [ext_resource type="Script" path="res://scripts/plane_charge.gd" id="9_jl1wm"]
-[ext_resource type="Texture2D" uid="uid://daqd2fqc7q8om" path="res://assets/plane_attack.png" id="10_h05fq"]
+[ext_resource type="Texture2D" uid="uid://daqd2fqc7q8om" path="res://assets/plane/plane_attack.png" id="10_h05fq"]
 [ext_resource type="Script" path="res://scripts/plane_hit.gd" id="11_iamot"]
 [ext_resource type="Script" path="res://scripts/plane_destroyed.gd" id="11_olubv"]
-[ext_resource type="Texture2D" uid="uid://cmeibp3rrruix" path="res://assets/plane_daze.png" id="12_ajksy"]
-[ext_resource type="Texture2D" uid="uid://jv15g42dkktf" path="res://assets/plane_destroyed.png" id="14_aoils"]
+[ext_resource type="Texture2D" uid="uid://cmeibp3rrruix" path="res://assets/plane/plane_daze.png" id="12_ajksy"]
+[ext_resource type="Texture2D" uid="uid://bv7qbfaii1ud7" path="res://assets/plane/plane_weak.png" id="12_q7s16"]
+[ext_resource type="Texture2D" uid="uid://jv15g42dkktf" path="res://assets/plane/plane_destroyed.png" id="14_aoils"]
 [ext_resource type="Script" path="res://scripts/plane_return_to_patrol.gd" id="15_vt2gn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b1u7b"]
@@ -75,6 +76,7 @@ speed = 100.0
 script = ExtResource("11_iamot")
 plane = NodePath("../..")
 status_texture = ExtResource("12_ajksy")
+plane_texture = ExtResource("12_q7s16")
 player_parry_time = 1.5
 miss_time = 0.5
 

@@ -26,6 +26,9 @@ func on_parry():
     timer.stop()
     shock_timer.start()
 
+    player.linear_velocity = Vector2.ZERO
+    player.gravity_scale = 0
+
 func _on_shock_timer_timeout():
     player.player_float.enable_float(float_time)
     transition.emit("movement")

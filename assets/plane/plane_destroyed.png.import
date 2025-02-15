@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvdg21bounoju"
-path="res://.godot/imported/plane_alert.png-5f08f7cf615477848aeeac2aac9544b5.ctex"
+uid="uid://jv15g42dkktf"
+path="res://.godot/imported/plane_destroyed.png-bec3caa99511d378f53cbe6f42a79825.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/plane_alert.png"
-dest_files=["res://.godot/imported/plane_alert.png-5f08f7cf615477848aeeac2aac9544b5.ctex"]
+source_file="res://assets/plane/plane_destroyed.png"
+dest_files=["res://.godot/imported/plane_destroyed.png-bec3caa99511d378f53cbe6f42a79825.ctex"]
 
 [params]
 

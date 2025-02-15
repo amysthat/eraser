@@ -64,7 +64,7 @@ revamped map
 
 bugs:
 player movement state isnt resetted when state is changed, causing timers to carry over.
-successful parry does not freeze the player
+# successful parry does not freeze the player
 
 idea: make player jump higher if parrying is done on time
 
