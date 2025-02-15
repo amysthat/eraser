@@ -16,4 +16,6 @@ func physics_update(_delta: float):
     plane.velocity = Vector2.from_angle(angle).normalized() * speed
 
 func exit():
+    print("exiting.")
     plane.set_state_indicator(null)
+    plane.velocity = Vector2.ZERO

@@ -5,12 +5,26 @@ extends State
 @export var reach_radius: float
 @export var speed: float
 @export var up_from_player: float
+@export var sight_break_time: float
+
+var cancel_time: float
 
 func enter():
+    if not can_see_player():
+        print("can not see player!")
+        transition.emit("patrol")
+        return
+
     plane.set_state_indicator(status_texture)
 
-func update(_delta: float):
-    if plane.player_raycast.is_colliding() and plane.player_raycast.get_collider() != Player.instance:
+func update(delta: float):
+    if not can_see_player():
+        cancel_time += delta
+    else:
+        cancel_time -= delta
+    
+    if cancel_time > sight_break_time:
+        print("approach: can't see!")
         transition.emit("patrol")
 
 func physics_update(_delta: float):
@@ -26,3 +40,7 @@ func physics_update(_delta: float):
 
 func exit():
     plane.set_state_indicator(null)
+    cancel_time = 0
+
+func can_see_player() -> bool:
+    return plane.player_raycast.is_colliding() and plane.player_raycast.get_collider() == Player.instance

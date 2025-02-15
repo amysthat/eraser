@@ -34,8 +34,10 @@ func transition_state(new_state_name: String):
     if !new_state:
         push_error("State transition was emitted, but the target state wasn't found: ", new_state_name)
     
-    if current_state:
-        current_state.exit()
-    
+    var old_state = current_state
     current_state = new_state
+
+    if old_state:
+        old_state.exit()
+    
     new_state.enter()
