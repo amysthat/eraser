@@ -1,7 +1,11 @@
 extends CharacterBody2D
 class_name PlaneBody
 
-@export var patrol_points: Node2D
+signal weaken(reason_int: int)
+signal return_to_patrol_after_hitting_player
+
+@export var path: Path2D
+var path_follow: PathFollow2D
 
 @onready var sprite := $Sprite2D
 @onready var state_indicator_sprite := $StateIndicator
@@ -9,7 +13,9 @@ class_name PlaneBody
 @onready var player_raycast := $RayCast2D
 @onready var state_machine := $StateMachine
 
-var is_weak: bool
+func _ready():
+    path_follow = PathFollow2D.new()
+    path.add_child(path_follow)
 
 func _process(_delta):
     if velocity.x > 0 and not sprite.flip_h:
@@ -17,53 +23,52 @@ func _process(_delta):
     elif velocity.x < 0 and sprite.flip_h:
         sprite.flip_h = false
     
-    player_raycast.look_at(Player.instance.global_position)
+    if Player.instance != null:
+        player_raycast.look_at(Player.instance.global_position)
 
 func _physics_process(_delta):
     if get_slide_collision_count() > 0:
-        var weaken = true
+        var should_weaken: bool
+
+        var knock_off := Vector2.ZERO
 
         for i in range(0, get_slide_collision_count()):
             var target_collision = get_slide_collision(i)
             var body = target_collision.get_collider() as Node
 
-            if body is Player:
-                weaken = false
+            knock_off += target_collision.get_normal() * 1.2
 
-                if is_weak:
+            if body is Player:
+                var is_player_above_and_parrying = body.global_position.y < global_position.y and body.is_parrying
+                print("is_player_above_and_parrying: ", is_player_above_and_parrying)
+                
+                if is_weak() or is_player_above_and_parrying:
+                    print("destroyed!")
                     state_machine.transition_state("destroyed")
                     body.on_hit(target_collision.get_normal(), true)
                 else:
+                    print("hit player!")
                     body.on_hit(target_collision.get_normal())
 
                     if body.is_parrying:
-                        $StateMachine/weak.enable_with_reason(PlaneWeakState.WeakenReason.PLAYER_PARRY)
-                        
-                position += target_collision.get_normal() * 1.2
-            elif body is CanonBall:
-                weaken = false
-            else:
-                position += target_collision.get_normal() * 1.2
+                        print("player was parrying, weakened!")
+                        weaken.emit(PlaneWeakState.WeakenReason.PLAYER_PARRY)
+                    else:
+                        print("return to patrol now!")
+                        return_to_patrol_after_hitting_player.emit()
+
+            elif body is not CanonBall:
+                should_weaken = true
         
-        if weaken:
-            $StateMachine/weak.enable_with_reason(PlaneWeakState.WeakenReason.MISS)
+        position += knock_off
+        
+        if should_weaken:
+            weaken.emit(PlaneWeakState.WeakenReason.MISS)
     
     move_and_slide()
 
-func get_closest_patrol_point() -> Node2D:
-    var _patrol_points = patrol_points.get_children()
-
-    var closest_patrol_point: Node2D
-    var closest_patrol_point_distance: float = 99999.0
-
-    for point in _patrol_points:
-        var distance = global_position.distance_squared_to(point.global_position)
-
-        if distance < closest_patrol_point_distance:
-            closest_patrol_point = point
-            closest_patrol_point_distance = distance
-    
-    return closest_patrol_point
-
 func set_state_indicator(texture: Texture2D):
     state_indicator_sprite.texture = texture
+
+func is_weak() -> bool:
+    return state_machine.current_state.name == "weak"

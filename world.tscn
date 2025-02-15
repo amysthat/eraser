@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://bo0plga5ky1no"]
+[gd_scene load_steps=27 format=4 uid="uid://bo0plga5ky1no"]
 
 [ext_resource type="PackedScene" uid="uid://cky1jr0gkvhxb" path="res://player.tscn" id="1_l2ixe"]
 [ext_resource type="Script" path="res://scripts/sided_tilemap_collision_baker.gd" id="4_2yksu"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://scripts/sections.gd" id="13_arvc4"]
 [ext_resource type="Texture2D" uid="uid://cr176vcp1blo2" path="res://assets/tutorial/dash.png" id="13_h8nco"]
 [ext_resource type="PackedScene" uid="uid://5pjqc7erivb3" path="res://plane.tscn" id="13_jmbif"]
-[ext_resource type="Script" path="res://scripts/section.gd" id="14_37pnr"]
 [ext_resource type="Texture2D" uid="uid://cbtx1jeo6j3qj" path="res://assets/tutorial/parry.png" id="14_j458t"]
 [ext_resource type="Texture2D" uid="uid://box5bgwpny05n" path="res://assets/tutorial/pause.png" id="15_42nuh"]
 [ext_resource type="Script" path="res://scripts/section_area.gd" id="15_hgx48"]
@@ -57,20 +56,17 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1dkbi"]
 gradient = SubResource("Gradient_wc7kn")
 
-[sub_resource type="Resource" id="Resource_yc3g8"]
-script = ExtResource("14_37pnr")
-display_name = "Welcome to Hell :)"
-spawnpoint_marker_name = "Section 1"
+[sub_resource type="Curve2D" id="Curve2D_blor3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 28, -448, 0, 0, 0, 0, 200, -448, 0, 0, 0, 0, 168, -606, 0, 0, 0, 0, 28, -605, 0, 0, 0, 0, 28, -448)
+}
+point_count = 5
 
-[sub_resource type="Resource" id="Resource_hsinf"]
-script = ExtResource("14_37pnr")
-display_name = "Flying Around"
-spawnpoint_marker_name = "Section 2"
-
-[sub_resource type="Resource" id="Resource_ap8eq"]
-script = ExtResource("14_37pnr")
-display_name = "End of v0.3"
-spawnpoint_marker_name = "Section 3"
+[sub_resource type="Curve2D" id="Curve2D_ypqxi"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 9, -661, 0, 0, 0, 0, 226, -661, 0, 0, 0, 0, 224, -720, 0, 0, 0, 0, 7, -722, 0, 0, 0, 0, 7, -779, 0, 0, 0, 0, 229, -776, 0, 0, 0, 0, 6, -779, 0, 0, 0, 0, 7, -723, 0, 0, 0, 0, 224, -720, 0, 0, 0, 0, 226, -661, 0, 0, 0, 0, 8, -661)
+}
+point_count = 11
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbfyy"]
 size = Vector2(72, 37)
@@ -93,7 +89,7 @@ tile_set = SubResource("TileSet_85c4y")
 collision_visibility_mode = 1
 
 [node name="Sided" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAMAPr/BgAEAAIAAAANAPn/BgAEAAIAAAAPAPf/BgAEAAIAAAAQAPb/BgAEAAIAAAARAPX/BgAEAAIAAAASAPT/BgAEAAIAAAATAPP/BgAEAAIAAAAUAPL/BgAEAAIAAAAVAPH/BgAEAAIAAAADAOT/BgADAAAAAAAEAOT/BgADAAAAAAAFAOT/BgADAAAAAAAGAOT/BgADAAAAAAACAN3/BgAEAAEAAAACANz/BgAEAAEAAAACANv/BgAEAAEAAAACANr/BgAEAAEAAAACANn/BgAEAAEAAAACANj/BgAEAAEAAAACANf/BgAEAAEAAAANAOT/BgADAAIAAAAOAOT/BgADAAIAAAAPAOT/BgADAAIAAAAQAOT/BgADAAIAAAARAOT/BgADAAIAAAASAOT/BgADAAIAAAATAOT/BgADAAIAAAAUAOT/BgADAAIAAAAVAOT/BgADAAIAAAAWAOT/BgADAAIAAAAXAOT/BgADAAIAAAAYAOT/BgADAAIAAAAZAOT/BgADAAIAAAAaAOT/BgADAAIAAAAbAOT/BgADAAIAAAAcAOT/BgADAAIAAAAdAOT/BgADAAIAAAACAN7/BgAEAAEAAAACAN//BgAEAAEAAAACAOD/BgAEAAEAAAAcAMv/BgADAAAAAAAcAL3/BgADAAAAAAAaALr/BgACAAEAAAAaALn/BgACAAEAAAAaALj/BgACAAEAAAAaALf/BgACAAEAAAAaALb/BgACAAEAAAAaALX/BgACAAEAAAAaALT/BgACAAEAAAAaALP/BgACAAEAAAAQAKv/BgADAAIAAAAPAKv/BgADAAIAAAAOAKv/BgADAAIAAAANAKv/BgADAAIAAAANAKT/BgADAAIAAAAOAKT/BgADAAIAAAAPAKT/BgADAAIAAAAQAKT/BgADAAIAAAAbAJ3/BgADAAAAAAAaAJ3/BgADAAAAAAAZAJ3/BgADAAAAAAAJAND/BgACAAEAAAAJAM//BgACAAEAAAAJAM7/BgACAAEAAAAJAM3/BgACAAEAAAAJAMz/BgACAAEAAAAOAPj/BgAEAAIAAAACALn/BgADAAIAAAADALn/BgADAAIAAAAEALn/BgADAAIAAAA=")
+tile_map_data = PackedByteArray("AAAMAPr/BgAEAAIAAAANAPn/BgAEAAIAAAAPAPf/BgAEAAIAAAAQAPb/BgAEAAIAAAARAPX/BgAEAAIAAAASAPT/BgAEAAIAAAATAPP/BgAEAAIAAAAUAPL/BgAEAAIAAAAVAPH/BgAEAAIAAAADAOT/BgADAAAAAAAEAOT/BgADAAAAAAAFAOT/BgADAAAAAAAGAOT/BgADAAAAAAACAN3/BgAEAAEAAAACANz/BgAEAAEAAAACANv/BgAEAAEAAAACANr/BgAEAAEAAAACANn/BgAEAAEAAAACANj/BgAEAAEAAAACANf/BgAEAAEAAAANAOT/BgADAAIAAAAOAOT/BgADAAIAAAAPAOT/BgADAAIAAAAQAOT/BgADAAIAAAARAOT/BgADAAIAAAASAOT/BgADAAIAAAATAOT/BgADAAIAAAAUAOT/BgADAAIAAAAVAOT/BgADAAIAAAAWAOT/BgADAAIAAAAXAOT/BgADAAIAAAAYAOT/BgADAAIAAAAZAOT/BgADAAIAAAAaAOT/BgADAAIAAAAbAOT/BgADAAIAAAAcAOT/BgADAAIAAAAdAOT/BgADAAIAAAACAN7/BgAEAAEAAAACAN//BgAEAAEAAAACAOD/BgAEAAEAAAAcAMv/BgADAAAAAAAcAL3/BgADAAAAAAAaALr/BgACAAEAAAAaALn/BgACAAEAAAAaALj/BgACAAEAAAAaALf/BgACAAEAAAAaALb/BgACAAEAAAAaALX/BgACAAEAAAAaALT/BgACAAEAAAAaALP/BgACAAEAAAAQAKv/BgADAAIAAAAPAKv/BgADAAIAAAAOAKv/BgADAAIAAAANAKv/BgADAAIAAAANAKT/BgADAAIAAAAOAKT/BgADAAIAAAAPAKT/BgADAAIAAAAQAKT/BgADAAIAAAAbAJ3/BgADAAAAAAAaAJ3/BgADAAAAAAAZAJ3/BgADAAAAAAAJAND/BgACAAEAAAAJAM//BgACAAEAAAAJAM7/BgACAAEAAAAJAM3/BgACAAEAAAAJAMz/BgACAAEAAAAOAPj/BgAEAAIAAAA=")
 tile_set = SubResource("TileSet_yar6v")
 
 [node name="Fade" type="Sprite2D" parent="."]
@@ -178,59 +174,19 @@ base_rotation = 90.0
 
 [node name="Planes" type="Node2D" parent="."]
 
-[node name="Plane" parent="Planes" node_paths=PackedStringArray("patrol_points") instance=ExtResource("13_jmbif")]
+[node name="Plane" parent="Planes" node_paths=PackedStringArray("path") instance=ExtResource("13_jmbif")]
 position = Vector2(28, -448)
-patrol_points = NodePath("../Patrol Points")
+path = NodePath("../Path2D")
 
-[node name="Patrol Points" type="Node2D" parent="Planes"]
+[node name="Path2D" type="Path2D" parent="Planes"]
+curve = SubResource("Curve2D_blor3")
 
-[node name="Marker2D" type="Marker2D" parent="Planes/Patrol Points"]
-position = Vector2(28, -448)
-
-[node name="Marker2D2" type="Marker2D" parent="Planes/Patrol Points"]
-position = Vector2(200, -448)
-
-[node name="Marker2D3" type="Marker2D" parent="Planes/Patrol Points"]
-position = Vector2(169, -606)
-
-[node name="Marker2D4" type="Marker2D" parent="Planes/Patrol Points"]
-position = Vector2(28, -605)
-
-[node name="Plane2" parent="Planes" node_paths=PackedStringArray("patrol_points") instance=ExtResource("13_jmbif")]
+[node name="Plane2" parent="Planes" node_paths=PackedStringArray("path") instance=ExtResource("13_jmbif")]
 position = Vector2(9, -661)
-patrol_points = NodePath("../Patrol Points2")
+path = NodePath("../Path2D2")
 
-[node name="Patrol Points2" type="Node2D" parent="Planes"]
-
-[node name="Marker2D" type="Marker2D" parent="Planes/Patrol Points2"]
-position = Vector2(9, -661)
-
-[node name="Marker2D2" type="Marker2D" parent="Planes/Patrol Points2"]
-position = Vector2(226, -661)
-
-[node name="Marker2D3" type="Marker2D" parent="Planes/Patrol Points2"]
-position = Vector2(224, -720)
-
-[node name="Marker2D4" type="Marker2D" parent="Planes/Patrol Points2"]
-position = Vector2(7, -721)
-
-[node name="Marker2D5" type="Marker2D" parent="Planes/Patrol Points2"]
-position = Vector2(7, -779)
-
-[node name="Marker2D6" type="Marker2D" parent="Planes/Patrol Points2"]
-position = Vector2(229, -776)
-
-[node name="Marker2D7" type="Marker2D" parent="Planes/Patrol Points2"]
-position = Vector2(7, -779)
-
-[node name="Marker2D8" type="Marker2D" parent="Planes/Patrol Points2"]
-position = Vector2(7, -721)
-
-[node name="Marker2D9" type="Marker2D" parent="Planes/Patrol Points2"]
-position = Vector2(224, -720)
-
-[node name="Marker2D10" type="Marker2D" parent="Planes/Patrol Points2"]
-position = Vector2(226, -661)
+[node name="Path2D2" type="Path2D" parent="Planes"]
+curve = SubResource("Curve2D_ypqxi")
 
 [node name="Spawnpoints" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("12_bgirf")
@@ -247,7 +203,6 @@ position = Vector2(212, -797)
 
 [node name="Sections" type="Node2D" parent="."]
 script = ExtResource("13_arvc4")
-sections = Array[ExtResource("14_37pnr")]([SubResource("Resource_yc3g8"), SubResource("Resource_hsinf"), SubResource("Resource_ap8eq")])
 
 [node name="Section 1" type="Area2D" parent="Sections"]
 script = ExtResource("15_hgx48")

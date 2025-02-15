@@ -48,7 +48,7 @@ suggestions:
 
 v0.3 playtest (brother):
 # BUG: you can "downgrade" your section
-BUG: plane code is unstable
+# BUG: plane code is unstable
 OVERSIGHT: player fails to understand that parrying a canon ball/plane aids them
 OVERSIGHT: it's not clear how one sided tiles work
 OVERSIGHT: there's not enough contrast to differ one sided tiles
@@ -61,6 +61,11 @@ BAD GAME DESIGN: the difficulty curve is way too intense, the game becomes hard 
 # dash revamp
 # parry revamp
 revamped map
+
+bugs:
+player movement state isnt resetted when state is changed, causing timers to carry over.
+
+idea: make player jump higher if parrying is done on time
 
 V0.4
 
