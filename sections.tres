@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Resource_2jq35"]
 script = ExtResource("2_croeo")
-display_name = "Welcome to Hell :)"
+display_name = "Humble Beginnings"
 spawnpoint_marker_name = "Section 1"
 
 [sub_resource type="Resource" id="Resource_onoxv"]
 script = ExtResource("2_croeo")
-display_name = "Flying Around"
+display_name = "Discovery"
 spawnpoint_marker_name = "Section 2"
 
 [sub_resource type="Resource" id="Resource_a16mq"]

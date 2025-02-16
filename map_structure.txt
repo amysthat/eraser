@@ -1,0 +1,22 @@
+
+section 1: humble beginnings
+
+# tutorial: basic movement (left/up/right)
+    -> accompanied with `movement.png`
+    -> player will learn how to jump around, get over obstacles, etc.
+
+# exercise: jumping over pitfalls
+
+# tutorial: canons and avoiding canon balls
+    -> a 3 block high corridor that will have one canon at the bottom
+
+# exercise: avoiding canons
+
+section 2: discovery
+
+tutorial: dashing
+    -> accompanied with `dash.png`
+    -> jumping over gaps
+    -> scaling over major heights
+
+...
