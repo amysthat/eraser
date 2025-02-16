@@ -30,6 +30,8 @@ bounce = 0.5
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_36loq")
 lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_obows")
 invulnerabilty_time = 0.2
 
