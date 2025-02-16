@@ -63,7 +63,8 @@ BAD GAME DESIGN: the difficulty curve is way too intense, the game becomes hard 
 revamped map
 
 bugs:
-player movement state isnt resetted when state is changed, causing timers to carry over.
+# player movement state isnt resetted when state is changed, causing timers to carry over.
+# dash resets if still holding the mouse button down
 # successful parry does not freeze the player
 
 idea: make player jump higher if parrying is done on time
