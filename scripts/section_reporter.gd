@@ -8,6 +8,10 @@ func _ready():
         await get_tree().process_frame
     
     Sections.instance.entered_section.connect(_on_entered_section)
+
+    while Sections.instance.current_section == null:
+        await get_tree().process_frame
+
     _on_entered_section(Sections.instance.current_section)
 
 func _on_entered_section(new_section: Section):
