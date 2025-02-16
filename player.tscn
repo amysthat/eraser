@@ -171,6 +171,10 @@ up_force = 175.0
 [node name="Timer" type="Timer" parent="StateMachine/dash"]
 one_shot = true
 
+[node name="UpkeepTimer" type="Timer" parent="StateMachine/dash"]
+wait_time = 0.15
+one_shot = true
+
 [node name="hit_shock" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "player_collision", "player_parry")]
 script = ExtResource("13_8vdr4")
 player = NodePath("../..")
@@ -194,5 +198,6 @@ one_shot = true
 [connection signal="timeout" from="StateMachine/parry/ShockTimer" to="StateMachine/parry" method="_on_shock_timer_timeout"]
 [connection signal="dash_cast" from="StateMachine/dash_charge" to="StateMachine/dash" method="_on_dash_cast"]
 [connection signal="timeout" from="StateMachine/dash/Timer" to="StateMachine/dash" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/dash/UpkeepTimer" to="StateMachine/dash" method="_on_upkeep_timer_timeout"]
 [connection signal="timeout" from="StateMachine/hit_shock/ShockTimer" to="StateMachine/hit_shock" method="_on_shock_timer_timeout"]
 [connection signal="timeout" from="StateMachine/hit_shock/FlyTimer" to="StateMachine/hit_shock" method="_on_fly_timer_timeout"]
