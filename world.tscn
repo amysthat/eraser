@@ -156,19 +156,21 @@ shape = SubResource("RectangleShape2D_dbfyy")
 [node name="Tutorial" type="Node2D" parent="."]
 
 [node name="Movement" type="Sprite2D" parent="Tutorial"]
-position = Vector2(135, 65)
+position = Vector2(214, 71)
 texture = ExtResource("12_nons3")
 
 [node name="Dash" type="Sprite2D" parent="Tutorial"]
+visible = false
 position = Vector2(179, 63)
 texture = ExtResource("13_h8nco")
 
 [node name="Parry" type="Sprite2D" parent="Tutorial"]
+visible = false
 position = Vector2(171, -143)
 texture = ExtResource("14_j458t")
 
 [node name="Pause" type="Sprite2D" parent="Tutorial"]
-position = Vector2(74, -236)
+position = Vector2(150, -164)
 texture = ExtResource("15_42nuh")
 
 [node name="End" type="Label" parent="."]
