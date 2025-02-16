@@ -66,6 +66,7 @@ bugs:
 # player movement state isnt resetted when state is changed, causing timers to carry over.
 # dash resets if still holding the mouse button down
 # successful parry does not freeze the player
+start charging dash -> pause -> let go of the mouse button -> unpause -> dash still continues on charging
 
 idea: make player jump higher if parrying is done on time
 
