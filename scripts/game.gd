@@ -13,7 +13,7 @@ const SECTION_COUNT := 3
 var is_playing: bool
 var is_paused: bool
 
-var pause_menu_instance: SubViewportContainer
+var pause_menu_instance: Control
 
 func _enter_tree():
     process_mode = Node.PROCESS_MODE_ALWAYS
@@ -45,12 +45,14 @@ func begin_game():
 
     get_tree().change_scene_to_file("res://world.tscn")
 
-    pause_menu_instance = pause_menu_scene.instantiate()
-    get_tree().root.add_child(pause_menu_instance)
-
     await get_tree().process_frame
 
     on_game_begin.emit()
+
+    await get_tree().tree_changed
+
+    pause_menu_instance = pause_menu_scene.instantiate()
+    get_tree().root.add_child(pause_menu_instance)
 
 func end_game():
     if not is_playing:
