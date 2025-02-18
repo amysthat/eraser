@@ -67,6 +67,7 @@ position_smoothing_speed = 15.0
 [node name="Blur" type="Panel" parent="Camera2D"]
 process_mode = 3
 visible = false
+z_index = 10
 material = SubResource("ShaderMaterial_ghvqn")
 custom_minimum_size = Vector2(320, 180)
 anchors_preset = 15

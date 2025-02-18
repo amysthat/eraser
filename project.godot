@@ -44,6 +44,14 @@ project/assembly_name="eraser"
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "red",
+"res://audio/": "orange",
+"res://scripts/": "yellow"
+}
+
 [input]
 
 move_right={
