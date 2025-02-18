@@ -19,4 +19,5 @@ tutorial: dashing
     -> jumping over gaps
     -> scaling over major heights
 
-...
+tutorial: parrying
+
