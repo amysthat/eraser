@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=4 uid="uid://bonetr1h56byu"]
 
 [ext_resource type="Texture2D" uid="uid://dylu8blasdlju" path="res://assets/tile.png" id="1_l4jlb"]
-[ext_resource type="PackedScene" uid="uid://5pjqc7erivb3" path="res://plane.tscn" id="3_uryeu"]
+[ext_resource type="PackedScene" uid="uid://5pjqc7erivb3" path="res://scenes/prefabs/plane.tscn" id="3_uryeu"]
 [ext_resource type="Script" path="res://scripts/TilemapCollisionBaker.gd" id="4_5ce5l"]
-[ext_resource type="PackedScene" uid="uid://cky1jr0gkvhxb" path="res://player.tscn" id="4_wrqtu"]
+[ext_resource type="PackedScene" uid="uid://cky1jr0gkvhxb" path="res://scenes/prefabs/player.tscn" id="4_wrqtu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_10ios"]
 resource_name = "Tile"

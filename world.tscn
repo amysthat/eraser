@@ -1,9 +1,9 @@
 [gd_scene load_steps=22 format=4 uid="uid://bo0plga5ky1no"]
 
-[ext_resource type="PackedScene" uid="uid://cky1jr0gkvhxb" path="res://player.tscn" id="1_l2ixe"]
+[ext_resource type="PackedScene" uid="uid://cky1jr0gkvhxb" path="res://scenes/prefabs/player.tscn" id="1_l2ixe"]
 [ext_resource type="Script" path="res://scripts/sided_tilemap_collision_baker.gd" id="4_2yksu"]
 [ext_resource type="Texture2D" uid="uid://dylu8blasdlju" path="res://assets/tile.png" id="5_16b3y"]
-[ext_resource type="PackedScene" uid="uid://5wqkhu5ja7em" path="res://canon.tscn" id="5_fxgd5"]
+[ext_resource type="PackedScene" uid="uid://5wqkhu5ja7em" path="res://scenes/prefabs/canon.tscn" id="5_fxgd5"]
 [ext_resource type="Script" path="res://scripts/TilemapCollisionBaker.gd" id="7_fl8ug"]
 [ext_resource type="Texture2D" uid="uid://bti7wjxgb2pde" path="res://assets/tileset.png" id="8_krwu1"]
 [ext_resource type="Script" path="res://scripts/spawnpoint.gd" id="12_bgirf"]

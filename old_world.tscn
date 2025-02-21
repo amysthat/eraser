@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bti7wjxgb2pde" path="res://assets/tileset.png" id="2_80m80"]
 [ext_resource type="Script" path="res://scripts/TilemapCollisionBaker.gd" id="3_xxgy4"]
 [ext_resource type="Script" path="res://scripts/sided_tilemap_collision_baker.gd" id="4_h2toh"]
-[ext_resource type="PackedScene" uid="uid://5wqkhu5ja7em" path="res://canon.tscn" id="5_k417m"]
-[ext_resource type="PackedScene" uid="uid://5pjqc7erivb3" path="res://plane.tscn" id="6_it5ir"]
+[ext_resource type="PackedScene" uid="uid://5wqkhu5ja7em" path="res://scenes/prefabs/canon.tscn" id="5_k417m"]
+[ext_resource type="PackedScene" uid="uid://5pjqc7erivb3" path="res://scenes/prefabs/plane.tscn" id="6_it5ir"]
 [ext_resource type="Script" path="res://scripts/spawnpoint.gd" id="7_7rblm"]
 [ext_resource type="Script" path="res://scripts/sections.gd" id="8_gli5r"]
 [ext_resource type="Script" path="res://scripts/section_area.gd" id="9_10tnl"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cr176vcp1blo2" path="res://assets/tutorial/dash.png" id="11_opuf8"]
 [ext_resource type="Texture2D" uid="uid://cbtx1jeo6j3qj" path="res://assets/tutorial/parry.png" id="12_20e0i"]
 [ext_resource type="Texture2D" uid="uid://box5bgwpny05n" path="res://assets/tutorial/pause.png" id="13_qp1cs"]
-[ext_resource type="PackedScene" uid="uid://cky1jr0gkvhxb" path="res://player.tscn" id="14_1g88n"]
+[ext_resource type="PackedScene" uid="uid://cky1jr0gkvhxb" path="res://scenes/prefabs/player.tscn" id="14_1g88n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rkb0q"]
 resource_name = "Tile"
