@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_gmrmn"]
 [ext_resource type="Theme" uid="uid://cygy0ufansx3h" path="res://theme.tres" id="2_wiab2"]
 [ext_resource type="Script" path="res://scripts/section_reporter.gd" id="4_vkxto"]
-[ext_resource type="PackedScene" uid="uid://ckwdk8telu0h8" path="res://settings_panel.tscn" id="5_vta8c"]
+[ext_resource type="PackedScene" uid="uid://ckwdk8telu0h8" path="res://scenes/menus/settings_panel.tscn" id="5_vta8c"]
 
 [node name="In Game HUD" type="SubViewportContainer"]
 process_mode = 3
