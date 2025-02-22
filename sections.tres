@@ -15,7 +15,7 @@ spawnpoint_marker_name = "Section 2"
 
 [sub_resource type="Resource" id="Resource_a16mq"]
 script = ExtResource("2_croeo")
-display_name = "End of v0.3"
+display_name = "A Venture Up"
 spawnpoint_marker_name = "Section 3"
 
 [resource]
