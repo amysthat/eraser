@@ -229,9 +229,9 @@ gizmo_extents = 20.0
 script = ExtResource("14_4lrl8")
 
 [node name="Parry Teacher" type="Node2D" parent="."]
-position = Vector2(100, -1050)
+position = Vector2(100, -1048)
 script = ExtResource("15_hbfpc")
-height = 111.06
+height = 105.0
 
 [node name="CanonBall" type="CharacterBody2D" parent="Parry Teacher"]
 collision_layer = 2
