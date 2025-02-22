@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://bo0plga5ky1no"]
+[gd_scene load_steps=23 format=4 uid="uid://bo0plga5ky1no"]
 
 [ext_resource type="PackedScene" uid="uid://cky1jr0gkvhxb" path="res://scenes/prefabs/player.tscn" id="1_l2ixe"]
 [ext_resource type="Script" path="res://scripts/sided_tilemap_collision_baker.gd" id="4_2yksu"]
@@ -49,6 +49,9 @@ custom_data_layer_0/name = "Collision Side"
 custom_data_layer_0/type = 2
 sources/6 = SubResource("TileSetAtlasSource_2gu8b")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bsrcq"]
+size = Vector2(64, 8)
+
 [sub_resource type="Gradient" id="Gradient_wc7kn"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 
@@ -69,8 +72,19 @@ tile_map_data = PackedByteArray("AAAUAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAIAAwAAAAAAAA
 tile_set = SubResource("TileSet_85c4y")
 
 [node name="Sided" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAACAMj/BgADAAAAAAABAMj/BgADAAAAAAAAAMj/BgADAAAAAAAGALD/BgAEAAAAAAAFALD/BgADAAAAAAAEALD/BgADAAAAAAADALD/BgADAAAAAAACALD/BgADAAAAAAABALD/BgADAAAAAAAAALD/BgADAAAAAAD//7D/BgADAAAAAAA=")
+tile_map_data = PackedByteArray("AAACAMj/BgADAAAAAAABAMj/BgADAAAAAAAAAMj/BgADAAAAAAA=")
 tile_set = SubResource("TileSet_yar6v")
+
+[node name="Sided (No Collision)" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD//7D/BgADAAAAAAAAALD/BgADAAAAAAABALD/BgADAAAAAAACALD/BgADAAAAAAADALD/BgADAAAAAAAEALD/BgADAAAAAAAFALD/BgADAAAAAAAGALD/BgAEAAAAAAA=")
+tile_set = SubResource("TileSet_yar6v")
+
+[node name="Collision" type="StaticBody2D" parent="Sided (No Collision)"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sided (No Collision)/Collision"]
+position = Vector2(24, -636)
+shape = SubResource("RectangleShape2D_bsrcq")
+one_way_collision = true
 
 [node name="Fade" type="Sprite2D" parent="."]
 position = Vector2(110, 138.866)
