@@ -14,10 +14,11 @@ section 1: humble beginnings
 
 section 2: discovery
 
-tutorial: dashing
+# tutorial: dashing
     -> accompanied with `dash.png`
     -> jumping over gaps
     -> scaling over major heights
 
-tutorial: parrying
+# tutorial: parrying
 
+section 3: a venture up
