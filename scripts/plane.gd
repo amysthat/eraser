@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Enemy
 class_name PlaneBody
 
 signal weaken(reason_int: int)
@@ -39,24 +39,7 @@ func _physics_process(_delta):
             knock_off += target_collision.get_normal() * 1.2
 
             if body is Player:
-                var is_player_above_and_parrying = body.global_position.y < global_position.y and body.is_parrying
-                print("is_player_above_and_parrying: ", is_player_above_and_parrying)
-                
-                if is_weak() or is_player_above_and_parrying:
-                    print("destroyed!")
-                    state_machine.transition_state("destroyed")
-                    body.on_hit(target_collision.get_normal(), true)
-                else:
-                    print("hit player!")
-                    body.on_hit(target_collision.get_normal())
-
-                    if body.is_parrying:
-                        print("player was parrying, weakened!")
-                        weaken.emit(PlaneWeakState.WeakenReason.PLAYER_PARRY)
-                    else:
-                        print("return to patrol now!")
-                        return_to_patrol_after_hitting_player.emit()
-
+                hit_player(target_collision.get_normal())
             elif body is not CanonBall:
                 should_weaken = true
         
@@ -70,5 +53,17 @@ func _physics_process(_delta):
 func set_state_indicator(texture: Texture2D):
     state_indicator_sprite.texture = texture
 
-func is_weak() -> bool:
+func _pacify():
+    print("player was parrying, weakened!")
+    weaken.emit(PlaneWeakState.WeakenReason.PLAYER_PARRY)
+
+func _destroy():
+    print("destroyed!")
+    state_machine.transition_state("destroyed")
+
+func on_successful_hit():
+    print("return to patrol now!")
+    return_to_patrol_after_hitting_player.emit()
+
+func is_pacified() -> bool:
     return state_machine.current_state.name == "weak"

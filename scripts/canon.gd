@@ -8,7 +8,7 @@ class_name Canon
 @onready var base := $Base
 @onready var barrel := $Barrel
 @onready var canon_hole := $Barrel/CanonHole
-@onready var canon_ball_scene := preload("res://canon_ball.tscn")
+@onready var canon_ball_scene := preload("res://scenes/prefabs/canon_ball.tscn")
 
 func _process(_delta):
     barrel.rotation_degrees = aim

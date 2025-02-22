@@ -37,6 +37,7 @@ friction = 0.0
 bounce = 0.5
 
 [node name="Player" type="RigidBody2D"]
+collision_layer = 4
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_36loq")
 lock_rotation = true
@@ -166,7 +167,7 @@ script = ExtResource("13_ngg2o")
 player = NodePath("../..")
 animation_name = "Dash"
 cursor = ExtResource("7_oll6h")
-full_dash_time = 0.4
+full_dash_time = 0.32
 up_force = 175.0
 
 [node name="Timer" type="Timer" parent="StateMachine/dash"]
