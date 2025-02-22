@@ -44,7 +44,7 @@ func update(_delta: float):
     
     _update_cursor()
     
-    if Input.is_action_just_released("dash_charge") or charge_time >= full_charge_time:
+    if is_action_released("dash_charge") or charge_time >= full_charge_time:
         if charge_time <= full_charge_time / 5.0:
             transition.emit("movement")
             return
@@ -63,3 +63,6 @@ func _update_cursor():
     var frame_index = clampi(roundi(cursor_textures_count * ratio), 0, cursor_textures_count - 1)
 
     Cursor.set_cursor_image(cursor_textures.get_frame_texture(cursor_animation_name, frame_index))
+
+func is_action_released(action: StringName) -> bool:
+    return not Input.is_action_pressed(action)
