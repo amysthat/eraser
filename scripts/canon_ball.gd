@@ -11,13 +11,15 @@ class_name CanonBall
 @export var normal_texture: Texture2D
 @export var pacified_texture: Texture2D
 
-const SPEED = 3500.0
+@export_category("Custom")
+@export var speed := 3500.0
+@export var is_invulnerable: bool
 
 @onready var pacified_timer := $Pacified
 @onready var sprite := $Sprite2D
 
 func _physics_process(delta):
-    velocity = -global_transform.x * SPEED * delta
+    velocity = -global_transform.x * speed * delta
     move_and_slide()
 
     if get_slide_collision_count() > 0:
@@ -28,7 +30,8 @@ func _physics_process(delta):
             if body is Player:
                 hit_player(collision.get_normal())
             else:
-                queue_free()
+                if not is_invulnerable:
+                    queue_free()
 
 func _pacify():
     print("pacifying!")

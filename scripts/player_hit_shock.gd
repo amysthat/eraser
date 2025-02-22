@@ -13,6 +13,7 @@ extends State
 @onready var fly_timer: Timer = $FlyTimer
 
 var normal: Vector2
+var has_shock_ended: bool
 
 func enter():
 	player.linear_velocity = Vector2.ZERO
@@ -20,6 +21,9 @@ func enter():
 	player_collision.disabled = true
 	player.play_animation(hit_animation_name)
 	Cursor.set_cursor_image(cursor)
+
+	player.global_position -= normal * 0.6
+	has_shock_ended = false
 
 	shock_timer.start()
 
@@ -32,6 +36,9 @@ func update(_delta: float):
 		shock_timer.stop()
 		transition.emit("parry")
 		player_parry.on_parry()
+	
+	if not has_shock_ended:
+		player.linear_velocity = Vector2.ZERO
 
 func _on_shock_timer_timeout():
 	var impulse = -normal * hit_force_multiplier
@@ -40,6 +47,8 @@ func _on_shock_timer_timeout():
 	player.apply_impulse(impulse)
 	player.gravity_scale = 1
 	player_collision.disabled = false
+
+	has_shock_ended = true
 	
 	fly_timer.start()
 
