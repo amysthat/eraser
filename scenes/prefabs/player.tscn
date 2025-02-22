@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cky1jr0gkvhxb"]
+[gd_scene load_steps=23 format=3 uid="uid://cky1jr0gkvhxb"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_obows"]
 [ext_resource type="SpriteFrames" uid="uid://dtpb6s7ex4fqm" path="res://assets/player.aseprite" id="2_6l4d2"]
@@ -35,6 +35,9 @@ corner_detail = 1
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vij4r"]
 friction = 0.0
 bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ntf3d"]
+radius = 6.0
 
 [node name="Player" type="RigidBody2D"]
 collision_layer = 4
@@ -138,12 +141,13 @@ run_animation_name = "Run"
 jump_animation_name = "Jump"
 fall_animation_name = "Fall"
 
-[node name="parry" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+[node name="parry" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "parry_area")]
 script = ExtResource("6_dk25c")
 player = NodePath("../..")
 cursor = ExtResource("7_oll6h")
 parry_animation_name = "Parry"
 float_time = 3.0
+parry_area = NodePath("../../ParryArea")
 
 [node name="Timer" type="Timer" parent="StateMachine/parry"]
 wait_time = 0.6
@@ -194,6 +198,14 @@ one_shot = true
 [node name="FlyTimer" type="Timer" parent="StateMachine/hit_shock"]
 wait_time = 3.0
 one_shot = true
+
+[node name="ParryArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParryArea"]
+shape = SubResource("CircleShape2D_ntf3d")
+debug_color = Color(0.82211, 0.401032, 0, 0.42)
 
 [connection signal="timeout" from="Float/Timer" to="Float" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/parry/Timer" to="StateMachine/parry" method="_on_timer_timeout"]

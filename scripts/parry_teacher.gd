@@ -12,9 +12,12 @@ func _process(_delta):
 
     for child in get_children():
         var kid = child as Node2D
-        kid.position = Vector2(0, clamp(localized_player_position.y, -height / 2, height / 2))
+        kid.position = Vector2(0, clamp(localized_player_position.y, - height / 2, height / 2))
 
 func _draw():
+    if not Engine.is_editor_hint():
+        return
+
     var vector_size = Vector2.UP * height
 
-    draw_line(-vector_size / 2, vector_size / 2, Color.RED)
+    draw_line(- vector_size / 2, vector_size / 2, Color.RED)

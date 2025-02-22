@@ -35,7 +35,7 @@ func get_hit(normal: Vector2, enemy: Enemy):
 
     if is_parrying or enemy.is_pacified():
         state_machine.transition_state("parry")
-        $StateMachine/parry.on_parry()
+        # $StateMachine/parry.on_parry()
 
         enemy.get_hit_by_player()
     else:

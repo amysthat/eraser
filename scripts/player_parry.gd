@@ -4,6 +4,7 @@ extends State
 @export var cursor: Resource
 @export var parry_animation_name: String
 @export var float_time: float
+@export var parry_area: Area2D
 
 @onready var timer := $Timer
 @onready var shock_timer := $ShockTimer
@@ -14,6 +15,8 @@ func enter():
     
     timer.start()
     player.is_parrying = true
+
+    detect_enemy()
 
 func exit():
     player.gravity_scale = 1
@@ -32,3 +35,12 @@ func on_parry():
 func _on_shock_timer_timeout():
     player.player_float.enable_float(float_time)
     transition.emit("movement")
+
+func detect_enemy():
+    for body in parry_area.get_overlapping_bodies():
+        if body is Enemy:
+            var enemy = body as Enemy
+            var offset = player.global_position - enemy.global_position
+
+            enemy.hit_player(offset)
+            on_parry()

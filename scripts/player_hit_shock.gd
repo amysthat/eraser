@@ -16,6 +16,8 @@ var normal: Vector2
 var has_shock_ended: bool
 
 func enter():
+	player.player_float.disable_float()
+
 	player.linear_velocity = Vector2.ZERO
 	player.gravity_scale = 0
 	player_collision.disabled = true
