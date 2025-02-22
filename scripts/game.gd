@@ -4,7 +4,7 @@ signal on_pause_toggled
 signal on_game_begin
 signal on_game_end
 
-@onready var pause_menu_scene := preload("res://pause_menu.tscn")
+@onready var pause_menu_scene := preload("res://scenes/menus/pause_menu.tscn")
 @onready var MASTER_BUS_ID = AudioServer.get_bus_index("Master")
 @onready var MUSIC_BUS_ID = AudioServer.get_bus_index("Music")
 
@@ -65,7 +65,7 @@ func end_game():
     get_tree().paused = false
     Cursor.remove_cursor()
 
-    get_tree().change_scene_to_file("res://main_menu.tscn")
+    get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
 
     pause_menu_instance.queue_free()
     pause_menu_instance = null

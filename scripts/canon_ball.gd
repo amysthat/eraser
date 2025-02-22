@@ -1,18 +1,51 @@
-extends CharacterBody2D
+extends Enemy
 class_name CanonBall
+
+@export_category("Collision")
+@export_flags_2d_physics var enemy_layer: int
+@export_flags_2d_physics var pacified_enemy_layer: int
+@export_flags_2d_physics var default_and_player_mask: int
+@export_flags_2d_physics var default_only_mask: int
+
+@export_category("Textures")
+@export var normal_texture: Texture2D
+@export var pacified_texture: Texture2D
 
 const SPEED = 3500.0
 
+@onready var pacified_timer := $Pacified
+@onready var sprite := $Sprite2D
+
 func _physics_process(delta):
-	velocity = -global_transform.x * SPEED * delta
-	move_and_slide()
+    velocity = -global_transform.x * SPEED * delta
+    move_and_slide()
 
-	if get_slide_collision_count() > 0:
-		queue_free()
+    if get_slide_collision_count() > 0:
+        for i in range(0, get_slide_collision_count()):
+            var collision = get_slide_collision(i)
+            var body = collision.get_collider() as Node
 
-		for i in range(0, get_slide_collision_count()):
-			var collision = get_slide_collision(i)
-			var body = collision.get_collider() as Node
+            if body is Player:
+                hit_player(collision.get_normal())
+            else:
+                queue_free()
 
-			if body is Player:
-				body.on_hit(collision.get_normal())
+func _pacify():
+    print("pacifying!")
+
+    collision_mask = default_only_mask
+    collision_layer = pacified_enemy_layer
+    sprite.texture = pacified_texture
+    pacified_timer.start()
+
+func _on_pacified_timeout():
+    collision_mask = default_and_player_mask
+    collision_layer = enemy_layer
+    sprite.texture = normal_texture
+
+func _destroy():
+    pacified_timer.stop()
+    _pacify()
+
+func is_pacified() -> bool:
+    return collision_layer == pacified_enemy_layer

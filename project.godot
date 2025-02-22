@@ -93,6 +93,8 @@ toggle_pause={
 [layer_names]
 
 2d_physics/layer_2="Enemies"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="Pacified Enemies"
 
 [physics]
 

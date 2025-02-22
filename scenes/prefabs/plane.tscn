@@ -23,6 +23,7 @@ height = 6.0
 
 [node name="Plane" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_gbgy5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -37,6 +38,7 @@ shape = SubResource("CapsuleShape2D_b1u7b")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(80, 0)
+collision_mask = 5
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_0tcvi")

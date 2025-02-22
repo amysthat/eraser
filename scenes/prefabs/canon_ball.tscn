@@ -1,14 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtq64rllxnk37"]
+[gd_scene load_steps=5 format=3 uid="uid://dtq64rllxnk37"]
 
 [ext_resource type="Script" path="res://scripts/canon_ball.gd" id="1_6t3d8"]
 [ext_resource type="Texture2D" uid="uid://duegfltkddkfa" path="res://assets/canon_ball.png" id="2_phm3p"]
+[ext_resource type="Texture2D" uid="uid://blfo42b2uc0kd" path="res://assets/pacified_canon_ball.png" id="3_nu1hp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmah"]
 radius = 2.0
 
 [node name="CanonBall" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_6t3d8")
+enemy_layer = 2
+pacified_enemy_layer = 8
+default_and_player_mask = 5
+default_only_mask = 1
+normal_texture = ExtResource("2_phm3p")
+pacified_texture = ExtResource("3_nu1hp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_phm3p")
@@ -16,9 +24,13 @@ texture = ExtResource("2_phm3p")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cqmah")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Lifetime" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="queue_free"]
+[node name="Pacified" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Lifetime" to="." method="queue_free"]
+[connection signal="timeout" from="Pacified" to="." method="_on_pacified_timeout"]

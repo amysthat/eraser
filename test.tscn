@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://bonetr1h56byu"]
+[gd_scene load_steps=12 format=4 uid="uid://bonetr1h56byu"]
 
 [ext_resource type="Texture2D" uid="uid://dylu8blasdlju" path="res://assets/tile.png" id="1_l4jlb"]
-[ext_resource type="PackedScene" uid="uid://5pjqc7erivb3" path="res://scenes/prefabs/plane.tscn" id="3_uryeu"]
 [ext_resource type="Script" path="res://scripts/TilemapCollisionBaker.gd" id="4_5ce5l"]
+[ext_resource type="PackedScene" uid="uid://5wqkhu5ja7em" path="res://scenes/prefabs/canon.tscn" id="4_lu7ik"]
 [ext_resource type="PackedScene" uid="uid://cky1jr0gkvhxb" path="res://scenes/prefabs/player.tscn" id="4_wrqtu"]
+[ext_resource type="PackedScene" uid="uid://5pjqc7erivb3" path="res://scenes/prefabs/plane.tscn" id="5_ll2x7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_10ios"]
 resource_name = "Tile"
@@ -24,11 +25,11 @@ size = Vector2(8, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5aoj"]
 size = Vector2(280, 8)
 
-[sub_resource type="Curve2D" id="Curve2D_h2rbd"]
+[sub_resource type="Curve2D" id="Curve2D_76olb"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 52, -45, 0, 0, 0, 0, 188, -56, 0, 0, 0, 0, 166, -83, 0, 0, 0, 0, 67, -98, 0, 0, 0, 0, 35, -65, 0, 0, 0, 0, 81, -68, 0, 0, 0, 0, 122, -74, 0, 0, 0, 0, 52, -45)
+"points": PackedVector2Array(0, 0, 0, 0, 64, -60, 0, 0, 0, 0, 81, -119, 0, 0, 0, 0, 164, -116, 0, 0, 0, 0, 180, -40, 0, 0, 0, 0, 136, -77, 0, 0, 0, 0, 107, -27, 0, 0, 0, 0, 64, -60)
 }
-point_count = 8
+point_count = 7
 
 [node name="Test" type="Node2D"]
 
@@ -52,12 +53,16 @@ shape = SubResource("RectangleShape2D_32xdy")
 position = Vector2(100, -4)
 shape = SubResource("RectangleShape2D_p5aoj")
 
-[node name="Plane" parent="." node_paths=PackedStringArray("path") instance=ExtResource("3_uryeu")]
-position = Vector2(-87, -44)
-path = NodePath("../Path2D")
-
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_h2rbd")
-
 [node name="Player" parent="." instance=ExtResource("4_wrqtu")]
 position = Vector2(8, -12)
+
+[node name="Canon" parent="." instance=ExtResource("4_lu7ik")]
+position = Vector2(220, -12)
+aim = 90.0
+
+[node name="Plane" parent="." node_paths=PackedStringArray("path") instance=ExtResource("5_ll2x7")]
+position = Vector2(-58, -41)
+path = NodePath("../Line2D")
+
+[node name="Line2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_76olb")
