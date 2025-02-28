@@ -14,13 +14,11 @@ func enter():
     Cursor.set_cursor_image(cursor)
     
     timer.start()
-    player.is_parrying = true
 
     detect_enemy()
 
 func exit():
     player.gravity_scale = 1
-    player.is_parrying = false
 
 func _on_timer_timeout():
     transition.emit("movement")

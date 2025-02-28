@@ -9,7 +9,6 @@ static var instance
 @onready var state_machine: StateMachine = $StateMachine
 @onready var player_float := $Float
 
-var is_parrying: bool
 var invulnerable_time: float
 
 func _enter_tree():
@@ -33,9 +32,8 @@ func get_hit(normal: Vector2, enemy: Enemy):
 
     invulnerable_time = invulnerabilty_time
 
-    if is_parrying or enemy.is_pacified():
+    if is_parrying() or enemy.is_pacified():
         state_machine.transition_state("parry")
-        # $StateMachine/parry.on_parry()
 
         enemy.get_hit_by_player()
     else:
@@ -46,3 +44,6 @@ func get_hit(normal: Vector2, enemy: Enemy):
 
 func is_hit() -> bool:
     return state_machine.current_state.name == "hit_shock"
+
+func is_parrying() -> bool:
+    return state_machine.current_state.name == "parry"
