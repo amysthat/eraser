@@ -37,13 +37,12 @@ func update(_delta: float):
 	if Input.is_action_just_pressed("parry") and not shock_timer.is_stopped():
 		shock_timer.stop()
 		transition.emit("parry")
-		player_parry.on_parry()
 	
 	if not has_shock_ended:
 		player.linear_velocity = Vector2.ZERO
 
 func _on_shock_timer_timeout():
-	var impulse = -normal * hit_force_multiplier
+	var impulse = - normal * hit_force_multiplier
 
 	player.physics_material_override = physics_material
 	player.apply_impulse(impulse)
