@@ -88,16 +88,34 @@ gradient = SubResource("Gradient_wc7kn")
 
 [node name="World" type="Node2D"]
 
-[node name="Up Direction Sign" type="Sprite2D" parent="."]
+[node name="Direction Signs" type="CanvasGroup" parent="."]
+
+[node name="Up Direction Sign" type="Sprite2D" parent="Direction Signs"]
 position = Vector2(-3.99998, -1063)
 rotation = 1.71273
+scale = Vector2(1, 1)
 texture = ExtResource("1_bl5kf")
 flip_h = true
 
-[node name="Right Direction Sign" type="Sprite2D" parent="."]
+[node name="Right Direction Sign" type="Sprite2D" parent="Direction Signs"]
 position = Vector2(43, 44)
 rotation = -0.156838
+scale = Vector2(1, 1)
 texture = ExtResource("1_bl5kf")
+
+[node name="Section Signs" type="CanvasGroup" parent="."]
+
+[node name="One" type="Sprite2D" parent="Section Signs"]
+position = Vector2(212, 89.5)
+texture = ExtResource("20_etc3u")
+
+[node name="Two" type="Sprite2D" parent="Section Signs"]
+position = Vector2(44, -446.5)
+texture = ExtResource("21_pb57v")
+
+[node name="Three" type="Sprite2D" parent="Section Signs"]
+position = Vector2(60, -1118.5)
+texture = ExtResource("22_xtvmu")
 
 [node name="Default" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -147,7 +165,7 @@ visible = false
 polygon = PackedVector2Array(0, 0, 1, 0, 0, 1)
 disabled = true
 
-[node name="Canons" type="Node2D" parent="."]
+[node name="Canons" type="Node" parent="."]
 
 [node name="Canon" parent="Canons" instance=ExtResource("5_fxgd5")]
 position = Vector2(-4, -196)
@@ -200,7 +218,7 @@ position = Vector2(12, -453)
 [node name="Section 3" type="Marker2D" parent="Spawnpoints"]
 position = Vector2(20, -1117)
 
-[node name="Sections" type="Node2D" parent="."]
+[node name="Sections" type="Node" parent="."]
 script = ExtResource("13_arvc4")
 
 [node name="Section 1" type="Area2D" parent="Sections"]
@@ -229,7 +247,7 @@ section_index = 2
 position = Vector2(20, -1126.06)
 shape = SubResource("RectangleShape2D_lnkbu")
 
-[node name="Tutorial" type="Node2D" parent="."]
+[node name="Tutorial" type="Node" parent="."]
 
 [node name="Movement" type="Sprite2D" parent="Tutorial"]
 position = Vector2(98, 71)
@@ -248,8 +266,35 @@ texture = ExtResource("14_j458t")
 position = Vector2(150, -164)
 texture = ExtResource("15_42nuh")
 
+[node name="Parry Teacher" type="Node2D" parent="Tutorial"]
+position = Vector2(100, -1048)
+script = ExtResource("15_hbfpc")
+height = 105.0
+
+[node name="CanonBall" type="CharacterBody2D" parent="Tutorial/Parry Teacher"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("15_6t8o1")
+enemy_layer = 2
+pacified_enemy_layer = 8
+default_and_player_mask = 5
+default_only_mask = 1
+normal_texture = ExtResource("16_j164o")
+pacified_texture = ExtResource("17_t1fun")
+speed = 0.0
+is_invulnerable = true
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Tutorial/Parry Teacher/CanonBall"]
+texture = ExtResource("16_j164o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Parry Teacher/CanonBall"]
+shape = SubResource("CircleShape2D_cqmah")
+
+[node name="Pacified" type="Timer" parent="Tutorial/Parry Teacher/CanonBall"]
+one_shot = true
+
 [node name="End" type="Label" parent="."]
-visible = false
 offset_left = 162.0
 offset_top = -809.0
 offset_right = 487.0
@@ -264,51 +309,9 @@ position = Vector2(143, -993)
 gizmo_extents = 20.0
 script = ExtResource("14_4lrl8")
 
-[node name="Parry Teacher" type="Node2D" parent="."]
-position = Vector2(100, -1048)
-script = ExtResource("15_hbfpc")
-height = 105.0
-
-[node name="CanonBall" type="CharacterBody2D" parent="Parry Teacher"]
-collision_layer = 2
-collision_mask = 5
-script = ExtResource("15_6t8o1")
-enemy_layer = 2
-pacified_enemy_layer = 8
-default_and_player_mask = 5
-default_only_mask = 1
-normal_texture = ExtResource("16_j164o")
-pacified_texture = ExtResource("17_t1fun")
-speed = 0.0
-is_invulnerable = true
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Parry Teacher/CanonBall"]
-texture = ExtResource("16_j164o")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Parry Teacher/CanonBall"]
-shape = SubResource("CircleShape2D_cqmah")
-
-[node name="Pacified" type="Timer" parent="Parry Teacher/CanonBall"]
-one_shot = true
-
 [node name="Canon Parry" type="Sprite2D" parent="."]
 position = Vector2(143, -1035)
 texture = ExtResource("19_xtovc")
-
-[node name="Section Signs" type="Node" parent="."]
-
-[node name="One" type="Sprite2D" parent="Section Signs"]
-position = Vector2(212, 89.5)
-texture = ExtResource("20_etc3u")
-
-[node name="Two" type="Sprite2D" parent="Section Signs"]
-position = Vector2(44, -446.5)
-texture = ExtResource("21_pb57v")
-
-[node name="Three" type="Sprite2D" parent="Section Signs"]
-position = Vector2(60, -1118.5)
-texture = ExtResource("22_xtvmu")
 
 [node name="Fade" type="Sprite2D" parent="."]
 position = Vector2(110, 138.866)
@@ -320,4 +323,4 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." instance=ExtResource("1_l2ixe")]
 position = Vector2(164, 84)
 
-[connection signal="timeout" from="Parry Teacher/CanonBall/Pacified" to="Parry Teacher/CanonBall" method="_on_pacified_timeout"]
+[connection signal="timeout" from="Tutorial/Parry Teacher/CanonBall/Pacified" to="Tutorial/Parry Teacher/CanonBall" method="_on_pacified_timeout"]
