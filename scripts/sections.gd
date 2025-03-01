@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 class_name Sections
 
 static var instance: Sections
