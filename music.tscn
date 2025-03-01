@@ -1,9 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqn6u6mlwcvcu"]
+[gd_scene load_steps=4 format=3 uid="uid://dqn6u6mlwcvcu"]
 
 [ext_resource type="AudioStream" uid="uid://evu1wubwpb15" path="res://audio/music/music.ogg" id="1_2il3m"]
+[ext_resource type="AudioStream" uid="uid://bssamwr50n22w" path="res://audio/music 2/music 2.ogg" id="1_hldsf"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_tlsqc"]
+shuffle = true
+fade_time = 0.0
+stream_count = 2
+stream_0 = ExtResource("1_2il3m")
+stream_1 = ExtResource("1_hldsf")
 
 [node name="Music" type="AudioStreamPlayer"]
 process_mode = 3
-stream = ExtResource("1_2il3m")
+stream = SubResource("AudioStreamPlaylist_tlsqc")
 autoplay = true
 bus = &"Music"
