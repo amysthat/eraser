@@ -33,6 +33,9 @@ func exit():
 	player_collision.disabled = false
 	player.physics_material_override = null
 
+	fly_timer.stop()
+	shock_timer.stop()
+
 func update(_delta: float):
 	if Input.is_action_just_pressed("parry") and not shock_timer.is_stopped():
 		shock_timer.stop()

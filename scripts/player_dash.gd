@@ -19,6 +19,10 @@ func enter():
     can_exit = false
     upkeep_timer.start()
 
+func exit():
+    timer.stop()
+    upkeep_timer.stop()
+
 func update(_delta):
     if player.get_colliding_bodies().size() > 0 and can_exit:
         timer.stop()
@@ -34,7 +38,7 @@ func _on_timer_timeout():
     end_dash()
 
 func end_dash():
-    player.linear_velocity.y = -up_force
+    player.linear_velocity.y = - up_force
     transition.emit("movement")
 
 func _on_upkeep_timer_timeout():

@@ -91,14 +91,12 @@ gradient = SubResource("Gradient_wc7kn")
 [node name="Up Direction Sign" type="Sprite2D" parent="."]
 position = Vector2(-3.99998, -1063)
 rotation = 1.71273
-scale = Vector2(1, 1)
 texture = ExtResource("1_bl5kf")
 flip_h = true
 
 [node name="Right Direction Sign" type="Sprite2D" parent="."]
 position = Vector2(43, 44)
 rotation = -0.156838
-scale = Vector2(1, 1)
 texture = ExtResource("1_bl5kf")
 
 [node name="Default" type="TileMapLayer" parent="."]
@@ -234,7 +232,7 @@ shape = SubResource("RectangleShape2D_lnkbu")
 [node name="Tutorial" type="Node2D" parent="."]
 
 [node name="Movement" type="Sprite2D" parent="Tutorial"]
-position = Vector2(214, 71)
+position = Vector2(98, 71)
 texture = ExtResource("12_nons3")
 
 [node name="Dash" type="Sprite2D" parent="Tutorial"]
