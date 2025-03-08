@@ -61,6 +61,7 @@ BAD GAME DESIGN: the difficulty curve is way too intense, the game becomes hard 
 # dash revamp
 # parry revamp
 # pacified enemies
+# music 2
 revamped map
 
 bugs:
@@ -73,11 +74,13 @@ idea: make player jump higher if parrying is done on time
 
 V0.4
 
+correct viewport rendering
+section timer & max timer
 web compliance
 ui theme finishing
 sfx
-music 2
 music 3
+music 4
 juice
 
 suggestions:
