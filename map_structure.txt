@@ -22,3 +22,7 @@ section 2: discovery
 # tutorial: parrying
 
 section 3: a venture up
+
+# tutorial: planes
+
+action: intense climb up
