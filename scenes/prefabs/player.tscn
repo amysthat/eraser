@@ -163,7 +163,7 @@ script = ExtResource("9_qq7uh")
 player = NodePath("../..")
 charge_animation_name = "Charge"
 dash_arrow_origin = NodePath("../../Dash Arrow Origin")
-full_charge_time = 1.35
+full_charge_time = 0.9
 max_charge_speed = 400.0
 cursor_textures = ExtResource("28_0c8cv")
 
