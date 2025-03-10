@@ -142,6 +142,28 @@ rotation = 1.71273
 texture = ExtResource("1_bl5kf")
 flip_h = true
 
+[node name="Up Direction Sign2" type="Sprite2D" parent="Direction Signs"]
+position = Vector2(25, -1613)
+rotation = 2.55393
+texture = ExtResource("1_bl5kf")
+flip_h = true
+
+[node name="Up Direction Sign3" type="Sprite2D" parent="Direction Signs"]
+position = Vector2(237, -1736)
+rotation = 4.15508
+texture = ExtResource("1_bl5kf")
+
+[node name="Up Direction Sign4" type="Sprite2D" parent="Direction Signs"]
+position = Vector2(131, -1849)
+rotation = 2.02762
+texture = ExtResource("1_bl5kf")
+flip_h = true
+
+[node name="Up Direction Sign5" type="Sprite2D" parent="Direction Signs"]
+position = Vector2(205, -1976)
+rotation = 4.06156
+texture = ExtResource("1_bl5kf")
+
 [node name="Right Direction Sign" type="Sprite2D" parent="Direction Signs"]
 position = Vector2(43, 44)
 rotation = -0.156838
