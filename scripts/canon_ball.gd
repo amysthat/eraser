@@ -18,6 +18,10 @@ class_name CanonBall
 @onready var pacified_timer := $Pacified
 @onready var sprite := $Sprite2D
 
+func reset_life_timer_and_set_lifetime(time: float):
+    $Lifetime.stop()
+    $Lifetime.start(time)
+
 func _physics_process(delta):
     velocity = -global_transform.x * speed * delta
     move_and_slide()
