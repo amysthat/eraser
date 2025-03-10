@@ -51,18 +51,18 @@ v0.3 playtest (brother):
 # BUG: plane code is unstable
 # OVERSIGHT: there's not enough contrast to differ one sided tiles
 # BAD IMPLEMENTATION: parry logic doesn't always yield the same result
-OVERSIGHT: it's not clear how one sided tiles work
-OVERSIGHT: player fails to understand that parrying a canon ball/plane aids them
+# OVERSIGHT: it's not clear how one sided tiles work
+# OVERSIGHT: player fails to understand that parrying a canon ball/plane aids them
 BAD GAME DESIGN: it's not clear where to go
-BAD GAME DESIGN: the player knows too little, game becomes frustrating
-BAD GAME DESIGN: the difficulty curve is way too intense, the game becomes hard and *bad*.
+# BAD GAME DESIGN: the player knows too little, game becomes frustrating
+# BAD GAME DESIGN: the difficulty curve is way too intense, the game becomes hard and *bad*.
 
 # saving of settings
 # dash revamp
 # parry revamp
 # pacified enemies
 # music 2
-revamped map
+# revamped map
 
 bugs:
 # player movement state isnt resetted when state is changed, causing timers to carry over.
@@ -70,12 +70,13 @@ bugs:
 # successful parry does not freeze the player
 # start charging dash -> pause -> let go of the mouse button -> unpause -> dash still continues on charging
 
-idea: make player jump higher if parrying is done on time
+missing: map doesn't make good use of planes
 
 V0.4
 
 correct viewport rendering
 section timer & max timer
+funnels
 web compliance
 ui theme finishing
 sfx
@@ -83,8 +84,16 @@ music 3
 music 4
 juice
 
+missing:
+map doesn't make good use of planes
+
+bugs:
+planes can just continously beat up a player that continously parries
+player's parry fails to work if the enemy was out of trigger, this can only happen when the player parries while hit
+
 suggestions:
 maybe autotile the solid tiles?
+make player jump higher if parrying is done on time
 
 V0.5: DEMO RELEASE (WEB / DESKTOP)
 

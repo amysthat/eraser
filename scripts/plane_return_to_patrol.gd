@@ -4,12 +4,9 @@ extends State
 @export var status_texture: Texture2D
 @export var speed: float
 
-var astar: AStar2D
-
 func enter():
     plane.set_state_indicator(status_texture)
-
-    astar = AStar2D.new()
+    plane.collision.set_deferred("disabled", true)
 
 func physics_update(_delta: float):
     var difference = plane.path_follow.global_position - plane.global_position
@@ -21,3 +18,4 @@ func physics_update(_delta: float):
 
 func exit():
     plane.set_state_indicator(null)
+    plane.collision.set_deferred("disabled", false)

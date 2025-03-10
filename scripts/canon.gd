@@ -5,6 +5,10 @@ class_name Canon
 @export var aim: float
 @export var base_rotation: float
 
+@export_group("Canon Lifetime")
+@export var override_lifetime: bool
+@export var canon_lifetime: float
+
 @onready var base := $Base
 @onready var barrel := $Barrel
 @onready var canon_hole := $Barrel/CanonHole
@@ -32,8 +36,13 @@ func _timer_timeout():
     shoot_canon_ball()
 
 func shoot_canon_ball():
-    var instance = canon_ball_scene.instantiate() as Node2D
+    var instance = canon_ball_scene.instantiate() as CanonBall
     instance.global_position = canon_hole.global_position
     instance.global_rotation = canon_hole.global_rotation
 
     get_tree().current_scene.add_child(instance)
+
+    await get_tree().process_frame
+
+    if override_lifetime:
+        instance.reset_life_timer_and_set_lifetime(canon_lifetime)
