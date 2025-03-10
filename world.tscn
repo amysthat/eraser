@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://bo0plga5ky1no"]
+[gd_scene load_steps=47 format=4 uid="uid://bo0plga5ky1no"]
 
 [ext_resource type="Texture2D" uid="uid://vufw03iofwhu" path="res://assets/direction_sign.png" id="1_bl5kf"]
 [ext_resource type="PackedScene" uid="uid://cky1jr0gkvhxb" path="res://scenes/prefabs/player.tscn" id="1_l2ixe"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://cii1lxyr07y4k" path="res://assets/tutorial/movement.png" id="12_nons3"]
 [ext_resource type="Script" path="res://scripts/sections.gd" id="13_arvc4"]
 [ext_resource type="Texture2D" uid="uid://cr176vcp1blo2" path="res://assets/tutorial/dash.png" id="13_h8nco"]
-[ext_resource type="Script" path="res://scripts/debug_teleporter.gd" id="14_4lrl8"]
 [ext_resource type="Texture2D" uid="uid://cbtx1jeo6j3qj" path="res://assets/tutorial/parry.png" id="14_j458t"]
 [ext_resource type="Script" path="res://scripts/canon_ball.gd" id="15_6t8o1"]
 [ext_resource type="Texture2D" uid="uid://box5bgwpny05n" path="res://assets/tutorial/pause.png" id="15_42nuh"]
@@ -460,11 +459,6 @@ scale = Vector2(0.08, 0.08)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
 text = "End of v0.4"
-
-[node name="Debug Teleporter" type="Marker2D" parent="."]
-position = Vector2(187, -1542)
-gizmo_extents = 20.0
-script = ExtResource("14_4lrl8")
 
 [node name="Fade" type="Sprite2D" parent="."]
 position = Vector2(110, 138.866)
