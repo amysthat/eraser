@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmvmgljs1lc1s"]
+
+[ext_resource type="Script" path="res://scripts/app.gd" id="1_t0ick"]
+[ext_resource type="Shader" path="res://blur.gdshader" id="2_dux1c"]
+[ext_resource type="Script" path="res://scripts/blur_panel.gd" id="3_lgroh"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_myr1t"]
+viewport_path = NodePath("World Layer/World")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ed8oy"]
+shader = ExtResource("2_dux1c")
+shader_parameter/lod = 1.769
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67gmh"]
+bg_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[node name="App" type="Node"]
+script = ExtResource("1_t0ick")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="World Layer" type="CanvasLayer" parent="."]
+
+[node name="World" type="SubViewport" parent="World Layer"]
+unique_name_in_owner = true
+disable_3d = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(320, 180)
+render_target_update_mode = 4
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="World Layer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.7778
+
+[node name="Render" type="TextureRect" parent="World Layer/AspectRatioContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("ViewportTexture_myr1t")
+stretch_mode = 4
+
+[node name="Blur" type="Panel" parent="World Layer/AspectRatioContainer"]
+process_mode = 3
+material = SubResource("ShaderMaterial_ed8oy")
+custom_minimum_size = Vector2(320, 180)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_67gmh")
+script = ExtResource("3_lgroh")
+target_lod = 3.0
+speed = 30.0
+
+[node name="UI Layer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="AspectRatioContainer" parent="UI Layer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.7778

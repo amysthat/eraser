@@ -5,11 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://djkcyxaidwupt" path="res://assets/trash.svg" id="3_irngq"]
 [ext_resource type="PackedScene" uid="uid://ckwdk8telu0h8" path="res://scenes/menus/settings_panel.tscn" id="3_prkqn"]
 
-[node name="Main Menu" type="Node2D"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +19,7 @@ grow_vertical = 2
 theme = ExtResource("1_clxdk")
 script = ExtResource("1_fg8hk")
 
-[node name="Main" type="CenterContainer" parent="UI"]
+[node name="Main" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,29 +27,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Main"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
-[node name="New" type="Button" parent="UI/Main/VBoxContainer"]
+[node name="New" type="Button" parent="Main/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "New Game"
 
-[node name="Continue Section" type="VBoxContainer" parent="UI/Main/VBoxContainer"]
+[node name="Continue Section" type="VBoxContainer" parent="Main/VBoxContainer"]
 layout_mode = 2
 
-[node name="Buttons" type="HBoxContainer" parent="UI/Main/VBoxContainer/Continue Section"]
+[node name="Buttons" type="HBoxContainer" parent="Main/VBoxContainer/Continue Section"]
 layout_mode = 2
 
-[node name="Continue" type="Button" parent="UI/Main/VBoxContainer/Continue Section/Buttons"]
+[node name="Continue" type="Button" parent="Main/VBoxContainer/Continue Section/Buttons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Continue"
 
-[node name="Remove Save" type="Button" parent="UI/Main/VBoxContainer/Continue Section/Buttons"]
+[node name="Remove Save" type="Button" parent="Main/VBoxContainer/Continue Section/Buttons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -62,22 +58,22 @@ theme_override_icons/icon = ExtResource("3_irngq")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Save Info" type="Label" parent="UI/Main/VBoxContainer/Continue Section"]
+[node name="Save Info" type="Label" parent="Main/VBoxContainer/Continue Section"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Section 1/3: NAME"
 
-[node name="Settings" type="Button" parent="UI/Main/VBoxContainer"]
+[node name="Settings" type="Button" parent="Main/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Settings"
 
-[node name="Quit" type="Button" parent="UI/Main/VBoxContainer"]
+[node name="Quit" type="Button" parent="Main/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Quit"
 
-[node name="Settings" parent="UI" instance=ExtResource("3_prkqn")]
+[node name="Settings" parent="." instance=ExtResource("3_prkqn")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -90,7 +86,7 @@ offset_top = -400.0
 offset_right = 600.0
 offset_bottom = 400.0
 
-[node name="VersionLabel" type="Label" parent="UI"]
+[node name="VersionLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -99,10 +95,10 @@ offset_top = -23.0
 offset_right = 63.0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "v0.4"
+text = "dev: v0.5"
 
-[connection signal="pressed" from="UI/Main/VBoxContainer/New" to="UI" method="_on_new_game_pressed"]
-[connection signal="pressed" from="UI/Main/VBoxContainer/Continue Section/Buttons/Continue" to="UI" method="_on_continue_pressed"]
-[connection signal="pressed" from="UI/Main/VBoxContainer/Continue Section/Buttons/Remove Save" to="UI" method="_on_remove_save_pressed"]
-[connection signal="pressed" from="UI/Main/VBoxContainer/Settings" to="UI" method="_on_settings_pressed"]
-[connection signal="pressed" from="UI/Main/VBoxContainer/Quit" to="UI" method="_on_quit_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer/New" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer/Continue Section/Buttons/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer/Continue Section/Buttons/Remove Save" to="." method="_on_remove_save_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

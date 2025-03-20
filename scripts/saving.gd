@@ -8,6 +8,16 @@ var save_loaded: bool
 # Save data
 var saved_section_index: int
 
+# Events
+func _ready() -> void:
+    if has_global_save_data():
+        load_global_save()
+    else:
+        initialize_global_save_data()
+    
+    if has_game_save_data():
+        load_game_save()
+
 # Game Save
 func load_game_save():
     if not has_game_save_data():

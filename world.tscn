@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://bo0plga5ky1no"]
+[gd_scene load_steps=49 format=4 uid="uid://bo0plga5ky1no"]
 
 [ext_resource type="Texture2D" uid="uid://vufw03iofwhu" path="res://assets/direction_sign.png" id="1_bl5kf"]
 [ext_resource type="PackedScene" uid="uid://cky1jr0gkvhxb" path="res://scenes/prefabs/player.tscn" id="1_l2ixe"]
@@ -23,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://ceckpdiswac78" path="res://assets/signs/section_one.png" id="20_etc3u"]
 [ext_resource type="Texture2D" uid="uid://b4jdveqhxvxsk" path="res://assets/signs/section_two.png" id="21_pb57v"]
 [ext_resource type="Texture2D" uid="uid://bpbyrdr3n1eo6" path="res://assets/signs/section_three.png" id="22_xtvmu"]
+[ext_resource type="Script" path="res://scripts/debug_teleporter.gd" id="24_uicwc"]
+[ext_resource type="Script" path="res://scripts/world_cursor.gd" id="25_ejasx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rkb0q"]
 resource_name = "Tile"
@@ -130,6 +132,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1dkbi"]
 gradient = SubResource("Gradient_wc7kn")
+width = 128
 
 [node name="World" type="Node2D"]
 
@@ -461,13 +464,34 @@ theme_override_font_sizes/font_size = 60
 text = "End of v0.4"
 
 [node name="Fade" type="Sprite2D" parent="."]
-position = Vector2(110, 138.866)
+position = Vector2(110, 138)
 rotation = 1.5708
-scale = Vector2(0.441418, 440.07)
+scale = Vector2(1, 500)
 texture = SubResource("GradientTexture1D_1dkbi")
-metadata/_edit_lock_ = true
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"pending_changes": {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": ""
+}
+}
 
 [node name="Player" parent="." instance=ExtResource("1_l2ixe")]
 position = Vector2(164, 84)
+
+[node name="DebugTeleporter" type="Marker2D" parent="."]
+position = Vector2(158, -200)
+script = ExtResource("24_uicwc")
+
+[node name="World Cursor" type="Sprite2D" parent="."]
+script = ExtResource("25_ejasx")
 
 [connection signal="timeout" from="Tutorial/Parry Teacher/CanonBall/Pacified" to="Tutorial/Parry Teacher/CanonBall" method="_on_pacified_timeout"]

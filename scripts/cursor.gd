@@ -1,38 +1,31 @@
-extends Node2D
+extends Node
 
-var sprite: Sprite2D
+signal changed
 
-var current_cursor: Resource
+var current: Texture2D
+var shown: bool
 
 func _ready():
     process_mode = Node.PROCESS_MODE_ALWAYS
 
     Game.on_pause_toggled.connect(_on_pause_toggled)
 
-    sprite = Sprite2D.new()
-    add_child(sprite)
-    z_index = 999
-
-func _process(_delta):
-    position = get_global_mouse_position()
-
-func set_cursor_image(image: Resource):
+func set_cursor_image(image: Texture2D):
     Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
     
-    current_cursor = image
-    sprite.texture = image
+    current = image
+    shown = true
+    changed.emit()
 
 func remove_cursor():
     Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
     
-    current_cursor = null
-    sprite.texture = null
+    current = null
+    shown = false
+    changed.emit()
 
 func _on_pause_toggled():
-    if current_cursor != null:
-        if Game.is_paused:
-            Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-            sprite.texture = null
-        else:
-            Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-            sprite.texture = current_cursor
+    if current != null:
+        Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Game.is_paused else Input.MOUSE_MODE_HIDDEN
+        shown = not Game.is_paused
+        changed.emit()

@@ -4,7 +4,11 @@ signal on_pause_toggled
 signal on_game_begin
 signal on_game_end
 
-@onready var pause_menu_scene := preload("res://scenes/menus/pause_menu.tscn")
+const WORLD_SCENE := "res://world.tscn"
+const PAUSE_MENU_SCENE := "res://scenes/menus/in_game_hud.tscn"
+const MAIN_MENU_SCENE := "res://scenes/menus/main_menu.tscn"
+
+# TODO: Remove
 @onready var MASTER_BUS_ID = AudioServer.get_bus_index("Master")
 @onready var MUSIC_BUS_ID = AudioServer.get_bus_index("Music")
 
@@ -12,8 +16,6 @@ const SECTION_COUNT := 3
 
 var is_playing: bool
 var is_paused: bool
-
-var pause_menu_instance: Control
 
 func _enter_tree():
     process_mode = Node.PROCESS_MODE_ALWAYS
@@ -25,15 +27,12 @@ func _enter_tree():
         begin_game()
 
 func _ready():
-    if Saving.has_global_save_data():
-        Saving.load_global_save()
-    else:
-        Saving.initialize_global_save_data()
-    
-    if Saving.has_game_save_data():
-        Saving.load_game_save()
+    App.instance.app_ready.connect(_on_app_ready)
 
-func begin_game():
+func _on_app_ready():
+    App.instance.load_ui_scene(load(MAIN_MENU_SCENE))
+
+func begin_game() -> void:
     if is_playing:
         return
     
@@ -43,18 +42,15 @@ func begin_game():
     if Saving.has_game_save_data():
         Saving.load_game_save()
 
-    get_tree().change_scene_to_file("res://world.tscn")
+    App.instance.load_world_scene(load(WORLD_SCENE))
 
     await get_tree().process_frame
 
     on_game_begin.emit()
 
-    await get_tree().tree_changed
+    App.instance.load_ui_scene(load(PAUSE_MENU_SCENE))
 
-    pause_menu_instance = pause_menu_scene.instantiate()
-    get_tree().root.add_child(pause_menu_instance)
-
-func end_game():
+func end_game() -> void:
     if not is_playing:
         return
     
@@ -65,16 +61,14 @@ func end_game():
     get_tree().paused = false
     Cursor.remove_cursor()
 
-    get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
-
-    pause_menu_instance.queue_free()
-    pause_menu_instance = null
+    App.instance.unload_world_scene()
+    App.instance.load_ui_scene(load(MAIN_MENU_SCENE))
 
     await get_tree().process_frame
     
     on_game_end.emit()
 
-func toggle_pause():
+func toggle_pause() -> void:
     is_paused = not is_paused
     get_tree().paused = is_paused
     on_pause_toggled.emit()

@@ -38,7 +38,7 @@ func exit():
 func update(_delta: float):
 	charge_time += _delta
 	
-	var difference_vector = player.global_position - player.get_global_mouse_position()
+	var difference_vector = player.global_position - App.instance.get_global_mouse_position()
 	dash_rotation_rad = atan2(difference_vector.y, difference_vector.x) + PI
 	dash_arrow_origin.rotation = dash_rotation_rad
 	

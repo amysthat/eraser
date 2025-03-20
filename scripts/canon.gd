@@ -40,7 +40,7 @@ func shoot_canon_ball():
     instance.global_position = canon_hole.global_position
     instance.global_rotation = canon_hole.global_rotation
 
-    get_tree().current_scene.add_child(instance)
+    App.instance.world.add_child(instance)
 
     await get_tree().process_frame
 
