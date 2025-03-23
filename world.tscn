@@ -464,9 +464,9 @@ theme_override_font_sizes/font_size = 60
 text = "End of v0.4"
 
 [node name="Fade" type="Sprite2D" parent="."]
-position = Vector2(110, 138)
+position = Vector2(504, 138)
 rotation = 1.5708
-scale = Vector2(1, 500)
+scale = Vector2(1, 1500)
 texture = SubResource("GradientTexture1D_1dkbi")
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,

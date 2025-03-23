@@ -49,14 +49,80 @@ offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Max FPS" type="HBoxContainer" parent="Panel/Properties"]
+[node name="Audio & Music" type="PanelContainer" parent="Panel/Properties"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/Properties/Max FPS"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/Properties/Audio & Music"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Properties/Audio & Music/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Properties/Audio & Music/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "AUDIO & MUSIC"
+
+[node name="Master" type="HBoxContainer" parent="Panel/Properties/Audio & Music/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Properties/Audio & Music/MarginContainer/VBoxContainer/Master"]
+layout_mode = 2
+text = "Game:"
+
+[node name="MasterSlider" type="HSlider" parent="Panel/Properties/Audio & Music/MarginContainer/VBoxContainer/Master"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Music" type="HBoxContainer" parent="Panel/Properties/Audio & Music/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Properties/Audio & Music/MarginContainer/VBoxContainer/Music"]
+layout_mode = 2
+text = "Music:"
+
+[node name="MusicSlider" type="HSlider" parent="Panel/Properties/Audio & Music/MarginContainer/VBoxContainer/Music"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Display" type="PanelContainer" parent="Panel/Properties"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/Properties/Display"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Properties/Display/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Properties/Display/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "DISPLAY"
+
+[node name="Max FPS" type="HBoxContainer" parent="Panel/Properties/Display/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Properties/Display/MarginContainer/VBoxContainer/Max FPS"]
 layout_mode = 2
 text = "Max FPS:"
 
-[node name="MaxFPS" type="SpinBox" parent="Panel/Properties/Max FPS"]
+[node name="MaxFPS" type="SpinBox" parent="Panel/Properties/Display/MarginContainer/VBoxContainer/Max FPS"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -65,70 +131,38 @@ max_value = 300.0
 value = 60.0
 rounded = true
 
-[node name="Apply" type="Button" parent="Panel/Properties/Max FPS"]
+[node name="Apply" type="Button" parent="Panel/Properties/Display/MarginContainer/VBoxContainer/Max FPS"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 text = "Apply"
 
-[node name="V Sync" type="HBoxContainer" parent="Panel/Properties"]
-layout_mode = 2
-
-[node name="VSync" type="CheckButton" parent="Panel/Properties/V Sync"]
+[node name="VSync" type="CheckButton" parent="Panel/Properties/Display/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "VSync"
 
-[node name="Panel" type="PanelContainer" parent="Panel/Properties"]
+[node name="Resolution" type="HBoxContainer" parent="Panel/Properties/Display/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/Properties/Panel"]
+[node name="Label" type="Label" parent="Panel/Properties/Display/MarginContainer/VBoxContainer/Resolution"]
 layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+text = "Window Size:"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Properties/Panel/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Panel/Properties/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "AUDIO & MUSIC"
-
-[node name="Master" type="HBoxContainer" parent="Panel/Properties/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Panel/Properties/Panel/MarginContainer/VBoxContainer/Master"]
-layout_mode = 2
-text = "Game:"
-
-[node name="MasterSlider" type="HSlider" parent="Panel/Properties/Panel/MarginContainer/VBoxContainer/Master"]
+[node name="Resolution" type="MenuButton" parent="Panel/Properties/Display/MarginContainer/VBoxContainer/Resolution"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-max_value = 1.0
-step = 0.01
-value = 1.0
+alignment = 0
 
-[node name="Music" type="HBoxContainer" parent="Panel/Properties/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Panel/Properties/Panel/MarginContainer/VBoxContainer/Music"]
-layout_mode = 2
-text = "Music:"
-
-[node name="MusicSlider" type="HSlider" parent="Panel/Properties/Panel/MarginContainer/VBoxContainer/Music"]
+[node name="Fullscreen" type="CheckButton" parent="Panel/Properties/Display/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-max_value = 1.0
-step = 0.01
-value = 1.0
+text = "Fullscreen"
 
 [connection signal="pressed" from="Panel/Back" to="." method="_on_back_pressed"]
-[connection signal="toggled" from="Panel/Properties/V Sync/VSync" to="." method="_on_v_sync_toggled"]
-[connection signal="value_changed" from="Panel/Properties/Panel/MarginContainer/VBoxContainer/Master/MasterSlider" to="." method="_on_master_slider_value_changed"]
-[connection signal="value_changed" from="Panel/Properties/Panel/MarginContainer/VBoxContainer/Music/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Panel/Properties/Audio & Music/MarginContainer/VBoxContainer/Master/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="Panel/Properties/Audio & Music/MarginContainer/VBoxContainer/Music/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="toggled" from="Panel/Properties/Display/MarginContainer/VBoxContainer/VSync" to="." method="_on_v_sync_toggled"]
+[connection signal="toggled" from="Panel/Properties/Display/MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]
