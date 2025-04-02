@@ -32,6 +32,7 @@ Music="*res://music.tscn"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/subwindows/embed_subwindows=false
+window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 
 [dotnet]
@@ -50,6 +51,12 @@ folder_colors={
 "res://scenes/": "green",
 "res://scripts/": "yellow"
 }
+
+[gui]
+
+theme/default_font_hinting=2
+theme/default_font_multichannel_signed_distance_field=true
+theme/lcd_subpixel_layout=0
 
 [input]
 
@@ -105,5 +112,4 @@ debug_teleport={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 environment/defaults/default_clear_color=Color(1, 1, 1, 1)

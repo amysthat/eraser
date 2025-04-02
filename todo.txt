@@ -74,7 +74,7 @@ missing: map doesn't make good use of planes
 
 # V0.4 🎊
 
-correct viewport rendering
+# correct viewport rendering
 section timer & max timer
 funnels
 web compliance
@@ -90,6 +90,7 @@ map doesn't make good use of planes
 bugs:
 planes can just continously beat up a player that continously parries
 player's parry fails to work if the enemy was out of trigger, this can only happen when the player parries while hit
+setting max fps doesn't work
 
 suggestions:
 maybe autotile the solid tiles?

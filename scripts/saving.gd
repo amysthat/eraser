@@ -61,7 +61,7 @@ func load_global_save():
 
     var data = JSON.parse_string(content)
 
-    Engine.max_fps = data["max_fps"]
+    Engine.max_fps = data["max_fps"] # FIXME: Doesn't really work?
     DisplayServer.window_set_vsync_mode(data["vsync"] if DisplayServer.VSYNC_ENABLED else DisplayServer.VSYNC_DISABLED)
     AudioServer.set_bus_volume_db(Game.MASTER_BUS_ID, linear_to_db(data["master_volume"]))
     AudioServer.set_bus_mute(Game.MASTER_BUS_ID, data["master_volume"] == 0)
