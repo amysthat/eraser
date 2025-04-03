@@ -494,4 +494,5 @@ script = ExtResource("24_uicwc")
 [node name="World Cursor" type="Sprite2D" parent="."]
 script = ExtResource("25_ejasx")
 
+[connection signal="set_spawn_of_player" from="Sections" to="Spawnpoints" method="set_player_spawn"]
 [connection signal="timeout" from="Tutorial/Parry Teacher/CanonBall/Pacified" to="Tutorial/Parry Teacher/CanonBall" method="_on_pacified_timeout"]

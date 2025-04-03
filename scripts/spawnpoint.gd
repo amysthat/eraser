@@ -7,7 +7,6 @@ var active_spawnpoint: Node2D
 
 func _ready():
     Sections.instance.entered_section.connect(_on_entered_section)
-    Sections.instance.set_spawn_of_player.connect(_set_player_spawn)
 
 func _process(_delta):
     if player == null:
@@ -25,7 +24,7 @@ func respawn_player():
 
     player.global_position = active_spawnpoint.global_position
 
-func _set_player_spawn(section: Section):
+func set_player_spawn(section: Section):
     active_spawnpoint = find_child(section.spawnpoint_marker_name)
     player.global_position = active_spawnpoint.global_position
 

@@ -39,6 +39,9 @@ func begin_game() -> void:
     is_playing = true
     is_paused = false
 
+    TimeManager.elapsed_time = 0
+    TimeManager.elapsed_time_for_section = 0
+
     if Saving.has_game_save_data():
         Saving.load_game_save()
 
@@ -54,6 +57,8 @@ func end_game() -> void:
     if not is_playing:
         return
     
+    on_game_end.emit()
+    
     Saving.save_game_to_disk()
     
     is_playing = false
@@ -65,8 +70,6 @@ func end_game() -> void:
     App.instance.load_ui_scene(load(MAIN_MENU_SCENE))
 
     await get_tree().process_frame
-    
-    on_game_end.emit()
 
 func toggle_pause() -> void:
     is_paused = not is_paused

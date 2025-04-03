@@ -30,11 +30,15 @@ func load_game_save():
     var data = JSON.parse_string(content)
 
     saved_section_index = data["section_index"]
+    TimeManager.elapsed_time = data["elapsed_time"]
+    TimeManager.elapsed_time_for_section = data["elapsed_time_for_section"]
     save_loaded = true
 
 func save_game_to_disk():
     var data = {
         "section_index": saved_section_index,
+        "elapsed_time": TimeManager.elapsed_time,
+        "elapsed_time_for_section": TimeManager.elapsed_time_for_section,
     }
 
     var content = JSON.stringify(data)
@@ -74,6 +78,8 @@ func save_global_to_disk():
         "vsync": DisplayServer.window_get_vsync_mode(),
         "master_volume": db_to_linear(AudioServer.get_bus_volume_db(Game.MASTER_BUS_ID)),
         "music_volume": db_to_linear(AudioServer.get_bus_volume_db(Game.MUSIC_BUS_ID)),
+        "best_times": TimeManager.best_times_for_sections,
+        "best_time": TimeManager.best_time,
     }
 
     var content = JSON.stringify(data)

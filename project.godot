@@ -26,6 +26,7 @@ Debug="*res://scripts/debug.gd"
 Cursor="*res://scripts/cursor.gd"
 Saving="*res://scripts/saving.gd"
 Music="*res://music.tscn"
+TimeManager="*res://scripts/time.gd"
 
 [display]
 
