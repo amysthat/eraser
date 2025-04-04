@@ -72,6 +72,28 @@ func load_global_save():
     AudioServer.set_bus_volume_db(Game.MUSIC_BUS_ID, linear_to_db(data["music_volume"]))
     AudioServer.set_bus_mute(Game.MUSIC_BUS_ID, data["music_volume"] == 0)
 
+    # This type of conversion is needed because godot loads JSON dictionaries as STRING-VALUE dictionaries.
+    # Even if the original dictionary was INT-FLOAT, it gets saved and loaded as STRING-FLOAT,
+    # And since dictionaries aren't statically typed, godot allowed multiple types as keys stored in the dictionary,
+    # becoming this:
+    # "0": -1,
+    # "1": -1,
+    # "2": -1,
+    # 0: -1, ## From here on, TimeManager fills these in.
+    # 1: -1,
+    # 2: -1
+    #
+    # Therefore, this manual conversion is needed.
+    
+    var best_times: Dictionary
+    for key in data["best_times"].keys():
+        var index = int(key)
+        best_times[index]= data["best_times"][key]
+
+    TimeManager.best_times_for_sections = best_times
+    TimeManager.best_time = data["best_time"]
+    TimeManager.complete_missing_best_times()
+
 func save_global_to_disk():
     var data = {
         "max_fps": Engine.max_fps,

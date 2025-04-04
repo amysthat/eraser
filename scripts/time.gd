@@ -7,11 +7,14 @@ var elapsed_time: float
 
 var best_time_for_section: float:
     get:
+        if Sections.instance == null:
+            return -1
+
         if not best_times_for_sections.keys().has(Sections.instance.current_section_index):
             return -1
         
         return best_times_for_sections[Sections.instance.current_section_index]
-    set(value): 
+    set(value):
         best_times_for_sections[Sections.instance.current_section_index] = value
 var best_time: float = -1
 
@@ -26,6 +29,10 @@ func _process(delta: float) -> void:
     elapsed_time += delta
     elapsed_time_for_section += delta
 
+func complete_missing_best_times() -> void:
+    for i in range(load("res://sections.tres").sections.size()):
+        best_times_for_sections[i] = -1
+
 func start_timer() -> void:
     timer_running = true
 
@@ -33,7 +40,10 @@ func end_timer() -> void:
     timer_running = false
 
 func finish_section() -> void:
-    if elapsed_time_for_section < best_time_for_section or best_time_for_section < 0:
+    var best_time_not_set = best_time_for_section < 0
+    var new_record = elapsed_time_for_section < best_time_for_section
+
+    if new_record or best_time_not_set:
         best_time_for_section = elapsed_time_for_section
 
     Saving.save_global_to_disk()
@@ -47,3 +57,15 @@ func finish_game_with_section() -> void:
         best_time = elapsed_time
     
     elapsed_time = 0
+
+@warning_ignore("integer_division")
+func convert_time_into_legibile_time(time: float) -> String:
+    var hours = int(time) / 3600
+    var minutes = (int(time) % 3600) / 60
+    var seconds = int(time) % 60
+    var milliseconds = int((time - int(time)) * 100)
+
+    if hours > 0:
+        return "%02d:%02d:%02d.%02d" % [hours, minutes, seconds, milliseconds]
+    else:
+        return "%02d:%02d.%02d" % [minutes, seconds, milliseconds]

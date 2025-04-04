@@ -70,8 +70,6 @@ bugs:
 # successful parry does not freeze the player
 # start charging dash -> pause -> let go of the mouse button -> unpause -> dash still continues on charging
 
-missing: map doesn't make good use of planes
-
 # V0.4 🎊
 
 # correct viewport rendering

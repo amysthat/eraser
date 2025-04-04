@@ -51,7 +51,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Section Reporter" type="Control" parent="Pause" node_paths=PackedStringArray("name_label", "completion_label")]
+[node name="Section Reporter" type="Control" parent="Pause" node_paths=PackedStringArray("name_label", "completion_label", "time_label", "best_time")]
 layout_mode = 2
 anchors_preset = 0
 anchor_right = 1.0
@@ -59,39 +59,51 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_aeoha")
-name_label = NodePath("Panel/Name")
-completion_label = NodePath("Panel/Completion")
+name_label = NodePath("Panel/MarginContainer/VBoxContainer/Name")
+completion_label = NodePath("Panel/MarginContainer/VBoxContainer/Completion")
+time_label = NodePath("Panel/MarginContainer/VBoxContainer/Time")
+best_time = NodePath("Panel/MarginContainer/VBoxContainer/Best Time")
 
-[node name="Panel" type="Panel" parent="Pause/Section Reporter"]
+[node name="Panel" type="PanelContainer" parent="Pause/Section Reporter"]
 layout_mode = 1
 offset_left = 50.0
 offset_top = 50.0
-offset_right = 332.0
-offset_bottom = 169.0
+offset_right = 326.0
+offset_bottom = 168.0
 
-[node name="Title" type="Label" parent="Pause/Section Reporter/Panel"]
-layout_mode = 1
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 125.0
-offset_bottom = 38.0
+[node name="MarginContainer" type="MarginContainer" parent="Pause/Section Reporter/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/Section Reporter/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="Pause/Section Reporter/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
 text = "SECTION INFO"
 
-[node name="Name" type="Label" parent="Pause/Section Reporter/Panel"]
-layout_mode = 1
-offset_left = 15.0
-offset_top = 50.0
-offset_right = 265.0
-offset_bottom = 73.0
+[node name="Seperator" type="Control" parent="Pause/Section Reporter/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Pause/Section Reporter/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
 text = "Section name"
 
-[node name="Completion" type="Label" parent="Pause/Section Reporter/Panel"]
-layout_mode = 1
-offset_left = 15.0
-offset_top = 76.0
-offset_right = 265.0
-offset_bottom = 99.0
+[node name="Completion" type="Label" parent="Pause/Section Reporter/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
 text = "Progress"
+
+[node name="Time" type="Label" parent="Pause/Section Reporter/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Been in this section for: XX:XX:XX"
+
+[node name="Best Time" type="Label" parent="Pause/Section Reporter/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Best time for this section: XX:XX:XX"
 
 [node name="Pause Menu" type="Control" parent="Pause" node_paths=PackedStringArray("visiblity_node", "settings_menu")]
 layout_mode = 2
