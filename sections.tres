@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SectionData" load_steps=6 format=3 uid="uid://k7sselaoq888"]
+[gd_resource type="Resource" script_class="SectionData" load_steps=7 format=3 uid="uid://k7sselaoq888"]
 
 [ext_resource type="Script" path="res://scripts/section_data.gd" id="1_xd68c"]
 [ext_resource type="Script" path="res://scripts/section.gd" id="2_croeo"]
@@ -18,6 +18,11 @@ script = ExtResource("2_croeo")
 display_name = "A Venture Up"
 spawnpoint_marker_name = "Section 3"
 
+[sub_resource type="Resource" id="Resource_1rk8s"]
+script = ExtResource("2_croeo")
+display_name = "End of Demo"
+spawnpoint_marker_name = "Section 4"
+
 [resource]
 script = ExtResource("1_xd68c")
-sections = Array[ExtResource("2_croeo")]([SubResource("Resource_2jq35"), SubResource("Resource_onoxv"), SubResource("Resource_a16mq")])
+sections = Array[ExtResource("2_croeo")]([SubResource("Resource_2jq35"), SubResource("Resource_onoxv"), SubResource("Resource_a16mq"), SubResource("Resource_1rk8s")])

@@ -2,6 +2,7 @@ extends Control
 
 @export var visiblity_node: Control
 @export var settings_menu: Control
+@export var best_times_menu: Control
 
 func _ready():
 	visiblity_node.visible = false
@@ -20,3 +21,6 @@ func _on_main_menu_pressed():
 
 func _on_settings_pressed():
 	settings_menu.visible = true
+
+func _on_best_time_pressed() -> void:
+	best_times_menu.visible = true

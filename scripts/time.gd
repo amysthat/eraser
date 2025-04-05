@@ -21,9 +21,8 @@ var best_time: float = -1
 var timer_running: bool
 
 func _ready() -> void:
-    if timer_running:
-        Game.on_game_begin.connect(start_timer)
-        Game.on_game_end.connect(end_timer)
+    Game.on_game_begin.connect(start_timer)
+    Game.on_game_end.connect(end_timer)
 
 func _process(delta: float) -> void:
     elapsed_time += delta
@@ -31,7 +30,8 @@ func _process(delta: float) -> void:
 
 func complete_missing_best_times() -> void:
     for i in range(load("res://sections.tres").sections.size()):
-        best_times_for_sections[i] = -1
+        if not best_times_for_sections.keys().has(i):
+            best_times_for_sections[i] = -1
 
 func start_timer() -> void:
     timer_running = true
@@ -39,19 +39,27 @@ func start_timer() -> void:
 func end_timer() -> void:
     timer_running = false
 
-func finish_section() -> void:
+func finish_previous_section() -> void:
+    if Sections.instance.current_section_index < 1:
+        print("TimeManager: First section encountered. Skipping.")
+        return
+
+    var index = Sections.instance.current_section_index - 1
+
+    print("Section finished: ", index)
+
     var best_time_not_set = best_time_for_section < 0
     var new_record = elapsed_time_for_section < best_time_for_section
 
     if new_record or best_time_not_set:
-        best_time_for_section = elapsed_time_for_section
+        best_times_for_sections[index] = elapsed_time_for_section
 
     Saving.save_global_to_disk()
     
     elapsed_time_for_section = 0
 
 func finish_game_with_section() -> void:
-    finish_section()
+    finish_previous_section()
 
     if elapsed_time < best_time:
         best_time = elapsed_time

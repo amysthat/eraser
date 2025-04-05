@@ -39,14 +39,14 @@ func _on_player_entered_area(area: SectionArea):
     if current_section_index > target_index:
         print("Canceling section downgrade from ", current_section_index, " to ", target_index)
         return
-    
-    TimeManager.finish_section()
 
     current_section_area = area
     current_section = areas_to_sections[area]
     current_section_index = sections.find(current_section)
 
     print("Entered section: %s (index: %s)" % [current_section.display_name, current_section_index])
+    
+    TimeManager.finish_previous_section()
 
     Saving.saved_section_index = current_section_index
     Saving.save_game_to_disk()

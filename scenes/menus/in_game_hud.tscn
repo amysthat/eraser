@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8pwn68xclcrf"]
+[gd_scene load_steps=7 format=3 uid="uid://b8pwn68xclcrf"]
 
 [ext_resource type="Theme" uid="uid://cygy0ufansx3h" path="res://theme.tres" id="1_5xe63"]
 [ext_resource type="Script" path="res://scripts/section_reporter.gd" id="1_aeoha"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="2_3nbtv"]
 [ext_resource type="Script" path="res://scripts/time_reporter.gd" id="2_q28ag"]
 [ext_resource type="PackedScene" uid="uid://ckwdk8telu0h8" path="res://scenes/menus/settings_panel.tscn" id="3_w5jgg"]
+[ext_resource type="PackedScene" uid="uid://b5vfqaab1ycec" path="res://scenes/menus/best_times_panel.tscn" id="6_35358"]
 
 [node name="In Game HUD" type="Control"]
 process_mode = 3
@@ -105,7 +106,7 @@ text = "Been in this section for: XX:XX:XX"
 layout_mode = 2
 text = "Best time for this section: XX:XX:XX"
 
-[node name="Pause Menu" type="Control" parent="Pause" node_paths=PackedStringArray("visiblity_node", "settings_menu")]
+[node name="Pause Menu" type="Control" parent="Pause" node_paths=PackedStringArray("visiblity_node", "settings_menu", "best_times_menu")]
 layout_mode = 2
 anchors_preset = 0
 anchor_right = 1.0
@@ -115,6 +116,7 @@ grow_vertical = 2
 script = ExtResource("2_3nbtv")
 visiblity_node = NodePath("..")
 settings_menu = NodePath("../Settings")
+best_times_menu = NodePath("../Best Times")
 
 [node name="CenterContainer" type="CenterContainer" parent="Pause/Pause Menu"]
 layout_mode = 2
@@ -160,6 +162,11 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Resume"
 
+[node name="Best Time" type="Button" parent="Pause/Pause Menu/CenterContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Best Times"
+
 [node name="Settings" type="Button" parent="Pause/Pause Menu/CenterContainer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -183,6 +190,11 @@ offset_top = -400.0
 offset_right = 600.0
 offset_bottom = 400.0
 
+[node name="Best Times" parent="Pause" instance=ExtResource("6_35358")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="Pause/Pause Menu/CenterContainer/Panel/VBoxContainer/Resume" to="Pause/Pause Menu" method="_on_resume_pressed"]
+[connection signal="pressed" from="Pause/Pause Menu/CenterContainer/Panel/VBoxContainer/Best Time" to="Pause/Pause Menu" method="_on_best_time_pressed"]
 [connection signal="pressed" from="Pause/Pause Menu/CenterContainer/Panel/VBoxContainer/Settings" to="Pause/Pause Menu" method="_on_settings_pressed"]
 [connection signal="pressed" from="Pause/Pause Menu/CenterContainer/Panel/VBoxContainer/MainMenu" to="Pause/Pause Menu" method="_on_main_menu_pressed"]

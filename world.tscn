@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://bo0plga5ky1no"]
+[gd_scene load_steps=50 format=4 uid="uid://bo0plga5ky1no"]
 
 [ext_resource type="Texture2D" uid="uid://vufw03iofwhu" path="res://assets/direction_sign.png" id="1_bl5kf"]
 [ext_resource type="PackedScene" uid="uid://cky1jr0gkvhxb" path="res://scenes/prefabs/player.tscn" id="1_l2ixe"]
@@ -124,6 +124,9 @@ size = Vector2(24, 11.75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lnkbu"]
 size = Vector2(56, 19.875)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3l506"]
+size = Vector2(40, 7)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmah"]
 radius = 2.0
 
@@ -135,6 +138,7 @@ gradient = SubResource("Gradient_wc7kn")
 width = 128
 
 [node name="World" type="Node2D"]
+texture_filter = 1
 
 [node name="Direction Signs" type="CanvasGroup" parent="."]
 
@@ -373,6 +377,9 @@ position = Vector2(12, -453)
 [node name="Section 3" type="Marker2D" parent="Spawnpoints"]
 position = Vector2(20, -1117)
 
+[node name="Section 4" type="Marker2D" parent="Spawnpoints"]
+position = Vector2(108, -2125)
+
 [node name="Sections" type="Node" parent="."]
 script = ExtResource("13_arvc4")
 
@@ -401,6 +408,15 @@ section_index = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sections/Section 3"]
 position = Vector2(20, -1126.06)
 shape = SubResource("RectangleShape2D_lnkbu")
+
+[node name="Section 4" type="Area2D" parent="Sections"]
+collision_mask = 4
+script = ExtResource("15_hgx48")
+section_index = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sections/Section 4"]
+position = Vector2(108, -2128)
+shape = SubResource("RectangleShape2D_3l506")
 
 [node name="Tutorial" type="Node" parent="."]
 
@@ -487,7 +503,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 [node name="Player" parent="." instance=ExtResource("1_l2ixe")]
 position = Vector2(164, 84)
 
-[node name="DebugTeleporter" type="Marker2D" parent="."]
+[node name="Debug Teleporter" type="Marker2D" parent="."]
 position = Vector2(158, -200)
 script = ExtResource("24_uicwc")
 

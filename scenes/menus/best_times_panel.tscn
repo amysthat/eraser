@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5vfqaab1ycec"]
+
+[ext_resource type="Theme" uid="uid://cygy0ufansx3h" path="res://theme.tres" id="1_o33by"]
+[ext_resource type="Script" path="res://scripts/best_times_panel.gd" id="2_qsmnx"]
+
+[node name="Best Times" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_o33by")
+script = ExtResource("2_qsmnx")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(350, 500)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Page" type="Control" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/MarginContainer/Page"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+text = "BEST TIMES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="Button" parent="Panel/MarginContainer/Page"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+offset_right = 80.0
+offset_bottom = 40.0
+text = "< Back"
+
+[node name="Contents" type="Control" parent="Panel/MarginContainer/Page"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/Page/Contents"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Contents" type="VBoxContainer" parent="Panel/MarginContainer/Page/Contents/MarginContainer"]
+layout_mode = 2
+
+[node name="Times" type="VBoxContainer" parent="Panel/MarginContainer/Page/Contents/MarginContainer/Contents"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Seperator" type="Control" parent="Panel/MarginContainer/Page/Contents/MarginContainer/Contents"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Best Run Label" type="Label" parent="Panel/MarginContainer/Page/Contents/MarginContainer/Contents"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Best run: XX:XX:XX"
+vertical_alignment = 2
+
+[connection signal="pressed" from="Panel/MarginContainer/Page/Back" to="." method="_on_back_pressed"]

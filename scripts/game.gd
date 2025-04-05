@@ -12,7 +12,7 @@ const MAIN_MENU_SCENE := "res://scenes/menus/main_menu.tscn"
 @onready var MASTER_BUS_ID = AudioServer.get_bus_index("Master")
 @onready var MUSIC_BUS_ID = AudioServer.get_bus_index("Music")
 
-const SECTION_COUNT := 3
+const SECTION_COUNT := 4
 
 var is_playing: bool
 var is_paused: bool

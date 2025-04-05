@@ -73,8 +73,9 @@ bugs:
 # V0.4 🎊
 
 # correct viewport rendering
-section timer & max timer
+# section timer & max timer
 funnels
+game end prompt
 web compliance
 ui theme finishing
 sfx
