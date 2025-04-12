@@ -103,3 +103,4 @@ V0.5: DEMO RELEASE (WEB / DESKTOP)
 bigger maps
 story (just a little)
 themes
+map creator
