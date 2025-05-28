@@ -7,21 +7,25 @@
 script = ExtResource("2_croeo")
 display_name = "Humble Beginnings"
 spawnpoint_marker_name = "Section 1"
+hidden = false
 
 [sub_resource type="Resource" id="Resource_onoxv"]
 script = ExtResource("2_croeo")
 display_name = "Discovery"
 spawnpoint_marker_name = "Section 2"
+hidden = false
 
 [sub_resource type="Resource" id="Resource_a16mq"]
 script = ExtResource("2_croeo")
 display_name = "A Venture Up"
 spawnpoint_marker_name = "Section 3"
+hidden = false
 
 [sub_resource type="Resource" id="Resource_1rk8s"]
 script = ExtResource("2_croeo")
 display_name = "End of Demo"
 spawnpoint_marker_name = "Section 4"
+hidden = true
 
 [resource]
 script = ExtResource("1_xd68c")

@@ -37,7 +37,7 @@ func update_save_section():
     save_info.visible = Saving.has_game_save_data()
 
     if Saving.has_game_save_data():
-        save_info.text = "Section %s/%s: %s" % [Saving.saved_section_index + 1, Game.SECTION_COUNT, section_data.sections[Saving.saved_section_index].display_name]
+        save_info.text = "Section %s/%s: %s" % [Saving.saved_section_index + 1, Game.SECTION_COUNT - Game.HIDDEN_SECTION_COUNT, section_data.sections[Saving.saved_section_index].display_name]
         save_info.text += " | %s" % TimeManager.convert_time_into_legibile_time(TimeManager.elapsed_time)
 
 func _on_best_times_pressed() -> void:

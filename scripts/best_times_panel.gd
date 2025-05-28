@@ -35,6 +35,11 @@ func update_best_times() -> void:
 		child.queue_free()
 	
 	for index in TimeManager.best_times_for_sections.keys():
+		var item_hidden = section_data.sections[index].hidden
+
+		if item_hidden:
+			continue
+
 		var section_name = section_data.sections[index].display_name
 
 		var time_label = Label.new()

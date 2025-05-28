@@ -52,3 +52,12 @@ func _on_player_entered_area(area: SectionArea):
     Saving.save_game_to_disk()
 
     entered_section.emit(current_section)
+
+func get_visible_section_count() -> int:
+    var count = 0
+    
+    for section in sections:
+        if not section.hidden:
+            count += 1
+    
+    return count

@@ -1,8 +1,0 @@
-{
-    "files.exclude": {
-        ".godot": true,
-        ".vscode": true,
-        "**/.*": true,
-        "addons": true
-    }
-}

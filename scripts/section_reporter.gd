@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 
 func _on_entered_section(new_section: Section):
     name_label.text = new_section.display_name
-    completion_label.text = "%s of %s" % [Sections.instance.current_section_index + 1, Sections.instance.sections.size()]
+    completion_label.text = "%s of %s" % [Sections.instance.current_section_index + 1, Sections.instance.get_visible_section_count()]
 
     if TimeManager.best_time_for_section >= 0:
         best_time.visible = true
