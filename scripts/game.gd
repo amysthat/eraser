@@ -22,12 +22,6 @@ var is_paused: bool
 func _enter_tree():
     process_mode = Node.PROCESS_MODE_ALWAYS
 
-    if get_tree().current_scene.name == "World":
-        print("Starting in World scene.")
-        await get_tree().process_frame
-
-        begin_game()
-
 func _ready():
     App.instance.app_ready.connect(_on_app_ready)
 

@@ -90,9 +90,9 @@ due to the pixel perfect change, some items on map don't render well. they need 
 bugs:
 planes can just continously beat up a player that continously parries
 player's parry fails to work if the enemy was out of trigger, this can only happen when the player parries while hit, but only when the enemy that hit the player is out of reach
-setting max fps doesn't work
+# setting max fps doesn't work
 run scene functionality has been broken
-resolution settings not saved
+# resolution settings not saved
 continuing fucks up the best time record?
 best time is not set properly
 
