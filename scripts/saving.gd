@@ -94,7 +94,15 @@ func load_global_save():
     TimeManager.best_time = data["best_time"]
     TimeManager.complete_missing_best_times()
 
+    DisplayServer.window_set_mode(data["window_mode"])
+    var resolution_split = data["resolution"].split("x")
+    var resolution = Vector2i(int(resolution_split[0]), int(resolution_split[1]))
+    DisplayServer.window_set_size(resolution)
+
 func save_global_to_disk():
+    var resolution = DisplayServer.window_get_size()
+    var resolution_text = "%sx%s" % [resolution.x, resolution.y]
+
     var data = {
         "max_fps": Engine.max_fps,
         "vsync": DisplayServer.window_get_vsync_mode(),
@@ -102,6 +110,8 @@ func save_global_to_disk():
         "music_volume": db_to_linear(AudioServer.get_bus_volume_db(Game.MUSIC_BUS_ID)),
         "best_times": TimeManager.best_times_for_sections,
         "best_time": TimeManager.best_time,
+        "resolution": resolution_text,
+        "window_mode": DisplayServer.window_get_mode(),
     }
 
     var content = JSON.stringify(data)
@@ -117,6 +127,11 @@ func initialize_global_save_data():
     AudioServer.set_bus_mute(Game.MASTER_BUS_ID, false)
     AudioServer.set_bus_volume_db(Game.MUSIC_BUS_ID, linear_to_db(1))
     AudioServer.set_bus_mute(Game.MUSIC_BUS_ID, false)
+
+    # Timers are managed by TimeManager, so we don't set them here.
+    # TODO: Verify that this is actually the case.
+
+    # Resolution settings are set in Godot's project settings, so we don't set them here.
 
     save_global_to_disk()
     load_global_save()
