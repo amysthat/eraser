@@ -10,6 +10,7 @@ static var instance
 @onready var player_float := $Float
 
 var invulnerable_time: float
+var last_enemy_hit: Enemy
 
 func _enter_tree():
     instance = self
@@ -29,6 +30,8 @@ func get_hit(normal: Vector2, enemy: Enemy):
     var is_invulnerable = invulnerable_time > 0
     if is_invulnerable:
         return
+    
+    last_enemy_hit = enemy
 
     invulnerable_time = invulnerabilty_time
 

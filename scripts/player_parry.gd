@@ -27,6 +27,8 @@ func on_parry():
     timer.stop()
     shock_timer.start()
 
+    player.last_enemy_hit = null
+
     player.linear_velocity = Vector2.ZERO
     player.gravity_scale = 0
 
@@ -35,10 +37,14 @@ func _on_shock_timer_timeout():
     transition.emit("movement")
 
 func detect_enemy():
+    var enemy = player.last_enemy_hit
+
     for body in parry_area.get_overlapping_bodies():
         if body is Enemy:
-            var enemy = body as Enemy
-            var offset = player.global_position - enemy.global_position
+            enemy = body as Enemy
+    
+    if enemy:
+        var offset = player.global_position - enemy.global_position
 
-            enemy.hit_player(offset)
-            on_parry()
+        enemy.hit_player(offset)
+        on_parry()
