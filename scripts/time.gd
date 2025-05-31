@@ -8,9 +8,11 @@ var elapsed_time: float
 var best_time_for_section: float:
     get:
         if Sections.instance == null:
+            print("TimeManager: Sections instance is null. Returning -1 for best time.")
             return -1
 
         if not best_times_for_sections.keys().has(Sections.instance.current_section_index):
+            print("TimeManager: No best time set for current section index. Returning -1.")
             return -1
         
         return best_times_for_sections[Sections.instance.current_section_index]
@@ -40,6 +42,8 @@ func end_timer() -> void:
     timer_running = false
 
 func finish_previous_section() -> void:
+    print("TimeManager: Finishing previous section...")
+
     if Sections.instance.current_section_index < 1:
         print("TimeManager: First section encountered. Skipping.")
         return
@@ -48,8 +52,13 @@ func finish_previous_section() -> void:
 
     print("Section finished: ", index)
 
-    var best_time_not_set = best_time_for_section < 0
-    var new_record = elapsed_time_for_section < best_time_for_section
+    var best_time_not_set = best_times_for_sections[index] < 0
+    var new_record = elapsed_time_for_section < best_times_for_sections[index]
+
+    print("Elapsed time for section: ", elapsed_time_for_section)
+    print("Best time for section: ", best_times_for_sections[index])
+    print("New record: ", new_record)
+    print("Best time not set: ", best_time_not_set)
 
     if new_record or best_time_not_set:
         best_times_for_sections[index] = elapsed_time_for_section
@@ -58,6 +67,7 @@ func finish_previous_section() -> void:
     
     elapsed_time_for_section = 0
 
+# Currently unused.
 func finish_game_with_section() -> void:
     finish_previous_section()
 
