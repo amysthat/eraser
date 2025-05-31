@@ -1,7 +1,7 @@
 extends Enemy
 class_name PlaneBody
 
-signal weaken(reason_int: int)
+signal weaken(reason_int: int, knock_off_velocity: Vector2)
 signal return_to_patrol_after_hitting_player
 
 @export var path: Path2D
@@ -12,6 +12,8 @@ var path_follow: PathFollow2D
 @onready var collision := $CollisionShape2D
 @onready var player_raycast := $RayCast2D
 @onready var state_machine := $StateMachine
+
+var knock_off_velocity := Vector2.ZERO
 
 func _ready():
     path_follow = PathFollow2D.new()
@@ -44,9 +46,10 @@ func _physics_process(_delta):
                 should_weaken = true
         
         position += knock_off
+        knock_off_velocity = knock_off * 20
         
         if should_weaken:
-            weaken.emit(PlaneWeakState.WeakenReason.MISS)
+            weaken.emit(PlaneWeakState.WeakenReason.MISS, knock_off_velocity)
     
     move_and_slide()
 
@@ -55,7 +58,7 @@ func set_state_indicator(texture: Texture2D):
 
 func _pacify():
     print("player was parrying, weakened!")
-    weaken.emit(PlaneWeakState.WeakenReason.PLAYER_PARRY)
+    weaken.emit(PlaneWeakState.WeakenReason.PLAYER_PARRY, knock_off_velocity)
 
 func _destroy():
     print("destroyed!")

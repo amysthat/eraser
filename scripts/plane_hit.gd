@@ -18,11 +18,13 @@ enum WeakenReason
 @onready var timer := $Timer
 
 var weaken_reason: WeakenReason
+var knock_off_vel : Vector2
 
 var plane_old_texture
 
 func enter():
-    plane.velocity = Vector2.ZERO
+    plane.velocity = knock_off_vel
+    knock_off_vel = Vector2.ZERO
     plane.set_state_indicator(status_texture)
 
     plane_old_texture = plane.sprite.texture
@@ -43,7 +45,8 @@ func exit():
 
     timer.stop()
 
-func enable_with_reason(reason_int: int):
+func enable_with_parameters(reason_int: int, knock_off_velocity: Vector2):
+    knock_off_vel = knock_off_velocity
     weaken_reason = reason_int as WeakenReason
     transition.emit("weak")
 

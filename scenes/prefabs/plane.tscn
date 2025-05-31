@@ -102,7 +102,7 @@ status_texture = ExtResource("5_lpmvc")
 speed = 40.0
 
 [connection signal="return_to_patrol_after_hitting_player" from="." to="StateMachine/return_to_patrol" method="transition_to_self"]
-[connection signal="weaken" from="." to="StateMachine/weak" method="enable_with_reason"]
+[connection signal="weaken" from="." to="StateMachine/weak" method="enable_with_parameters"]
 [connection signal="set_return_patrol_point" from="StateMachine/patrol" to="StateMachine/return_to_patrol" method="set_return_point_to_current_position"]
 [connection signal="timeout" from="StateMachine/detect_shock/Timer" to="StateMachine/detect_shock" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/weak/Timer" to="StateMachine/weak" method="_on_timer_timeout"]
