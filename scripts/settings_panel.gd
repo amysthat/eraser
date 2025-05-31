@@ -55,11 +55,12 @@ func update_resolution():
 	match DisplayServer.window_get_mode(DisplayServer.window_get_current_screen()):
 		DisplayServer.WindowMode.WINDOW_MODE_MAXIMIZED:
 			full_text = "Maximized (%s)" % res_text
-		DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN:
+		DisplayServer.WindowMode.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
 			full_text = "Fullscreen (%s)" % res_text
 
 	resolution.text = full_text
-	fullscreen.button_pressed = DisplayServer.window_get_mode(DisplayServer.window_get_current_screen()) == DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN
+
+	fullscreen.set_pressed_no_signal(DisplayServer.window_get_mode(DisplayServer.window_get_current_screen()) == DisplayServer.WindowMode.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 
 func _resolution_selected(index: int):
 	var text = resolution.get_popup().get_item_text(index)
@@ -107,6 +108,7 @@ func _on_music_slider_value_changed(value: float):
 	Saving.save_global_to_disk()
 
 func _on_fullscreen_toggled(toggled_on: bool) -> void:
-	var target_mode = DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN if toggled_on else DisplayServer.WindowMode.WINDOW_MODE_WINDOWED
+	var target_mode = DisplayServer.WindowMode.WINDOW_MODE_EXCLUSIVE_FULLSCREEN if toggled_on else DisplayServer.WindowMode.WINDOW_MODE_WINDOWED
 	DisplayServer.window_set_mode(target_mode, DisplayServer.window_get_current_screen())
+	print("Fullscreen set to: %s" % DisplayServer.window_get_mode(DisplayServer.window_get_current_screen()))
 	update_resolution()
