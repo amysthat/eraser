@@ -1,8 +1,9 @@
 extends Control
 
 @onready var continue_button := %Continue
-@onready var remove_save_button := % "Remove Save"
-@onready var save_info := % "Save Info"
+@onready var remove_save_button := %"Remove Save"
+@onready var save_info := %"Save Info"
+@onready var best_times_button := %"Best Times"
 
 @onready var settings_menu := $Settings
 @onready var best_times_menu := $"Best Times"
@@ -11,6 +12,9 @@ extends Control
 
 func _ready():
     update_save_section()
+
+func _process(_delta: float) -> void:
+    best_times_button.visible = Game.game_completed
 
 func _on_new_game_pressed():
     if Saving.has_game_save_data():

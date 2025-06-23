@@ -498,7 +498,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 position = Vector2(164, 84)
 
 [node name="Debug Teleporter" type="Marker2D" parent="."]
-position = Vector2(144, -917)
+position = Vector2(109, -2098)
 script = ExtResource("24_uicwc")
 
 [node name="World Cursor" type="Sprite2D" parent="."]

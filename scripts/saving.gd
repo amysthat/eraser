@@ -3,6 +3,8 @@ extends Node
 const GAME_SAVE_PATH := "user://save.json"
 const GLOBAL_SAVE_PATH := "user://global.json"
 
+const JSON_TAB := "    "
+
 var save_loaded: bool
 
 # Save data
@@ -41,7 +43,7 @@ func save_game_to_disk():
         "elapsed_time_for_section": TimeManager.elapsed_time_for_section,
     }
 
-    var content = JSON.stringify(data)
+    var content = JSON.stringify(data, JSON_TAB)
     
     var file = FileAccess.open(GAME_SAVE_PATH, FileAccess.WRITE)
     file.store_string(content)
@@ -99,6 +101,8 @@ func load_global_save():
     var resolution = Vector2i(int(resolution_split[0]), int(resolution_split[1]))
     DisplayServer.window_set_size(resolution)
 
+    Game.game_completed = data["game_completed"]
+
 func save_global_to_disk():
     var resolution = DisplayServer.window_get_size()
     var resolution_text = "%sx%s" % [resolution.x, resolution.y]
@@ -112,9 +116,10 @@ func save_global_to_disk():
         "best_time": TimeManager.best_time,
         "resolution": resolution_text,
         "window_mode": DisplayServer.window_get_mode(),
+        "game_completed": Game.game_completed,
     }
 
-    var content = JSON.stringify(data)
+    var content = JSON.stringify(data, JSON_TAB)
     
     var file = FileAccess.open(GLOBAL_SAVE_PATH, FileAccess.WRITE)
     file.store_string(content)

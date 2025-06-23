@@ -30,3 +30,4 @@ hidden = true
 [resource]
 script = ExtResource("1_xd68c")
 sections = Array[ExtResource("2_croeo")]([SubResource("Resource_2jq35"), SubResource("Resource_onoxv"), SubResource("Resource_a16mq"), SubResource("Resource_1rk8s")])
+game_end_index = 3

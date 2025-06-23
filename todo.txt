@@ -74,8 +74,9 @@ bugs:
 
 # correct viewport rendering
 # section timer & max timer
+# game end prompt
+run end menu
 funnels
-game end prompt
 web compliance
 ui theme finishing
 sfx
@@ -94,7 +95,6 @@ bugs:
 run scene functionality has been broken
 # resolution settings not saved
 # continuing fucks up the best time record?
-best time is not set properly
 loading from save sets the previous section's best time to 0. maybe the save isn't loaded properly?
 
 suggestions:

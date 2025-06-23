@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8pwn68xclcrf"]
+[gd_scene load_steps=9 format=3 uid="uid://b8pwn68xclcrf"]
 
 [ext_resource type="Theme" uid="uid://cygy0ufansx3h" path="res://theme.tres" id="1_5xe63"]
 [ext_resource type="Script" path="res://scripts/section_reporter.gd" id="1_aeoha"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ckwdk8telu0h8" path="res://scenes/menus/settings_panel.tscn" id="3_w5jgg"]
 [ext_resource type="Script" path="res://scripts/run_reporter.gd" id="4_gdxk4"]
 [ext_resource type="PackedScene" uid="uid://b5vfqaab1ycec" path="res://scenes/menus/best_times_panel.tscn" id="6_35358"]
+[ext_resource type="Script" path="res://scripts/game_end_dialog.gd" id="8_rfndc"]
 
 [node name="In Game HUD" type="Control"]
 process_mode = 3
@@ -20,6 +21,7 @@ grow_vertical = 2
 theme = ExtResource("1_5xe63")
 
 [node name="Time Reporter" type="Control" parent="." node_paths=PackedStringArray("label")]
+visible = false
 layout_mode = 2
 anchors_preset = 0
 anchor_right = 1.0
@@ -46,6 +48,7 @@ layout_mode = 2
 text = "00:00:00 (total: 00:00:00)"
 
 [node name="Pause" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,7 +141,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Pause Menu" type="Control" parent="Pause" node_paths=PackedStringArray("visiblity_node", "settings_menu", "best_times_menu")]
+[node name="Pause Menu" type="Control" parent="Pause" node_paths=PackedStringArray("visiblity_node", "settings_menu", "best_times_menu", "best_times_button", "game_end_dialog")]
 layout_mode = 2
 anchors_preset = 0
 anchor_right = 1.0
@@ -149,6 +152,8 @@ script = ExtResource("2_3nbtv")
 visiblity_node = NodePath("..")
 settings_menu = NodePath("../Settings")
 best_times_menu = NodePath("../Best Times")
+best_times_button = NodePath("CenterContainer/Panel/VBoxContainer/Best Time")
+game_end_dialog = NodePath("../../Game End")
 
 [node name="CenterContainer" type="CenterContainer" parent="Pause/Pause Menu"]
 layout_mode = 2
@@ -226,7 +231,69 @@ offset_bottom = 400.0
 visible = false
 layout_mode = 1
 
+[node name="Game End" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_rfndc")
+
+[node name="CenterContainer" type="CenterContainer" parent="Game End"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Game End/CenterContainer"]
+custom_minimum_size = Vector2(1400, 800)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Game End/CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_top = 25.0
+offset_right = 37.0
+offset_bottom = 48.0
+grow_horizontal = 2
+text = "END OF DEMO"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Game End/CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game End/CenterContainer/Panel/CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Game End/CenterContainer/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Congrats on reaching the end of demo!
+
+What next?
+
+Surprise! Timers and \"Best Time\" have been unlocked. This is a speedrunning game.
+
+Thank you for playing!"
+
+[node name="MainMenu" type="Button" parent="Game End/CenterContainer/Panel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Back to Main Menu"
+
 [connection signal="pressed" from="Pause/Pause Menu/CenterContainer/Panel/VBoxContainer/Resume" to="Pause/Pause Menu" method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause/Pause Menu/CenterContainer/Panel/VBoxContainer/Best Time" to="Pause/Pause Menu" method="_on_best_time_pressed"]
 [connection signal="pressed" from="Pause/Pause Menu/CenterContainer/Panel/VBoxContainer/Settings" to="Pause/Pause Menu" method="_on_settings_pressed"]
 [connection signal="pressed" from="Pause/Pause Menu/CenterContainer/Panel/VBoxContainer/MainMenu" to="Pause/Pause Menu" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Game End/CenterContainer/Panel/CenterContainer/VBoxContainer/MainMenu" to="Game End" method="_on_main_menu_pressed"]

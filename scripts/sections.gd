@@ -6,7 +6,14 @@ static var instance: Sections
 signal entered_section(new_section: Section)
 signal set_spawn_of_player(section: Section)
 
-var sections: Array[Section]
+var section_data: SectionData
+
+var sections: Array[Section]:
+    get:
+        return section_data.sections
+var game_end_index: int:
+    get:
+        return section_data.game_end_index
 
 var areas_to_sections: Dictionary
 
@@ -17,8 +24,7 @@ var current_section_index: int
 func _enter_tree():
     instance = self
 
-    var sections_resource = load("res://sections.tres")
-    sections = sections_resource.sections
+    section_data = load("res://sections.tres")
 
 func _ready():
     if Saving.save_loaded:
@@ -52,6 +58,10 @@ func _on_player_entered_area(area: SectionArea):
     Saving.save_game_to_disk()
 
     entered_section.emit(current_section)
+
+    if current_section_index == game_end_index:
+        print("Game end section reached")
+        Game.complete_game()
 
 func get_visible_section_count() -> int:
     var count = 0

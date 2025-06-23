@@ -6,6 +6,9 @@ extends Control
 @export var best_time: Label
 
 func _ready():
+    time_label.visible = Game.game_completed
+    best_time.visible = Game.game_completed
+
     while Sections.instance == null:
         await get_tree().process_frame
     
