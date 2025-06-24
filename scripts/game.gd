@@ -99,3 +99,29 @@ func end_complete_game() -> void:
     
     Saving.remove_game_save_data()
     end_game(false)
+
+func reset_game_data() -> void:
+    Saving.remove_game_save_data()
+    Saving.remove_global_save_data()
+
+    var can_restart_game := OS.has_feature("desktop") and not Engine.is_editor_hint()
+
+    if can_restart_game:
+        var exe_path = OS.get_executable_path()
+        OS.create_process(exe_path, [])
+        get_tree().quit()
+        return
+    
+    # Manually reset game data
+
+    Saving.initialize_global_save_data()
+
+    TimeManager.elapsed_time = 0
+    TimeManager.elapsed_time_for_section = 0
+    TimeManager.best_times_for_sections = {}
+
+    DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+    DisplayServer.window_set_size(Vector2(1920, 1080))
+
+    App.instance.unload_ui_scene()
+    App.instance.load_ui_scene(load(MAIN_MENU_SCENE))

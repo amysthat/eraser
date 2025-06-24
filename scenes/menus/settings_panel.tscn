@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckwdk8telu0h8"]
+[gd_scene load_steps=5 format=3 uid="uid://ckwdk8telu0h8"]
 
 [ext_resource type="Theme" uid="uid://cygy0ufansx3h" path="res://theme.tres" id="1_pfsqi"]
 [ext_resource type="Script" path="res://scripts/settings_panel.gd" id="2_7pj6a"]
+[ext_resource type="Script" path="res://scripts/settings_game_section.gd" id="3_6ajmu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7lsc1"]
+bg_color = Color(1, 0.479853, 0.466952, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="Settings" type="CenterContainer"]
 anchors_preset = 15
@@ -161,9 +169,34 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Fullscreen"
 
+[node name="Game" type="PanelContainer" parent="Panel/Properties"]
+layout_mode = 2
+script = ExtResource("3_6ajmu")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/Properties/Game"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Properties/Game/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Properties/Game/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "GAME"
+
+[node name="Button" type="Button" parent="Panel/Properties/Game/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_7lsc1")
+text = "Reset Game Data"
+
 [connection signal="pressed" from="Panel/Back" to="." method="_on_back_pressed"]
 [connection signal="value_changed" from="Panel/Properties/Audio & Music/MarginContainer/VBoxContainer/Master/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="Panel/Properties/Audio & Music/MarginContainer/VBoxContainer/Music/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="pressed" from="Panel/Properties/Display/MarginContainer/VBoxContainer/Max FPS/Apply" to="." method="_on_fps_apply_pressed"]
 [connection signal="toggled" from="Panel/Properties/Display/MarginContainer/VBoxContainer/VSync" to="." method="_on_v_sync_toggled"]
 [connection signal="toggled" from="Panel/Properties/Display/MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="pressed" from="Panel/Properties/Game/MarginContainer/VBoxContainer/Button" to="Panel/Properties/Game" method="reset_game_data"]

@@ -75,6 +75,7 @@ bugs:
 # correct viewport rendering
 # section timer & max timer
 # game end prompt
+# reset game button
 run end menu
 funnels
 web compliance
@@ -100,7 +101,6 @@ loading from save sets the previous section's best time to 0. maybe the save isn
 suggestions:
 maybe autotile the solid tiles?
 make player jump higher if parrying is done on time
-reset game button
 
 V0.5: DEMO RELEASE (WEB / DESKTOP)
 

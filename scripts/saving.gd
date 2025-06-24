@@ -52,6 +52,9 @@ func save_game_to_disk():
 func remove_game_save_data():
     DirAccess.remove_absolute(GAME_SAVE_PATH)
     save_loaded = false
+    
+func remove_global_save_data():
+    DirAccess.remove_absolute(GLOBAL_SAVE_PATH)
 
 func has_game_save_data() -> bool:
     return FileAccess.file_exists(GAME_SAVE_PATH)
@@ -137,6 +140,8 @@ func initialize_global_save_data():
     # TODO: Verify that this is actually the case.
 
     # Resolution settings are set in Godot's project settings, so we don't set them here.
+
+    Game.game_completed = false
 
     save_global_to_disk()
     load_global_save()
